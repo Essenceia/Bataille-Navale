@@ -4,14 +4,18 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
+#include <conio.h>
 #include "Allegro.h"
+#include "Partie.h"
 
 class Menu
 {
     private :
         //Attributs
-        int m_choix;
         bool m_exit;
+        bool allegro_present;
+
+        Partie partie;
 
         // Bitmaps
         BITMAP* buffer;
@@ -42,6 +46,9 @@ class Menu
         ~Menu();
 
         //Methodes
+        void Allegro_present();
+        bool getallegro_present();
+
         void load_bitmaps();
         void principal();
         void regles();
@@ -50,4 +57,6 @@ class Menu
         void destroy_bitmaps();
 };
 
-#endif // MENU_H_INCLUDED
+
+#endif
+

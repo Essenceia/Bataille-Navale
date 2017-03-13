@@ -2,11 +2,10 @@
 #include <stdio.h>
 #include <string>
 #include <fstream>
-#include "Allegro.h"
 
 // contructeur par default
 Menu::Menu()
-    : m_choix(0), m_exit(false)
+    : m_exit(false), allegro_present(false)
 {
 
 }
@@ -20,6 +19,39 @@ Menu::~Menu()
 // getteurs et setteurs
 
 /// Méthodes
+void Menu::Allegro_present()
+{
+    //Sur console
+    system("cls"); // nettoie la console
+    int int_allegro_present = 0;
+    partie.ConsPrint(1,13);
+    std::cout << "Bataille Navale";
+    partie.ConsPrint(3,0);
+    std::cout << "Voulez vous jouer avec ou sans Allegro?" <<std::endl
+              << "0. sans" <<std::endl
+              << "1. avec" <<std::endl;
+    partie.ConsPrint(10,5);
+    std::cout << "Choix : ";
+
+    std::cin>> int_allegro_present;
+
+    if(int_allegro_present!=0&&int_allegro_present!=1)
+    {
+        std::cout << std::endl << "Bravo nous esperons que tu es content de faire n'importe quoi, pour la peine tu ne joueras pas!";
+        exit(0);
+    }
+
+    if(int_allegro_present==0)  allegro_present=false;
+    else  allegro_present=true;
+
+    partie.setal(allegro_present);
+
+}
+
+bool Menu::getallegro_present()
+{
+    return allegro_present;
+}
 
 void Menu::load_bitmaps() // Charger images
 {
@@ -140,108 +172,171 @@ void Menu::principal()
 {
     // Réinitialisation du booléen m_exit
     m_exit = false;
-
-    int x= mouse_x;
-    int y= mouse_y;
-
+    int x= 0;
+    int y= 0;
+    int choix;
     system("cls");
 
     while( m_exit == false )
     {
-        // réinitilisation des coordonnées souris
-        x= mouse_x;
-        y= mouse_y;
 
-        // Affichage du menu_principal
-        clear_bitmap(buffer);
-        blit(menu_principal, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
-        blit(txt_un_joueur,buffer,0,0,50,50,SCREEN_W,SCREEN_H);
-        blit(txt_deux_joueur,buffer,0,0,50,120,SCREEN_W,SCREEN_H);
-        blit(txt_charger,buffer,0,0,50,190,SCREEN_W,SCREEN_H);
-        blit(txt_option,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
-        blit(txt_regles,buffer,0,0,50,330,SCREEN_W,SCREEN_H);
-        blit(txt_quitter,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-
-        /// "1J"
-        //si la souris se trouve sur "1J"
-        if( x>=50 && x<=200 && y>=50 && y<=100 )
+        //Sur console
+        if(!getallegro_present())
         {
-            blit(txt_hover_un_joueur,buffer,0,0,50,50,SCREEN_W,SCREEN_H);
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-            // si clique gauche
-            if ( mouse_b & 1 )
-            {
 
+            system("cls"); // nettoie la console
+            partie.ConsPrint(1,13);
+            std::cout << "Bataille Navale";
+            partie.ConsPrint(3,0);
+            std::cout << "1. 1 JOUEUR" <<std::endl
+                      << "2. 2 JOUEURS" <<std::endl
+                      << "3. CHARGER" <<std::endl
+                      << "4. OPTION" <<std::endl
+                      << "5. REGLES" <<std::endl
+                      << "6. QUITTER" <<std::endl;
+            partie.ConsPrint(10,5);
+            std::cout << "Choix : ";
+
+            std::cin >> choix;
+
+            system("cls");
+
+            switch(choix){
+
+                case 1 :
+                        /*
+                        clear
+                        reset
+                        lancer avec parametre 1 joueur
+                        */
+                    break;
+                case 2 :
+                        /*
+                        clear
+                        reset
+                        lancer avec parametre 2 joueurs
+                        */
+                    break;
+                case 3 : charger();
+                    break;
+                case 4 : option();
+                    break;
+                case 5 : regles();
+                    break;
+                case 6 : m_exit = true;
+                    break;
+                default :
+                    break;
             }
+
         }
 
-        /// "2J"
-        //si la souris se trouve sur "2J"
-        if( x>=50 && x<=200 && y>=120 && y<=170 )
-        {
-            blit(txt_hover_deux_joueur,buffer,0,0,50,120,SCREEN_W,SCREEN_H);
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-            // si clique gauche
-            if ( mouse_b & 1 )
-            {
+        //Sur Allegro
+        else{
 
-            }
-        }
+            // réinitilisation des coordonnées souris
+            x= mouse_x;
+            y= mouse_y;
 
-        /// "CHARGER"
-        //si la souris se trouve sur "CHARGER"
-        if( x>=50 && x<=200 && y>=190 && y<=240 )
-        {
-            blit(txt_hover_charger,buffer,0,0,50,190,SCREEN_W,SCREEN_H);
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-            // si clique gauche
-            if ( mouse_b & 1 )
-            {
-                charger();
-            }
-        }
+            // Affichage du menu_principal
+            clear_bitmap(buffer);
+            blit(menu_principal, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
+            blit(txt_un_joueur,buffer,0,0,50,50,SCREEN_W,SCREEN_H);
+            blit(txt_deux_joueur,buffer,0,0,50,120,SCREEN_W,SCREEN_H);
+            blit(txt_charger,buffer,0,0,50,190,SCREEN_W,SCREEN_H);
+            blit(txt_option,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
+            blit(txt_regles,buffer,0,0,50,330,SCREEN_W,SCREEN_H);
+            blit(txt_quitter,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
 
-        /// "OPTION"
-        //si la souris se trouve sur "OPTION"
-        if( x>=50 && x<=200 && y>=260 && y<=310 )
-        {
-            blit(txt_hover_option,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-            // si clique gauche
-            if ( mouse_b & 1 )
+            /// "1J"
+            //si la souris se trouve sur "1J"
+            if( x>=50 && x<=200 && y>=50 && y<=100 )
             {
-                option();
+                blit(txt_hover_un_joueur,buffer,0,0,50,50,SCREEN_W,SCREEN_H);
+                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+                // si clique gauche
+                if ( mouse_b & 1 )
+                {
+                    /*
+                    clear
+                    reset
+                    lancer avec parametre 1 joueur
+                    */
+                }
             }
-        }
 
-        /// "REGLE"
-        //si la souris se trouve sur "REGLE"
-        if( x>=50 && x<=200 && y>=330 && y<=380 )
-        {
-            blit(txt_hover_regles,buffer,0,0,50,330,SCREEN_W,SCREEN_H);
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-            // si clique gauche
-            if ( mouse_b & 1 )
+            /// "2J"
+            //si la souris se trouve sur "2J"
+            if( x>=50 && x<=200 && y>=120 && y<=170 )
             {
-                regles();
+                blit(txt_hover_deux_joueur,buffer,0,0,50,120,SCREEN_W,SCREEN_H);
+                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+                // si clique gauche
+                if ( mouse_b & 1 )
+                {
+                    /*
+                    clear
+                    reset
+                    lancer avec parametre 2 joueur
+                    */
+                }
             }
-        }
 
-        /// "QUITTER"
-        //si la souris se trouve sur "QUITTER"
-        if( x>=600 && x<=750 && y>=500 && y<=550 )
-        {
-            blit(txt_hover_quitter,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-            // si clique gauche
-            if ( mouse_b & 1 )
+            /// "CHARGER"
+            //si la souris se trouve sur "CHARGER"
+            if( x>=50 && x<=200 && y>=190 && y<=240 )
             {
-                // retour au menu principal
-                m_exit = true;
+                blit(txt_hover_charger,buffer,0,0,50,190,SCREEN_W,SCREEN_H);
+                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+                // si clique gauche
+                if ( mouse_b & 1 )
+                {
+                    charger();
+                }
             }
+
+            /// "OPTION"
+            //si la souris se trouve sur "OPTION"
+            if( x>=50 && x<=200 && y>=260 && y<=310 )
+            {
+                blit(txt_hover_option,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
+                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+                // si clique gauche
+                if ( mouse_b & 1 )
+                {
+                    option();
+                }
+            }
+
+            /// "REGLE"
+            //si la souris se trouve sur "REGLE"
+            if( x>=50 && x<=200 && y>=330 && y<=380 )
+            {
+                blit(txt_hover_regles,buffer,0,0,50,330,SCREEN_W,SCREEN_H);
+                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+                // si clique gauche
+                if ( mouse_b & 1 )
+                {
+                    regles();
+                }
+            }
+
+            /// "QUITTER"
+            //si la souris se trouve sur "QUITTER"
+            if( x>=600 && x<=750 && y>=500 && y<=550 )
+            {
+                blit(txt_hover_quitter,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+                // si clique gauche
+                if ( mouse_b & 1 )
+                {
+                    // retour au menu principal
+                    m_exit = true;
+                }
+            }
+            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+            rest(100); //pause pour qu'il soit visible
         }
-        blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-        rest(100); //pause pour qu'il soit visible
     }
 
 
@@ -252,39 +347,61 @@ void Menu::option()
 {
     // Réinitialisation du booléen m_exit
     m_exit = false;
-
-    int x= mouse_x;
-    int y= mouse_y;
-
+    int x= 0;
+    int y= 0;
+    int choix;
     system("cls");
 
     while( m_exit == false )
     {
-        // réinitilisation des coordonnées souris
-        x= mouse_x;
-        y= mouse_y;
 
-        // Affichage du menu_option
-        clear_bitmap(buffer);
-        blit(menu_option, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
-        blit(txt_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+        //Sur console
+        if(!getallegro_present()){
 
-        /// "RETOUR"
-        //si la souris se trouve sur "RETOUR"
-        if( x>=600 && x<=750 && y>=500 && y<=550 )
-        {
-            blit(txt_hover_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-            // si clique gauche
-            if ( mouse_b & 1 )
-            {
-                // retour au menu principal
-                m_exit = true;
-            }
+            partie.ConsPrint(1,13);
+            std::cout << "SNOOPY";
+            partie.ConsPrint(7,3);
+            std::cout << "OPTION";
+
+
+            partie.ConsPrint(20,25);
+            std::cout << "R : Retour";
+
+
+
+            while (getch()!='r');
+            m_exit=true;
         }
-        blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-        rest(100); //pause pour qu'il soit visible
+
+        else{
+            // réinitilisation des coordonnées souris
+            x= mouse_x;
+            y= mouse_y;
+
+            // Affichage du menu_option
+            clear_bitmap(buffer);
+            blit(menu_option, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
+            blit(txt_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+
+            /// "RETOUR"
+            //si la souris se trouve sur "RETOUR"
+            if( x>=600 && x<=750 && y>=500 && y<=550 )
+            {
+                blit(txt_hover_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+                // si clique gauche
+                if ( mouse_b & 1 )
+                {
+                    // retour au menu principal
+                    m_exit = true;
+                }
+            }
+            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+            rest(100); //pause pour qu'il soit visible
+        }
+
     }
+    m_exit = false;
 
 
 }
@@ -294,39 +411,59 @@ void Menu::charger()
 {
     // Réinitialisation du booléen m_exit
     m_exit = false;
-
-    int x= mouse_x;
-    int y= mouse_y;
-
+    int x= 0;
+    int y= 0;
+    int choix;
     system("cls");
 
     while( m_exit == false )
     {
-        // réinitilisation des coordonnées souris
-        x= mouse_x;
-        y= mouse_y;
+        //Sur console
+        if(!getallegro_present()){
 
-        // Affichage du menu_option
-        clear_bitmap(buffer);
-        blit(menu_charger, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
-        blit(txt_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+            partie.ConsPrint(1,13);
+            std::cout << "Bataille Navale";
+            partie.ConsPrint(7,3);
+            std::cout << "CHARGER";
 
-        /// "RETOUR"
-        //si la souris se trouve sur "RETOUR"
-        if( x>=600 && x<=750 && y>=500 && y<=550 )
-        {
-            blit(txt_hover_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-            // si clique gauche
-            if ( mouse_b & 1 )
-            {
-                // retour au menu principal
-                m_exit = true;
-            }
+
+            partie.ConsPrint(20,25);
+            std::cout << "R : Retour";
+
+
+
+            while (getch()!='r');
+            m_exit=true;
         }
-        blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-        rest(100); //pause pour qu'il soit visible
+
+        else{
+            // réinitilisation des coordonnées souris
+            x= mouse_x;
+            y= mouse_y;
+
+            // Affichage du menu_option
+            clear_bitmap(buffer);
+            blit(menu_charger, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
+            blit(txt_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+
+            /// "RETOUR"
+            //si la souris se trouve sur "RETOUR"
+            if( x>=600 && x<=750 && y>=500 && y<=550 )
+            {
+                blit(txt_hover_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+                // si clique gauche
+                if ( mouse_b & 1 )
+                {
+                    // retour au menu principal
+                    m_exit = true;
+                }
+            }
+            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+            rest(100); //pause pour qu'il soit visible
+        }
     }
+    m_exit = false;
 
 
 }
@@ -336,39 +473,65 @@ void Menu::regles()
 {
     // Réinitialisation du booléen m_exit
     m_exit = false;
-
-    int x= mouse_x;
-    int y= mouse_y;
-
-    system("cls");
+    int x= 0;
+    int y= 0;
+    int choix;
+    //system("cls");
 
     while( m_exit == false )
     {
-        // réinitilisation des coordonnées souris
-        x= mouse_x;
-        y= mouse_y;
+         //Sur console
+        if(!getallegro_present()){
 
-        // Affichage du menu_regles
-        clear_bitmap(buffer);
-        blit(menu_regles, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
-        blit(txt_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+            partie.ConsPrint(1,13);
+            std::cout << "Bataille Navale";
+            partie.ConsPrint(7,3);
+            std::cout << "REGLES";
+            partie.ConsPrint(10,0);
+            std::cout << "Lorem ipsum" << std::endl
+                      <<"Lorem ipsum " <<std::endl
+                      <<"Lorem ipsum" << std::endl
+                      <<"Lorem ipsum" << std::endl
+                      <<"Lorem ipsum" << std::endl
+                      <<"Lorem ipsum" << std::endl
+                      <<"Lorem ipsum" << std::endl;
+            partie.ConsPrint(20,25);
+            std::cout << "R : Retour";
 
-        /// "RETOUR"
-        //si la souris se trouve sur "RETOUR"
-        if( x>=600 && x<=750 && y>=500 && y<=550 )
-        {
-            blit(txt_hover_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-            // si clique gauche
-            if ( mouse_b & 1 )
-            {
-                // retour au menu principal
-                m_exit = true;
-            }
+
+
+            while (getch()!='r');
+            m_exit=true;
         }
-        blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-        rest(100); //pause pour qu'il soit visible
+
+        else{
+            // réinitilisation des coordonnées souris
+            x= mouse_x;
+            y= mouse_y;
+
+            // Affichage du menu_regles
+            clear_bitmap(buffer);
+            blit(menu_regles, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
+            blit(txt_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+
+            /// "RETOUR"
+            //si la souris se trouve sur "RETOUR"
+            if( x>=600 && x<=750 && y>=500 && y<=550 )
+            {
+                blit(txt_hover_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+                // si clique gauche
+                if ( mouse_b & 1 )
+                {
+                    // retour au menu principal
+                    m_exit = true;
+                }
+            }
+            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+            rest(100); //pause pour qu'il soit visible
+        }
     }
+    m_exit = false;
 
 
 }
