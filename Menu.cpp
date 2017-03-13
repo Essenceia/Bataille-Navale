@@ -6,7 +6,7 @@
 
 // contructeur par default
 Menu::Menu()
-    : m_choix(0), m_principal(false), m_regles(false), m_option(false)
+    : m_choix(0), m_exit(false)
 {
 
 }
@@ -43,6 +43,12 @@ void Menu::load_bitmaps() // Charger images
         allegro_message("pas pu trouver Bitmap/Menu/menu_regles.bmp");
         exit(EXIT_FAILURE);
     }
+    menu_charger=load_bitmap("Bitmap/Menu/menu_charger.bmp",NULL);
+    if (!menu_charger)
+    {
+        allegro_message("pas pu trouver Bitmap/Menu/menu_charger.bmp");
+        exit(EXIT_FAILURE);
+    }
     txt_un_joueur=load_bitmap("Bitmap/Menu/txt_un_joueur.bmp",NULL);
     if (!txt_un_joueur)
     {
@@ -59,6 +65,12 @@ void Menu::load_bitmaps() // Charger images
     if (!txt_option)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_option.bmp");
+        exit(EXIT_FAILURE);
+    }
+    txt_charger=load_bitmap("Bitmap/Menu/txt_charger.bmp",NULL);
+    if (!txt_charger)
+    {
+        allegro_message("pas pu trouver Bitmap/Menu/txt_charger.bmp");
         exit(EXIT_FAILURE);
     }
     txt_regles=load_bitmap("Bitmap/Menu/txt_regles.bmp",NULL);
@@ -97,6 +109,12 @@ void Menu::load_bitmaps() // Charger images
         allegro_message("pas pu trouver Bitmap/Menu/txt_hover_option.bmp");
         exit(EXIT_FAILURE);
     }
+    txt_hover_charger=load_bitmap("Bitmap/Menu/txt_hover_charger.bmp",NULL);
+    if (!txt_hover_charger)
+    {
+        allegro_message("pas pu trouver Bitmap/Menu/txt_hover_charger.bmp");
+        exit(EXIT_FAILURE);
+    }
     txt_hover_regles=load_bitmap("Bitmap/Menu/txt_hover_regles.bmp",NULL);
     if (!txt_hover_regles)
     {
@@ -120,15 +138,15 @@ void Menu::load_bitmaps() // Charger images
 // Menu principal
 void Menu::principal()
 {
-    // Réinitialisation du booléen m_principal
-    m_principal = false;
+    // Réinitialisation du booléen m_exit
+    m_exit = false;
 
     int x= mouse_x;
     int y= mouse_y;
 
     system("cls");
 
-    while( m_principal == false )
+    while( m_exit == false )
     {
         // réinitilisation des coordonnées souris
         x= mouse_x;
@@ -139,12 +157,13 @@ void Menu::principal()
         blit(menu_principal, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
         blit(txt_un_joueur,buffer,0,0,50,50,SCREEN_W,SCREEN_H);
         blit(txt_deux_joueur,buffer,0,0,50,120,SCREEN_W,SCREEN_H);
-        blit(txt_option,buffer,0,0,50,230,SCREEN_W,SCREEN_H);
-        blit(txt_regles,buffer,0,0,50,300,SCREEN_W,SCREEN_H);
+        blit(txt_charger,buffer,0,0,50,190,SCREEN_W,SCREEN_H);
+        blit(txt_option,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
+        blit(txt_regles,buffer,0,0,50,330,SCREEN_W,SCREEN_H);
         blit(txt_quitter,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
 
         /// "1J"
-        //si la souris se trouve sur "RETOUR"
+        //si la souris se trouve sur "1J"
         if( x>=50 && x<=200 && y>=50 && y<=100 )
         {
             blit(txt_hover_un_joueur,buffer,0,0,50,50,SCREEN_W,SCREEN_H);
@@ -157,7 +176,7 @@ void Menu::principal()
         }
 
         /// "2J"
-        //si la souris se trouve sur "RETOUR"
+        //si la souris se trouve sur "2J"
         if( x>=50 && x<=200 && y>=120 && y<=170 )
         {
             blit(txt_hover_deux_joueur,buffer,0,0,50,120,SCREEN_W,SCREEN_H);
@@ -169,11 +188,24 @@ void Menu::principal()
             }
         }
 
-        /// "OPTION"
-        //si la souris se trouve sur "RETOUR"
-        if( x>=50 && x<=200 && y>=230 && y<=280 )
+        /// "CHARGER"
+        //si la souris se trouve sur "CHARGER"
+        if( x>=50 && x<=200 && y>=190 && y<=240 )
         {
-            blit(txt_hover_option,buffer,0,0,50,230,SCREEN_W,SCREEN_H);
+            blit(txt_hover_charger,buffer,0,0,50,190,SCREEN_W,SCREEN_H);
+            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+            // si clique gauche
+            if ( mouse_b & 1 )
+            {
+                charger();
+            }
+        }
+
+        /// "OPTION"
+        //si la souris se trouve sur "OPTION"
+        if( x>=50 && x<=200 && y>=260 && y<=310 )
+        {
+            blit(txt_hover_option,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
             blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
             // si clique gauche
             if ( mouse_b & 1 )
@@ -183,10 +215,10 @@ void Menu::principal()
         }
 
         /// "REGLE"
-        //si la souris se trouve sur "RETOUR"
-        if( x>=50 && x<=200 && y>=300 && y<=350 )
+        //si la souris se trouve sur "REGLE"
+        if( x>=50 && x<=200 && y>=330 && y<=380 )
         {
-            blit(txt_hover_regles,buffer,0,0,50,300,SCREEN_W,SCREEN_H);
+            blit(txt_hover_regles,buffer,0,0,50,330,SCREEN_W,SCREEN_H);
             blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
             // si clique gauche
             if ( mouse_b & 1 )
@@ -196,7 +228,7 @@ void Menu::principal()
         }
 
         /// "QUITTER"
-        //si la souris se trouve sur "RETOUR"
+        //si la souris se trouve sur "QUITTER"
         if( x>=600 && x<=750 && y>=500 && y<=550 )
         {
             blit(txt_hover_quitter,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
@@ -205,7 +237,7 @@ void Menu::principal()
             if ( mouse_b & 1 )
             {
                 // retour au menu principal
-                m_principal = true;
+                m_exit = true;
             }
         }
         blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
@@ -218,15 +250,15 @@ void Menu::principal()
 // Menu option
 void Menu::option()
 {
-    // Réinitialisation du booléen m_option
-    m_option = false;
+    // Réinitialisation du booléen m_exit
+    m_exit = false;
 
     int x= mouse_x;
     int y= mouse_y;
 
     system("cls");
 
-    while( m_option == false )
+    while( m_exit == false )
     {
         // réinitilisation des coordonnées souris
         x= mouse_x;
@@ -247,7 +279,49 @@ void Menu::option()
             if ( mouse_b & 1 )
             {
                 // retour au menu principal
-                m_option = true;
+                m_exit = true;
+            }
+        }
+        blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+        rest(100); //pause pour qu'il soit visible
+    }
+
+
+}
+
+// Menu charger
+void Menu::charger()
+{
+    // Réinitialisation du booléen m_exit
+    m_exit = false;
+
+    int x= mouse_x;
+    int y= mouse_y;
+
+    system("cls");
+
+    while( m_exit == false )
+    {
+        // réinitilisation des coordonnées souris
+        x= mouse_x;
+        y= mouse_y;
+
+        // Affichage du menu_option
+        clear_bitmap(buffer);
+        blit(menu_charger, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
+        blit(txt_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+
+        /// "RETOUR"
+        //si la souris se trouve sur "RETOUR"
+        if( x>=600 && x<=750 && y>=500 && y<=550 )
+        {
+            blit(txt_hover_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+            // si clique gauche
+            if ( mouse_b & 1 )
+            {
+                // retour au menu principal
+                m_exit = true;
             }
         }
         blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
@@ -260,15 +334,15 @@ void Menu::option()
 // Menu règles
 void Menu::regles()
 {
-    // Réinitialisation du booléen m_regles
-    m_regles = false;
+    // Réinitialisation du booléen m_exit
+    m_exit = false;
 
     int x= mouse_x;
     int y= mouse_y;
 
     system("cls");
 
-    while( m_regles == false )
+    while( m_exit == false )
     {
         // réinitilisation des coordonnées souris
         x= mouse_x;
@@ -289,7 +363,7 @@ void Menu::regles()
             if ( mouse_b & 1 )
             {
                 // retour au menu principal
-                m_regles = true;
+                m_exit = true;
             }
         }
         blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
@@ -305,6 +379,7 @@ void Menu::destroy_bitmaps() //Détruit les bitmaps
     destroy_bitmap(menu_principal);
     destroy_bitmap(menu_option);
     destroy_bitmap(menu_regles);
+    destroy_bitmap(menu_charger);
     destroy_bitmap(txt_un_joueur);
     destroy_bitmap(txt_deux_joueur);
     destroy_bitmap(txt_option);

@@ -28,3 +28,32 @@
 	<vector>
 	"Allegro.h"
 
+1489425962 source:c:\users\sébastien\desktop\bataille-navale\allegro.cpp
+	"Allegro.h"
+
+1489425962 c:\users\sébastien\desktop\bataille-navale\allegro.h
+	<stdio.h>
+	<iostream>
+	<allegro.h>
+	<winalleg.h>
+
+1489425963 source:c:\users\sébastien\desktop\bataille-navale\main.cpp
+	<conio.h>
+	<allegro.h>
+	<winalleg.h>
+	"Allegro.h"
+	"Menu.h"
+
+1489427267 c:\users\sébastien\desktop\bataille-navale\menu.h
+	<iostream>
+	<stdio.h>
+	<vector>
+	"Allegro.h"
+
+1489427396 source:c:\users\sébastien\desktop\bataille-navale\menu.cpp
+	"Menu.h"
+	<stdio.h>
+	<string>
+	<fstream>
+	"Allegro.h"
+
