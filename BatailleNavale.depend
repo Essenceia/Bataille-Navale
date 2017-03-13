@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1489401594 source:c:\users\sébastien\desktop\bataillenavale\main.cpp
+	<conio.h>
+	<allegro.h>
+	<winalleg.h>
+	"Allegro.h"
+	"Menu.h"
+
+1489397628 source:c:\users\sébastien\desktop\bataillenavale\allegro.cpp
+	"Allegro.h"
+
+1489397635 c:\users\sébastien\desktop\bataillenavale\allegro.h
+	<stdio.h>
+	<iostream>
+	<allegro.h>
+	<winalleg.h>
+
+1489401869 source:c:\users\sébastien\desktop\bataillenavale\menu.cpp
+	"Menu.h"
+	<stdio.h>
+	<string>
+	<fstream>
+	"Allegro.h"
+
+1489401859 c:\users\sébastien\desktop\bataillenavale\menu.h
+	<iostream>
+	<stdio.h>
+	<vector>
+	"Allegro.h"
+
