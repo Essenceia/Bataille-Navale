@@ -1,9 +1,10 @@
 #include "Sousmarin.h"
 
 Sousmarin::Sousmarin(int x, int y, int _taille, char _orientation)
-        : Bateau(x,y,_taille,_orientation), existe(1)
+        : Bateau(x,y,_taille,_orientation)
 {
-    for(i=0;i<taille;i++) etat[i]=true;
+    for(int i=0;i<taille;i++) etat[i]=true;
+    existe=true;
 }
 
 Sousmarin::~Sousmarin()
@@ -13,7 +14,7 @@ Sousmarin::~Sousmarin()
 
 
 ///Methodes
-char Croiseur::Symbole()
+char Sousmarin::Symbole()
 {
-    return '♠'
+    return '♠';
 }

@@ -1,9 +1,10 @@
 #include "Croiseur.h"
 
 Croiseur::Croiseur(int x, int y, int _taille, char _orientation)
-        : Bateau(x,y,_taille,_orientation), existe(1)
+        : Bateau(x,y,_taille,_orientation)
 {
-    for(i=0;i<taille;i++) etat[i]=true;
+    for(int i=0;i<taille;i++) etat[i]=true;
+    existe=true;
 }
 
 Croiseur::~Croiseur()
@@ -15,5 +16,5 @@ Croiseur::~Croiseur()
 ///Methodes
 char Croiseur::Symbole()
 {
-    return '♥'
+    return '♥';
 }

@@ -1,9 +1,10 @@
 #include "Cuirasse.h"
 
 Cuirasse::Cuirasse(int x, int y, int _taille, char _orientation)
-        : Bateau(x,y,_taille,_orientation), existe(1), cooldown(false)
+        : Bateau(x,y,_taille,_orientation), cooldown(false)
 {
-    for(i=0;i<taille;i++) etat[i]=true;
+    for(int i=0;i<taille;i++) etat[i]=true;
+    existe=true;
 }
 
 Cuirasse::~Cuirasse()
@@ -13,7 +14,7 @@ Cuirasse::~Cuirasse()
 
 
 ///Methodes
-char Croiseur::Symbole()
+char Cuirasse::Symbole()
 {
-    return '♣'
+    return '♣';
 }

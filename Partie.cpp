@@ -8,7 +8,35 @@
 Partie::Partie()
     : alleg_present(false)
 {
+    ///INITIALISER LES VECTEURS ICI
+    for(int i=0;i<2;i++)
+        for(int j=0;j<14;j++)
+            for(int k=0;k<14;k++){
+                tabj1[i][j][k]=' ';
+                tabj2[i][j][k]=' ';
+            }
 
+    battab1.push_back(new Cuirasse(0,0,7,'h'));
+    battab1.push_back(new Croiseur(0,0,5,'h'));
+    battab1.push_back(new Croiseur(0,0,5,'h'));
+    battab1.push_back(new Destroyer(0,0,3,'h'));
+    battab1.push_back(new Destroyer(0,0,3,'h'));
+    battab1.push_back(new Destroyer(0,0,3,'h'));
+    battab1.push_back(new Sousmarin(0,0,1,'h'));
+    battab1.push_back(new Sousmarin(0,0,1,'h'));
+    battab1.push_back(new Sousmarin(0,0,1,'h'));
+    battab1.push_back(new Sousmarin(0,0,1,'h'));
+
+    battab2.push_back(new Cuirasse(0,0,7,'h'));
+    battab2.push_back(new Croiseur(0,0,5,'h'));
+    battab2.push_back(new Croiseur(0,0,5,'h'));
+    battab2.push_back(new Destroyer(0,0,3,'h'));
+    battab2.push_back(new Destroyer(0,0,3,'h'));
+    battab2.push_back(new Destroyer(0,0,3,'h'));
+    battab2.push_back(new Sousmarin(0,0,1,'h'));
+    battab2.push_back(new Sousmarin(0,0,1,'h'));
+    battab2.push_back(new Sousmarin(0,0,1,'h'));
+    battab2.push_back(new Sousmarin(0,0,1,'h'));
 }
 
 // destructeur
@@ -124,6 +152,11 @@ void Partie::DestroyImages()
 }
 
 void Partie::resetpartie()//Gros reset pour remettre la partie à 0 à la fin de celle ci ou au retour au menu
+{
+
+}
+
+void Partie::initPartie()//Initialisation avec le placement des bateaux surtout
 {
 
 }
