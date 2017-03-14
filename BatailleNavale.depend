@@ -52,7 +52,7 @@
 	"Allegro.h"
 	"Partie.h"
 
-1489435452 source:c:\users\sébastien\desktop\bataille-navale\menu.cpp
+1489435641 source:c:\users\sébastien\desktop\bataille-navale\menu.cpp
 	"Menu.h"
 	<stdio.h>
 	<string>
@@ -68,4 +68,20 @@
 	<string>
 	<fstream>
 	<time.h>
+
+1489479783 source:c:\users\sébastien\desktop\bataille-navale\bateau.cpp
+	"Bateau.h"
+
+1489480067 c:\users\sébastien\desktop\bataille-navale\bateau.h
+	<iostream>
+	<stdio.h>
+	<vector>
+
+1489479699 source:c:\users\sébastien\desktop\bataille-navale\objet.cpp
+	"Objet.h"
+
+1489479694 c:\users\sébastien\desktop\bataille-navale\objet.h
+	<iostream>
+	<stdio.h>
+	<vector>
 

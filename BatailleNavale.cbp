@@ -32,6 +32,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Allegro.cpp" />
+		<Unit filename="Allegro.h" />
+		<Unit filename="Menu.cpp" />
+		<Unit filename="Menu.h" />
+		<Unit filename="Partie.cpp" />
+		<Unit filename="Partie.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
