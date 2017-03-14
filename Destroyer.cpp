@@ -18,3 +18,16 @@ char Destroyer::Symbole()
 {
     return '♦';
 }
+
+void Destroyer::Deplacement()
+{
+
+}
+void Destroyer::Tourner()
+{
+
+}
+void Destroyer::Tirer()
+{
+
+}

@@ -18,3 +18,16 @@ char Croiseur::Symbole()
 {
     return '♥';
 }
+
+void Croiseur::Deplacement()
+{
+
+}
+void Croiseur::Tourner()
+{
+
+}
+void Croiseur::Tirer()
+{
+
+}

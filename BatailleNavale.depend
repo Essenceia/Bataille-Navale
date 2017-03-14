@@ -58,13 +58,17 @@
 	<string>
 	<fstream>
 
-1489484616 c:\users\sébastien\desktop\bataille-navale\partie.h
+1489485740 c:\users\sébastien\desktop\bataille-navale\partie.h
 	<iostream>
 	"Allegro.h"
 	"Bateau.h"
+	"Cuirasse.h"
+	"Croiseur.h"
+	"Destroyer.h"
+	"Sousmarin.h"
 	"Objet.h"
 
-1489433818 source:c:\users\sébastien\desktop\bataille-navale\partie.cpp
+1489485708 source:c:\users\sébastien\desktop\bataille-navale\partie.cpp
 	"Partie.h"
 	<stdio.h>
 	<string>
@@ -93,19 +97,19 @@
 1489482586 c:\users\sébastien\desktop\bataille-navale\casetouche.h
 	"Objet.h"
 
-1489484945 source:c:\users\sébastien\desktop\bataille-navale\croiseur.cpp
+1489485838 source:c:\users\sébastien\desktop\bataille-navale\croiseur.cpp
 	"Croiseur.h"
 
 1489482020 c:\users\sébastien\desktop\bataille-navale\croiseur.h
 	"Bateau.h"
 
-1489484979 source:c:\users\sébastien\desktop\bataille-navale\cuirasse.cpp
+1489485837 source:c:\users\sébastien\desktop\bataille-navale\cuirasse.cpp
 	"Cuirasse.h"
 
 1489482018 c:\users\sébastien\desktop\bataille-navale\cuirasse.h
 	"Bateau.h"
 
-1489484991 source:c:\users\sébastien\desktop\bataille-navale\destroyer.cpp
+1489485838 source:c:\users\sébastien\desktop\bataille-navale\destroyer.cpp
 	"Destroyer.h"
 
 1489482019 c:\users\sébastien\desktop\bataille-navale\destroyer.h
@@ -116,4 +120,10 @@
 
 1489482579 c:\users\sébastien\desktop\bataille-navale\fusee.h
 	"Objet.h"
+
+1489482600 c:\users\sébastien\desktop\bataille-navale\sousmarin.h
+	"Bateau.h"
+
+1489485836 source:c:\users\sébastien\desktop\bataille-navale\sousmarin.cpp
+	"Sousmarin.h"
 

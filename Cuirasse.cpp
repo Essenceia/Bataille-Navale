@@ -18,3 +18,16 @@ char Cuirasse::Symbole()
 {
     return '♣';
 }
+
+void Cuirasse::Deplacement()
+{
+
+}
+void Cuirasse::Tourner()
+{
+
+}
+void Cuirasse::Tirer()
+{
+
+}

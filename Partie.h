@@ -4,6 +4,10 @@
 #include <iostream>
 #include "Allegro.h"
 #include "Bateau.h"
+#include "Cuirasse.h"
+#include "Croiseur.h"
+#include "Destroyer.h"
+#include "Sousmarin.h"
 #include "Objet.h"
 
 class Partie
@@ -22,11 +26,11 @@ class Partie
        std::vector< std::vector< std::vector<char> > > tabj1;
        std::vector< std::vector< std::vector<char> > > tabj2;
 
-       std::vector<Bateau> battab1;
-       std::vector<Bateau> battab2;
+       std::vector<Bateau*> battab1;
+       std::vector<Bateau*> battab2;
 
-       std::vector<Objet> objtab1;
-       std::vector<Objet> objtab2;
+       std::vector<Objet*> objtab1;
+       std::vector<Objet*> objtab2;
 
 
     public :

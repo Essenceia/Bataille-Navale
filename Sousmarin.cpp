@@ -18,3 +18,16 @@ char Sousmarin::Symbole()
 {
     return '♠';
 }
+
+void Sousmarin::Deplacement()
+{
+
+}
+void Sousmarin::Tourner()
+{
+
+}
+void Sousmarin::Tirer()
+{
+
+}
