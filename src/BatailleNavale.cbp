@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="BatailleNavale" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/BatailleNavale" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/BatailleNavale" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="Allegro.cpp" />
+		<Unit filename="Allegro.h" />
+		<Unit filename="Bateau.cpp" />
+		<Unit filename="Bateau.h" />
+		<Unit filename="Casetouche.cpp" />
+		<Unit filename="Casetouche.h" />
+		<Unit filename="Croiseur.cpp" />
+		<Unit filename="Croiseur.h" />
+		<Unit filename="Cuirasse.cpp" />
+		<Unit filename="Cuirasse.h" />
+		<Unit filename="Destroyer.cpp" />
+		<Unit filename="Destroyer.h" />
+		<Unit filename="Fusee.cpp" />
+		<Unit filename="Fusee.h" />
+		<Unit filename="Menu.cpp" />
+		<Unit filename="Menu.h" />
+		<Unit filename="Objet.cpp" />
+		<Unit filename="Objet.h" />
+		<Unit filename="Partie.cpp" />
+		<Unit filename="Partie.h" />
+		<Unit filename="Sousmarin.cpp" />
+		<Unit filename="Sousmarin.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
