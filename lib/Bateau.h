@@ -6,17 +6,22 @@
 #include <stdio.h>
 #include <vector>
 
+struct case{
+    int x;
+    int y;
+    bool touche;
+    *Bateau Bateau;
+    };
+
+
 // classe abstraite Bateau
 class Bateau
 {
     protected :
 
-        unsigned int pos_x;
-        unsigned int pos_y;
-        unsigned int taille; //Sert aussi de type, 7 pour cuirasse, 5 pour croiseur, 3 pour destroyer et 1 pour sous marin
-        char orientation;
-        bool existe; // va nous dire si le bateau est encore entier, sinon on ne va plus l'afficher 0=non 1=oui
-        std::vector<bool> etat;
+        std::vector<case> corps; //Tableau de l'ensemble des cases occupée par le bateau, et leur état (touché, !touché)
+        int taille; //Définie par le constructeur des différents bateaux
+        char symbole; //Symbole représentant le type de bateau
 
     public :
 
