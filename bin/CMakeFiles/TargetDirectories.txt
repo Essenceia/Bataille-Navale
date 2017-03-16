@@ -1,0 +1,3 @@
+/home/pooki/Documents/code/c/BatailleNavale/bin/CMakeFiles/edit_cache.dir
+/home/pooki/Documents/code/c/BatailleNavale/bin/CMakeFiles/rebuild_cache.dir
+/home/pooki/Documents/code/c/BatailleNavale/bin/CMakeFiles/BN.dir
