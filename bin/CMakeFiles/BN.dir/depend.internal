@@ -30,6 +30,7 @@ CMakeFiles/BN.dir/src/Menu.cpp.o
  /home/pooki/Documents/code/c/BatailleNavale/lib/Menu.h
  /home/pooki/Documents/code/c/BatailleNavale/lib/Partie.h
  /home/pooki/Documents/code/c/BatailleNavale/lib/Sousmarin.h
+ /home/pooki/Documents/code/c/BatailleNavale/lib/crossplatform.h
  /home/pooki/Documents/code/c/BatailleNavale/src/Menu.cpp
 CMakeFiles/BN.dir/src/Partie.cpp.o
  /home/pooki/Documents/code/c/BatailleNavale/lib/Allegro.h

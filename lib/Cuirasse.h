@@ -7,11 +7,11 @@ class Cuirasse:public Bateau
 {
     private :
 
-    bool cooldown; //tour d'attente lors du mouvement d'un cuirassé
+    bool cooldown; //tour d'attente lors du mouvement d'un cuirassï¿½
 
     public :
 
-    Cuirasse(int x, int y, int _taille, char _orientation);
+    Cuirasse(unsigned int x,unsigned int y, unsigned int _taille, char _orientation);
     ~Cuirasse();
 
     //methodes

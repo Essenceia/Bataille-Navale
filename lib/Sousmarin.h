@@ -8,7 +8,7 @@ class Sousmarin:public Bateau
 
     public :
 
-    Sousmarin(int x, int y, int _taille, char _orientation);
+    Sousmarin(unsigned int x,unsigned int y,unsigned int _taille, char _orientation);
     ~Sousmarin();
 
     //methodes

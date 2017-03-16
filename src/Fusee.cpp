@@ -1,6 +1,6 @@
 #include "../lib/Fusee.h"
 
-Fusee::Fusee(int x, int y)
+Fusee::Fusee(unsigned int x,unsigned int y)
         : Objet(x,y)
 {
     existe=true;

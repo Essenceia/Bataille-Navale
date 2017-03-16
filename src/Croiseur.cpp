@@ -1,9 +1,9 @@
 #include "../lib/Croiseur.h"
 
-Croiseur::Croiseur(int x, int y, int _taille, char _orientation)
+Croiseur::Croiseur(unsigned int x,unsigned int y,unsigned int _taille, char _orientation)
         : Bateau(x,y,_taille,_orientation)
 {
-    for(int i=0;i<taille;i++) etat[i]=true;
+    for(unsigned int i=0;i<taille;i++) etat[i]=true;
     existe=true;
 }
 

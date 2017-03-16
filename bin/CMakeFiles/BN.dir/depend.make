@@ -29,6 +29,7 @@ CMakeFiles/BN.dir/src/Menu.cpp.o: ../lib/Destroyer.h
 CMakeFiles/BN.dir/src/Menu.cpp.o: ../lib/Menu.h
 CMakeFiles/BN.dir/src/Menu.cpp.o: ../lib/Partie.h
 CMakeFiles/BN.dir/src/Menu.cpp.o: ../lib/Sousmarin.h
+CMakeFiles/BN.dir/src/Menu.cpp.o: ../lib/crossplatform.h
 CMakeFiles/BN.dir/src/Menu.cpp.o: ../src/Menu.cpp
 
 CMakeFiles/BN.dir/src/Partie.cpp.o: ../lib/Allegro.h

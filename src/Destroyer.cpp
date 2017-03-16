@@ -1,6 +1,6 @@
 #include "../lib/Destroyer.h"
 
-Destroyer::Destroyer(int x, int y, int _taille, char _orientation)
+Destroyer::Destroyer(unsigned int x,unsigned int y,unsigned int _taille, char _orientation)
         : Bateau(x,y,_taille,_orientation), munition_fusee(true)
 {
     for(int i=0;i<taille;i++) etat[i]=true;

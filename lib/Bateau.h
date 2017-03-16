@@ -20,18 +20,16 @@ class Bateau
 
     public :
 
-        Bateau(int x, int y, int _taille, char _orientation);// constructeur par surcharge
+        Bateau(unsigned int x, unsigned int y,unsigned int _taille, char _orientation);// constructeur par surcharge
         virtual ~Bateau(); // destructeur
-
-
         //getters
         unsigned int get_px();
         unsigned int get_py();
         bool get_existe();
         unsigned int get_taille();
-        char get_orientation(); //'h' pour horizontal ou 'v' pour vertical
+        char get_orientation(); //'h' pour horizontal droite ou 'v' pour vertical vers le haut 'g' horizontal gauche 'c' vertical bas
         bool get_etat(unsigned int pos); //Vecteur pour voir les parties endommag�es d'un bateau
-
+        void set_etat(unsigned int pos);
 
         //methodes
         virtual void Deplacement()=0;

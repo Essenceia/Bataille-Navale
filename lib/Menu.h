@@ -6,7 +6,7 @@
 #include <vector>
 #ifdef WINDOWS
 #include <conio.h>
-#endif 
+#endif
 #ifdef USINGALLEGRO
 #include "Allegro.h"
 #endif

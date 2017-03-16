@@ -1,6 +1,6 @@
 //#define USINGALLEGRO
 //#define WINDOWS
-
+#define DEBUG //activer le debug
 #ifdef WINDOWS
 #include <conio.h>
 #endif
@@ -10,7 +10,7 @@
 #include <winalleg.h>
 #include "lib/Allegro.h"
 #endif // USINGALLEGRO
-#include "lib/Menu.h"
+#include "../lib/Menu.h"
 
 int main()
 {

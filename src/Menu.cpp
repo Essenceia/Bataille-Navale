@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string>
 #include <fstream>
-
+#include "../lib/crossplatform.h"
 // contructeur par default
 Menu::Menu()
     : m_exit(false), allegro_present(false)
@@ -22,7 +22,7 @@ Menu::~Menu()
 void Menu::Allegro_present()
 {
     //Sur console
-    system("cls"); // nettoie la console
+    clear_window(); // nettoie la console
     int int_allegro_present = 0;
     partie.ConsPrint(1,13);
     std::cout << "Bataille Navale";
@@ -37,8 +37,10 @@ void Menu::Allegro_present()
 
     if(int_allegro_present!=0&&int_allegro_present!=1)
     {
+      #ifdef USINGALLEGRO
         std::cout << std::endl << "Bravo nous esperons que tu es content de faire n'importe quoi, pour la peine tu ne joueras pas!";
         exit(0);
+        #endif//USINGALLEGRO
     }
 
     if(int_allegro_present==0)  allegro_present=false;
@@ -177,7 +179,7 @@ void Menu::principal()
     int x= 0;
     int y= 0;
     int choix;
-    system("cls");
+    clear_window();
 
     while( m_exit == false )
     {
@@ -186,7 +188,7 @@ void Menu::principal()
         if(!getallegro_present())
         {
 
-            system("cls"); // nettoie la console
+            clear_window(); // nettoie la console
             partie.ConsPrint(1,13);
             std::cout << "Bataille Navale";
             partie.ConsPrint(3,0);
@@ -201,7 +203,7 @@ void Menu::principal()
 
             std::cin >> choix;
 
-            system("cls");
+            clear_window();
 
             switch(choix){
 
@@ -353,7 +355,7 @@ void Menu::option()
     int x= 0;
     int y= 0;
     int choix;
-    system("cls");
+    clear_window();
 
     while( m_exit == false )
     {
@@ -375,9 +377,9 @@ void Menu::option()
             while (getch()!='r');
             m_exit=true;
         }
-
+        #ifdef USINGALLEGRO
         else{
-          #ifdef USINGALLEGRO
+
             // r�initilisation des coordonn�es souris
             x= mouse_x;
             y= mouse_y;
@@ -402,15 +404,14 @@ void Menu::option()
             }
             blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
             rest(100); //pause pour qu'il soit visible
-        #endif //USINGALLEGRO}
+
 
     }
+#endif //USINGALLEGRO
     m_exit = false;
-
-
+}
 }
 
-// Menu charger
 void Menu::charger()
 {
     // R�initialisation du bool�en m_exit
@@ -418,7 +419,7 @@ void Menu::charger()
     int x= 0;
     int y= 0;
     int choix;
-    system("cls");
+    clear_window();
 
     while( m_exit == false )
     {
@@ -439,9 +440,9 @@ void Menu::charger()
             while (getch()!='r');
             m_exit=true;
         }
-
+#ifdef USINGALLEGRO
         else{
-          #ifdef USINGALLEGRO
+
             // r�initilisation des coordonn�es souris
             x= mouse_x;
             y= mouse_y;
@@ -466,8 +467,9 @@ void Menu::charger()
             }
             blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
             rest(100); //pause pour qu'il soit visible
-#endif //USINGALLEGRO
+
         }
+  #endif //USINGALLEGRO
     }
     m_exit = false;
 
@@ -482,7 +484,7 @@ void Menu::regles()
     int x= 0;
     int y= 0;
     int choix;
-    //system("cls");
+    //clear_window();
 
     while( m_exit == false )
     {
@@ -509,9 +511,9 @@ void Menu::regles()
             while (getch()!='r');
             m_exit=true;
         }
-
+#ifdef USINGALLEGRO
         else{
-          #ifdef USINGALLEGRO
+
             // r�initilisation des coordonn�es souris
             x= mouse_x;
             y= mouse_y;
@@ -543,7 +545,7 @@ void Menu::regles()
 
 }
 
-void Menu::destroy_bitmaps() //D�truit les bitmaps
+void Menu::destroy_bitmaps()
 {
   #ifdef USINGALLEGRO
     destroy_bitmap(buffer);
