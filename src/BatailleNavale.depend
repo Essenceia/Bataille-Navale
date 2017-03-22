@@ -1,0 +1,102 @@
+# depslib dependency file v1.0
+1490184478 source:c:\users\admin.pc-lab\desktop\bataille-navale-master\src\allegro.cpp
+	"../lib/Allegro.h"
+
+1490184464 c:\users\admin.pc-lab\desktop\bataille-navale-master\lib\allegro.h
+	<stdio.h>
+	<iostream>
+	<allegro.h>
+	<winalleg.h>
+
+1490186972 source:c:\users\admin.pc-lab\desktop\bataille-navale-master\src\bateau.cpp
+	"../lib/Bateau.h"
+	<iostream>
+
+1490186968 c:\users\admin.pc-lab\desktop\bataille-navale-master\lib\bateau.h
+	<iostream>
+	<stdio.h>
+	<vector>
+
+1490186133 source:c:\users\admin.pc-lab\desktop\bataille-navale-master\src\croiseur.cpp
+	"../lib/Croiseur.h"
+
+1490184466 c:\users\admin.pc-lab\desktop\bataille-navale-master\lib\croiseur.h
+	"Bateau.h"
+
+1490184478 source:c:\users\admin.pc-lab\desktop\bataille-navale-master\src\crossplatform.cpp
+	<cstdlib>
+	"../lib/crossplatform.h"
+	<iostream>
+
+1490186292 c:\users\admin.pc-lab\desktop\bataille-navale-master\lib\crossplatform.h
+	<conio.h>
+	<curses.h>
+
+1490186308 source:c:\users\admin.pc-lab\desktop\bataille-navale-master\src\cuirasse.cpp
+	"../lib/Cuirasse.h"
+
+1490184469 c:\users\admin.pc-lab\desktop\bataille-navale-master\lib\cuirasse.h
+	"Bateau.h"
+
+1490186315 source:c:\users\admin.pc-lab\desktop\bataille-navale-master\src\destroyer.cpp
+	"../lib/Destroyer.h"
+
+1490184470 c:\users\admin.pc-lab\desktop\bataille-navale-master\lib\destroyer.h
+	"Bateau.h"
+
+1490186370 source:c:\users\admin.pc-lab\desktop\bataille-navale-master\src\main.cpp
+	<conio.h>
+	<allegro.h>
+	<winalleg.h>
+	"../lib/Allegro.h"
+	"../lib/Menu.h"
+
+1490184470 c:\users\admin.pc-lab\desktop\bataille-navale-master\lib\menu.h
+	<iostream>
+	<stdio.h>
+	<vector>
+	<conio.h>
+	"Allegro.h"
+	"Partie.h"
+
+1490186450 c:\users\admin.pc-lab\desktop\bataille-navale-master\lib\partie.h
+	<iostream>
+	"Allegro.h"
+	"Bateau.h"
+	"Cuirasse.h"
+	"Croiseur.h"
+	"Destroyer.h"
+	"Sousmarin.h"
+	<utility>
+
+1490184474 c:\users\admin.pc-lab\desktop\bataille-navale-master\lib\sousmarin.h
+	"Bateau.h"
+
+1490184478 source:c:\users\admin.pc-lab\desktop\bataille-navale-master\src\menu.cpp
+	"../lib/Menu.h"
+	<stdio.h>
+	<string>
+	<fstream>
+	"../lib/crossplatform.h"
+
+1490186988 source:c:\users\admin.pc-lab\desktop\bataille-navale-master\src\partie.cpp
+	"../lib/Partie.h"
+	<stdio.h>
+	<string>
+	<fstream>
+	<time.h>
+	"../lib/Helper.h"
+
+1490184470 c:\users\admin.pc-lab\desktop\bataille-navale-master\lib\helper.h
+
+1490187001 source:c:\users\admin.pc-lab\desktop\bataille-navale-master\src\sousmarin.cpp
+	"../lib/Sousmarin.h"
+
+1490187215 source:c:\users\admin.pc-lab\desktop\bataille-navale-master\src\tire.cpp
+	"../lib/Tire.h"
+
+1490184476 c:\users\admin.pc-lab\desktop\bataille-navale-master\lib\tire.h
+	<iostream>
+	<stdio.h>
+	<vector>
+

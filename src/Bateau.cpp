@@ -22,10 +22,6 @@ unsigned int Bateau::get_py()
 {
     return pos_y;
 }
-bool Bateau::get_existe()
-{
-    return existe;
-}
 unsigned int Bateau::get_taille()
 {
     return taille;
@@ -48,10 +44,10 @@ void Bateau::set_etat(unsigned int pos){
      etat[pos]=false;
   }
 }
-/*bool Bateau::is_dead(){
-  bool f=false;
+bool Bateau::is_dead(){
+  /*bool f=false;
   for(unsigned int i =0 ; i < get_taille(); i++){
     f|=get_etat(i);
   }
-  return f;
-}*/
+  return f;*/
+}

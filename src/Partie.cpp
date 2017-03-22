@@ -219,21 +219,17 @@ char Partie::Tirer(unsigned int pn ,unsigned int x, unsigned int y,char typetire
   unsigned int s;
   if((x<15)&&(y<15)){
     //blindage
-  if(ptotab[pn][x][y]!=' '){
+  if(tabj[pn][1][x][y]!=' '){
     //nous avons un bateau - maintenant il faut le trouver
   bat=get_Bateau(x,y,pn);
-  s=bat.get_taille();
-  switch(bat.get_orientation()){
-    case 'h': bat.set_etat(y-bat.get_py());
+  s=bat->get_taille();
+  switch(bat->get_orientation()){
+    case 'h': bat->set_etat(y-bat->get_py());
     break;
-    case 'v': bat.set_etat(x-bat.get_px());
-    break;
-    case 'b': bat.set_etat(abs(x-bat.get_px()));
-    break;
-    case 'g': bat.set_etat(abs(y-bat.get_px()));
+    case 'v': bat->set_etat(x-bat->get_px());
     break;
   }
-  return ?(bat.is_dead()) 2:1;
+  return bat->is_dead()? 2:1;
   }
   #ifdef DEBUG
   std::cout << "Partie::Tirer : Rien toucher";

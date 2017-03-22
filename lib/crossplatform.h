@@ -1,5 +1,6 @@
 #ifndef CROSSPLATFORM_H
 #define CROSSPLATFORM_H
+#define WINDOWS
 #ifdef WINDOWS
 #include <conio.h>
 #else
