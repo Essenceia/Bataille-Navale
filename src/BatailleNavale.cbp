@@ -32,28 +32,27 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="../lib/Allegro.h" />
+		<Unit filename="../lib/Bateau.h" />
+		<Unit filename="../lib/Croiseur.h" />
+		<Unit filename="../lib/Cuirasse.h" />
+		<Unit filename="../lib/Destroyer.h" />
+		<Unit filename="../lib/Helper.h" />
+		<Unit filename="../lib/Menu.h" />
+		<Unit filename="../lib/Partie.h" />
+		<Unit filename="../lib/Sousmarin.h" />
+		<Unit filename="../lib/Tire.h" />
+		<Unit filename="../lib/crossplatform.h" />
 		<Unit filename="Allegro.cpp" />
-		<Unit filename="Allegro.h" />
 		<Unit filename="Bateau.cpp" />
-		<Unit filename="Bateau.h" />
-		<Unit filename="Casetouche.cpp" />
-		<Unit filename="Casetouche.h" />
 		<Unit filename="Croiseur.cpp" />
-		<Unit filename="Croiseur.h" />
 		<Unit filename="Cuirasse.cpp" />
-		<Unit filename="Cuirasse.h" />
 		<Unit filename="Destroyer.cpp" />
-		<Unit filename="Destroyer.h" />
-		<Unit filename="Fusee.cpp" />
-		<Unit filename="Fusee.h" />
 		<Unit filename="Menu.cpp" />
-		<Unit filename="Menu.h" />
-		<Unit filename="Objet.cpp" />
-		<Unit filename="Objet.h" />
 		<Unit filename="Partie.cpp" />
-		<Unit filename="Partie.h" />
 		<Unit filename="Sousmarin.cpp" />
-		<Unit filename="Sousmarin.h" />
+		<Unit filename="Tire.cpp" />
+		<Unit filename="crossplatform.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

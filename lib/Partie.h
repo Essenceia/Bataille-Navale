@@ -68,7 +68,8 @@ class Partie
         void ChargerImages();
         void DestroyImages();
         //Gestion Toucher-Couler
-        char Tirer(char player_number, unsigned int x, unsigned int y,char typetire,Bateau* tireur)__attribute__((depricated));
+        char Tirer(unsigned int pn ,unsigned int x, unsigned int y,char typetire,Bateau* tireur);
+        //char Tirer(char player_number, unsigned int x, unsigned int y,char typetire,Bateau* tireur)__attribute__((depricated));
 
 };
 

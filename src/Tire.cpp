@@ -1,4 +1,4 @@
-#include "../lib/Tire"
+#include "../lib/Tire.h"
 #ifdef USINGALLEGRO
 bitmap* Tire::get_geule_tire()
 {
@@ -8,14 +8,11 @@ std::vector<bitmap*> Tire::get_annimation_blowup()
 {
 }
 #endif
-void modif_type(char newtype){
+void Tire::modif_type(char newtype){
 
 }
 
-
-public :
-
-Tire(char typevaiseau){
+Tire::Tire(char typevaiseau){
   #ifdef USINGALLEGRO
   //TODO : creation des bitmap
 
@@ -44,11 +41,13 @@ Tire(char typevaiseau){
   init_bitmap();
   #endif
 }
-virtual ~Tire(); // destructeur
+Tire::~Tire(){
+
+} // destructeur
 
 
 //getters
-unsigned int get_taille_x();
+/*unsigned int get_taille_x();
 unsigned int get_taille_y();
 unsigned int get_typetire();
-bool can_hit(char symbolebateau);
+bool can_hit(char symbolebateau);*/

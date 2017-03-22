@@ -6,21 +6,19 @@
 #include <stdio.h>
 #include <vector>
 
-struct case{
-    unsigned int x;
-    unsigned int y;
-    bool touche;
-    *Bateau Bateau;
-    };
-
+//structure déclarer pour les besoins de ce code
+struct Case;
 
 // classe abstraite Bateau
 class Bateau
 {
     protected :
 
-        std::vector<case> corps; //Tableau de l'ensemble des cases occupée par le bateau, et leur état (touché, !touché)
+        unsigned int pos_x;
+        unsigned int pos_y;
         unsigned int taille; //Définie par le constructeur des différents bateaux
+        char orientation;
+        std::vector<Case*> etat;
         char symbole; //Symbole représentant le type de bateau
 
     public :
@@ -43,6 +41,14 @@ class Bateau
 
         unsigned int touche(unsigned int x, unsigned int y);    //Réaction à un tir de missile retour 0=case déjà touchée, 1=case touchée, 2=bateau coulé
                                                                 //touche() transforme le bateau en épave si besoin
+
+        bool is_dead();
 };
+
+struct Case{
+    unsigned int x;
+    unsigned int y;
+    bool touche;
+    };
 
 #endif // BATEAU_H_INCLUDED

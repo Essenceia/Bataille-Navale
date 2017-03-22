@@ -1,5 +1,5 @@
-//#define USINGALLEGRO
-//#define WINDOWS
+#define USINGALLEGRO
+#define WINDOWS
 #define DEBUG //activer le debug
 #ifdef WINDOWS
 #include <conio.h>
@@ -8,7 +8,7 @@
 #ifdef USINGALLEGRO
 #include <allegro.h>
 #include <winalleg.h>
-#include "lib/Allegro.h"
+#include "../lib/Allegro.h"
 #endif // USINGALLEGRO
 #include "../lib/Menu.h"
 
