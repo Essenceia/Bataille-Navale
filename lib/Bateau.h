@@ -6,17 +6,22 @@
 #include <stdio.h>
 #include <vector>
 
+struct case{
+    unsigned int x;
+    unsigned int y;
+    bool touche;
+    *Bateau Bateau;
+    };
+
+
 // classe abstraite Bateau
 class Bateau
 {
     protected :
 
-        unsigned int pos_x;
-        unsigned int pos_y;
-        unsigned int taille; //Sert aussi de type, 7 pour cuirasse, 5 pour croiseur, 3 pour destroyer et 1 pour sous marin
-        char orientation;
-        bool existe; // va nous dire si le bateau est encore entier, sinon on ne va plus l'afficher 0=non 1=oui
-        std::vector<bool> etat;
+        std::vector<case> corps; //Tableau de l'ensemble des cases occupée par le bateau, et leur état (touché, !touché)
+        unsigned int taille; //Définie par le constructeur des différents bateaux
+        char symbole; //Symbole représentant le type de bateau
 
     public :
 
@@ -32,12 +37,12 @@ class Bateau
         void set_etat(unsigned int pos);
 
         //methodes
-        virtual void Deplacement()=0;
-        virtual void Tourner()=0;
-        virtual void Tirer()=0;
-        virtual char Symbole()=0;
+        void Deplacement();     //Déplacement du bateau
+        virtual void Tourner()=0;   //Rotation du bateau, virtuelle pour gérer le cuirassé
+        virtual void Tirer()=0;     //Tir
 
-
+        unsigned int touche(unsigned int x, unsigned int y);    //Réaction à un tir de missile retour 0=case déjà touchée, 1=case touchée, 2=bateau coulé
+                                                                //touche() transforme le bateau en épave si besoin
 };
 
 #endif // BATEAU_H_INCLUDED
