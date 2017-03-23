@@ -1,10 +1,7 @@
 #ifndef PARTIE_H_INCLUDED
 #define PARTIE_H_INCLUDED
-#define NOMBREJOUEUR ((unsigned int)2)
 #include <iostream>
-#ifdef USINGALLEGRO
 #include "Allegro.h"
-#endif //USINGALLEGRO
 #include "Bateau.h"
 #include "Cuirasse.h"
 #include "Croiseur.h"
@@ -18,9 +15,9 @@ class Partie
 {
 
     private :
-#ifdef USINGALLEGRO
+
        Allegro alleg;
-       #endif //USINGALLEGRO
+
        bool alleg_present;
 
        /*Les deux tableaux
@@ -67,6 +64,9 @@ class Partie
         void ConsPrint(unsigned int x,unsigned int y);
         void ChargerImages();
         void DestroyImages();
+        void affichageAlleg();
+        void affichageCons();
+
         //Gestion Toucher-Couler
         char Tirer(unsigned int pn ,unsigned int x, unsigned int y,char typetire,Bateau* tireur);
         //char Tirer(char player_number, unsigned int x, unsigned int y,char typetire,Bateau* tireur)__attribute__((depricated));

@@ -8,7 +8,7 @@ class Croiseur:public Bateau
 
     public :
 
-    Croiseur(unsigned int x, unsigned int y, unsigned int _taille, char _orientation);
+    Croiseur(unsigned int _x,unsigned  int _y, unsigned int _taille, char _orientation);
     ~Croiseur();
 
     //methodes

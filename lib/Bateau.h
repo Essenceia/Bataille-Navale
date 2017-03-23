@@ -32,6 +32,9 @@ class Bateau
         unsigned int get_taille();
         char get_orientation(); //'h' pour horizontal droite ou 'v' pour vertical vers le haut 'g' horizontal gauche 'c' vertical bas
         bool get_etat(unsigned int pos); //Vecteur pour voir les parties endommag�es d'un bateau
+        unsigned int get_etatx(unsigned int pos);
+        unsigned int get_etaty(unsigned int pos);
+        bool get_etattouche(unsigned int pos);
         void set_etat(unsigned int pos);
 
         //methodes

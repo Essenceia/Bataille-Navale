@@ -1,4 +1,3 @@
-#ifdef USINGALLEGRO
 #ifndef ALLEGRO_H_INCLUDED
 #define ALLEGRO_H_INCLUDED
 
@@ -38,4 +37,3 @@ class Allegro
 
 
 #endif // ALLEGRO_H_INCLUDED
-#endif // USINGALLEGRO

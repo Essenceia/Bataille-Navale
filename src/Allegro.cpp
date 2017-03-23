@@ -1,4 +1,3 @@
-#ifdef USINGALLEGRO
 #include "../lib/Allegro.h"
 
 //Constructeur par d�fault
@@ -22,19 +21,19 @@ void Allegro::ChargerImages()
 
 
     // charger les images
-    fond=load_bitmap("Bitmap/fond.bmp",NULL);
+    fond=load_bitmap("../Bitmap/fond.bmp",NULL);
     if (!fond)
     {
         allegro_message("pas pu trouver Bitmap/fond.bmp");
         exit(EXIT_FAILURE);
     }
-    victoire=load_bitmap("Bitmap/victoire.bmp",NULL);
+    victoire=load_bitmap("../Bitmap/victoire.bmp",NULL);
     if (!victoire)
     {
         allegro_message("pas pu trouver Bitmap/victoire.bmp");
         exit(EXIT_FAILURE);
     }
-    defaite=load_bitmap("Bitmap/defaite.bmp",NULL);
+    defaite=load_bitmap("../Bitmap/defaite.bmp",NULL);
     if (!defaite)
     {
         allegro_message("pas pu trouver Bitmap/defaite.bmp");
@@ -67,4 +66,3 @@ BITMAP* Allegro::getImage(int i)
     }
 
 }
-#endif //USINGALLEGRO

@@ -1,5 +1,6 @@
 #include "../lib/Partie.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string>
 #include <fstream>
 #include <time.h>
@@ -7,43 +8,7 @@
 // contructeur par default
 Partie::Partie():alleg_present(false)
 {
-    ///INITIALISER LES VECTEURS ICI
-    //resize des vecteurs
-    tabj.resize(2);
-    tabj.resize(2);
-    for(unsigned int p=0; p < NOMBREJOUEUR ; p++){
-    for(int i=0;i<2;i++){
-      tabj[p][i].resize(15);
-      tabj[p][i].resize(15);
-        for(int j=0;j<14;j++){
-          tabj[p][i][j].resize(15);
-          tabj[p][i][j].resize(15);
-            for(int k=0;k<14;k++){
-                tabj[p][i][j][k]=' ';
-                tabj[p][i][j][k]=' ';
-            }}}}
 
-    battab[0].push_back(new Cuirasse(0,0,7,'h'));
-    battab[0].push_back(new Croiseur(0,0,5,'h'));
-    battab[0].push_back(new Croiseur(0,0,5,'h'));
-    battab[0].push_back(new Destroyer(0,0,3,'h'));
-    battab[0].push_back(new Destroyer(0,0,3,'h'));
-    battab[0].push_back(new Destroyer(0,0,3,'h'));
-    battab[0].push_back(new Sousmarin(0,0,1,'h'));
-    battab[0].push_back(new Sousmarin(0,0,1,'h'));
-    battab[0].push_back(new Sousmarin(0,0,1,'h'));
-    battab[0].push_back(new Sousmarin(0,0,1,'h'));
-
-    battab[1].push_back(new Cuirasse(0,0,7,'h'));
-    battab[1].push_back(new Croiseur(0,0,5,'h'));
-    battab[1].push_back(new Croiseur(0,0,5,'h'));
-    battab[1].push_back(new Destroyer(0,0,3,'h'));
-    battab[1].push_back(new Destroyer(0,0,3,'h'));
-    battab[1].push_back(new Destroyer(0,0,3,'h'));
-    battab[1].push_back(new Sousmarin(0,0,1,'h'));
-    battab[1].push_back(new Sousmarin(0,0,1,'h'));
-    battab[1].push_back(new Sousmarin(0,0,1,'h'));
-    battab[1].push_back(new Sousmarin(0,0,1,'h'));
 }
 
 // destructeur
@@ -77,7 +42,7 @@ void Partie::chargement_partie(std::string num)
 {
     std::string path;
 
-    path = "Sauvegardes/";
+    path = "../Sauvegardes/";
     path += num;
     path += ".txt";
     std::ifstream ifs(path.c_str()); // c_str() retourne le contenu d'une String sous forme de char*
@@ -110,7 +75,7 @@ void Partie::sauvegarder_partie(std::string num)
 {
     // std::ios::app (append) : écrire à la suite
     // Pour ces modes d'ouverture, si le fichier n'existe pas ou s'il n'est pas trouvé, il sera créé.
-    std::string path = "Sauvegardes/";
+    std::string path = "../Sauvegardes/";
     path += num;
     path += ".txt";
 
@@ -129,15 +94,66 @@ void Partie::sauvegarder_partie(std::string num)
 
 }
 
+void Partie::affichageAlleg(){
+
+}
+
+void Partie::affichageCons(){
+
+}
+
 void Partie::LancerPartie()
 {
-#ifdef USINGALLEGRO
+
+    initPartie();
+
+    std::string num;
+    bool exitboucle = false;
     ///BOUCLE DE JEU
-    while (!key[KEY_ESC])
+    while (!exitboucle)
     {
+        //Reset affichage
+        if (alleg_present==1)  blit(alleg.getImage(1),alleg.getImage(0),0,0,0,0,SCREEN_W,SCREEN_H);
+        else system("cls");
+
+        //Premier affichage
+        if (alleg_present==1)  affichageAlleg();
+        else affichageCons();
+
+        //Commandes
+        if (alleg_present==1) {
+
+            //Clic sur les endroits
+
+
+
+            //Sauvegarde
+            if(key[KEY_S]) {
+
+                    //Recuperer via clic quel num de sauvegarde
+                    sauvegarder_partie(num);
+            }
+
+            //Quitter
+            if(key[KEY_ESC]) exitboucle=true;
+        }
+
+        else {
+
+            //Affichage des différentes demandes d'actions
+            //Recuperation de l'action
+
+
+        }
+
+        //Dernier affichage
+        if (alleg_present==1)  affichageAlleg();
+        else affichageCons();
+
 
     }
-#endif //USIINGALLEGRO
+
+    resetpartie();
 }
 
 void Partie::setal(bool al)
@@ -147,26 +163,20 @@ void Partie::setal(bool al)
 
 void Partie::ConsPrint(unsigned int y,unsigned int x)
 {
-  #ifdef COORD
     COORD xy;
     xy.X = x;
     xy.Y = y;
     SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), xy );
-    #endif
 }
 
 void Partie::ChargerImages()
 {
-  #ifdef USINGALLEGRO
     alleg.ChargerImages();
-  #endif//USINGALLEGRO
 }
 
 void Partie::DestroyImages()
 {
-  #ifdef USINGALLEGRO
     alleg.DestroyImages();
-    #endif //USINGALLEGRO
 }
 
 void Partie::resetpartie()//Gros reset pour remettre la partie à 0 à la fin de celle ci ou au retour au menu
@@ -177,7 +187,112 @@ void Partie::resetpartie()//Gros reset pour remettre la partie à 0 à la fin de
 void Partie::initPartie()//Initialisation avec le placement des bateaux surtout
 {
 
+    ///IL FAUT CLEAR LES VECTEURS ET VIRER LES CASES EN FAISANT ATTENTION AU FAIT QUE CE SOIT DES POINTEURS
+
+    char orirand=0;
+    unsigned int xrand=0;
+    unsigned int yrand=0;
+    bool ok=false;
+    ///INITIALISER LES VECTEURS ICI
+    srand (time(NULL));
+
+   //Resize
+    tabj.resize(2);
+    for(unsigned int i=0; i<2 ; i++){
+        tabj[i].resize(2);
+        for(unsigned int j=0; j<2; j++){
+            tabj[i][j].resize(15);
+            for(unsigned int k=0; k<15; k++)
+                tabj[i][j][k].resize(15);
+        }
+    }
+    //Init
+    for(unsigned int p=0; p<2 ; p++)
+        for(unsigned int i=0; i<2 ; i++)
+            for(unsigned int j=0; j<15; j++)
+                for(unsigned int k=0; k<15; k++)
+                    tabj[p][i][j][k] = ' ';
+
+    //Initialiser les bateaux !
+    battab.resize(2);
+
+    //POUR CHAQUE JOUEUR
+    for(unsigned int i=0;i<2;i++){
+        //POUR CHAQUE BATEAU
+        for(unsigned int j=0;j<10;j++)
+        {
+            //orientation
+            if(rand()%2==0) orirand='h';
+            else orirand='v';
+
+            switch(j){
+            //x, y
+            //Verifier tout x et y libres
+            //placer bateau
+
+            case 0:
+                xrand = rand()%9 +3;
+                yrand = rand()%9 +3;
+
+                battab[i].push_back(new Cuirasse(xrand,yrand,7,orirand));
+                break;
+
+            case 1:
+            case 2:
+                while(!ok){
+                    ok=true;
+                    xrand = rand()%11 +2;
+                    yrand = rand()%11 +2;
+                    for(unsigned int numbat=0;numbat<j;numbat++)
+                        for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++)
+                            if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                }
+                ok=false;
+
+                battab[i].push_back(new Croiseur(xrand,yrand,5,orirand));
+                break;
+
+            case 3:
+            case 4:
+            case 5:
+                while(!ok){
+                    ok=true;
+                    xrand = rand()%13 +1;
+                    yrand = rand()%13 +1;
+                    for(unsigned int numbat=0;numbat<j;numbat++)
+                        for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++)
+                            if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                }
+                ok=false;
+
+                battab[i].push_back(new Destroyer(xrand,yrand,3,orirand));
+                break;
+
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+                while(!ok){
+                    ok=true;
+                    xrand = rand()%15;
+                    yrand = rand()%15;
+                    for(unsigned int numbat=0;numbat<j;numbat++)
+                        for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++)
+                            if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                }
+                ok=false;
+
+                battab[i].push_back(new Sousmarin(xrand,yrand,1,orirand));
+                break;
+            }
+        }
+    }
+
+
+
+
 }
+
 Bateau* Partie::get_Bateau(unsigned int x, unsigned int y,unsigned int idplayer){
   /*bool found = false;
   Bateau* tmpbat;

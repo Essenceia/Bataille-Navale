@@ -11,7 +11,7 @@ class Cuirasse:public Bateau
 
     public :
 
-    Cuirasse(unsigned int x,unsigned int y, unsigned int _taille, char _orientation);
+    Cuirasse(unsigned int _x,unsigned  int _y, unsigned int _taille, char _orientation);
     ~Cuirasse();
 
     //methodes

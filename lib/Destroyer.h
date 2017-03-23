@@ -12,7 +12,7 @@ class Destroyer:public Bateau
 
     public :
 
-    Destroyer(unsigned int x,unsigned int y,unsigned int _taille, char _orientation);
+    Destroyer(unsigned int _x,unsigned  int _y, unsigned int _taille, char _orientation);
     ~Destroyer();
 
     //methodes

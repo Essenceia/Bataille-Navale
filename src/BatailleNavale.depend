@@ -100,3 +100,105 @@
 	<stdio.h>
 	<vector>
 
+1490289916 source:c:\users\sébastien\desktop\bataille-navale\src\allegro.cpp
+	"../lib/Allegro.h"
+
+1490289722 c:\users\sébastien\desktop\bataille-navale\lib\allegro.h
+	<stdio.h>
+	<iostream>
+	<allegro.h>
+	<winalleg.h>
+
+1490298417 source:c:\users\sébastien\desktop\bataille-navale\src\bateau.cpp
+	"../lib/Bateau.h"
+	<iostream>
+
+1490297993 c:\users\sébastien\desktop\bataille-navale\lib\bateau.h
+	<iostream>
+	<stdio.h>
+	<vector>
+
+1490291476 source:c:\users\sébastien\desktop\bataille-navale\src\croiseur.cpp
+	"../lib/Croiseur.h"
+
+1490288023 c:\users\sébastien\desktop\bataille-navale\lib\croiseur.h
+	"Bateau.h"
+
+1490284746 source:c:\users\sébastien\desktop\bataille-navale\src\crossplatform.cpp
+	<cstdlib>
+	"../lib/crossplatform.h"
+	<iostream>
+
+1490284746 c:\users\sébastien\desktop\bataille-navale\lib\crossplatform.h
+	<conio.h>
+	<curses.h>
+
+1490291474 source:c:\users\sébastien\desktop\bataille-navale\src\cuirasse.cpp
+	"../lib/Cuirasse.h"
+
+1490288038 c:\users\sébastien\desktop\bataille-navale\lib\cuirasse.h
+	"Bateau.h"
+
+1490291475 source:c:\users\sébastien\desktop\bataille-navale\src\destroyer.cpp
+	"../lib/Destroyer.h"
+
+1490288033 c:\users\sébastien\desktop\bataille-navale\lib\destroyer.h
+	"Bateau.h"
+
+1490288266 source:c:\users\sébastien\desktop\bataille-navale\src\main.cpp
+	<conio.h>
+	<allegro.h>
+	<winalleg.h>
+	"../lib/Allegro.h"
+	"../lib/Menu.h"
+
+1490289722 c:\users\sébastien\desktop\bataille-navale\lib\menu.h
+	<iostream>
+	<stdio.h>
+	<vector>
+	<conio.h>
+	"Allegro.h"
+	"Partie.h"
+
+1490305070 c:\users\sébastien\desktop\bataille-navale\lib\partie.h
+	<iostream>
+	"Allegro.h"
+	"Bateau.h"
+	"Cuirasse.h"
+	"Croiseur.h"
+	"Destroyer.h"
+	"Sousmarin.h"
+	<utility>
+
+1490288024 c:\users\sébastien\desktop\bataille-navale\lib\sousmarin.h
+	"Bateau.h"
+
+1490290060 source:c:\users\sébastien\desktop\bataille-navale\src\menu.cpp
+	"../lib/Menu.h"
+	<stdio.h>
+	<string>
+	<fstream>
+	"../lib/crossplatform.h"
+
+1490291477 source:c:\users\sébastien\desktop\bataille-navale\src\sousmarin.cpp
+	"../lib/Sousmarin.h"
+
+1490305650 source:c:\users\sébastien\desktop\bataille-navale\src\partie.cpp
+	"../lib/Partie.h"
+	<stdio.h>
+	<stdlib.h>
+	<string>
+	<fstream>
+	<time.h>
+	"../lib/Helper.h"
+
+1490284743 c:\users\sébastien\desktop\bataille-navale\lib\helper.h
+
+1490289830 source:c:\users\sébastien\desktop\bataille-navale\src\tire.cpp
+	"../lib/Tire.h"
+
+1490289712 c:\users\sébastien\desktop\bataille-navale\lib\tire.h
+	<iostream>
+	<stdio.h>
+	<vector>
+

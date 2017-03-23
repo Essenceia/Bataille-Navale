@@ -1,22 +1,15 @@
-#define USINGALLEGRO
-#define WINDOWS
 #define DEBUG //activer le debug
-#ifdef WINDOWS
 #include <conio.h>
-#endif
-
-#ifdef USINGALLEGRO
 #include <allegro.h>
 #include <winalleg.h>
 #include "../lib/Allegro.h"
-#endif // USINGALLEGRO
 #include "../lib/Menu.h"
 
 int main()
 {
     Menu menu;
     menu.Allegro_present();
-#ifdef USINGALLEGRO
+
     if(menu.getallegro_present())
     {
         allegro_init();
@@ -38,15 +31,11 @@ int main()
         //Initialisation Menu
         menu.load_bitmaps(); //chargement des bitmaps du menu
     }
-    #endif
 
 
     menu.principal();
-#ifdef USINGALLEGRO
     if(menu.getallegro_present())   menu.destroy_bitmaps();
-#endif // USINGALLEGRO
+
     return 0;
 }
-#ifdef USINGALLEGRO
 END_OF_MAIN();
-#endif //USINGALLEGRO
