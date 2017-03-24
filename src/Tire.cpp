@@ -1,6 +1,5 @@
 #include "../lib/Tire.h"
-
-#ifdef USINGALLEGRO
+#include "allegro.h"
 bitmap* Tire::get_geule_tire()
 {
 
@@ -8,7 +7,7 @@ bitmap* Tire::get_geule_tire()
 std::vector<bitmap*> Tire::get_annimation_blowup()
 {
 }
-#endif
+
 /*
  * Tire::modif_type(char newtype, bool first)
  * char - on lui donne le type du vaiseau , voire defines de Tire.h
@@ -44,9 +43,7 @@ void Tire::modif_type(char newtype, bool first) {
                 taille_x = 1;
                 typetire = TIRE_CROISEUR;
                 break;
-
-
-        }
+                        }
     } else { // nous allons mettre a jour un tire
         switch (newtype) {
             case SYMBOL_CROISEUR:
@@ -80,6 +77,7 @@ void Tire::modif_type(char newtype, bool first) {
     }
 }
 
+
 Tire::Tire(char typevaiseau) {
 #ifdef USINGALLEGRO
     //TODO : creation des bitmap
@@ -92,7 +90,6 @@ Tire::Tire(char typevaiseau) {
 }
 
 Tire::~Tire() {
-
 } // destructeur
 
 

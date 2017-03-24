@@ -1,4 +1,5 @@
 #include "../lib/Sousmarin.h"
+<<<<<<< HEAD
 #include "../lib/Tire.h"
 Sousmarin::Sousmarin(unsigned int x, unsigned int y,unsigned int _taille, char _orientation)
         : Bateau(x,y,_taille,_orientation)
@@ -18,6 +19,7 @@ Sousmarin::~Sousmarin()
 char Sousmarin::Symbole()
 {
     return (char)SYMBOL_SOUSMARIN;
+
 }
 
 void Sousmarin::Deplacement()

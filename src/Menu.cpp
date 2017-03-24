@@ -37,10 +37,8 @@ void Menu::Allegro_present()
 
     if(int_allegro_present!=0&&int_allegro_present!=1)
     {
-      #ifdef USINGALLEGRO
         std::cout << std::endl << "Bravo nous esperons que tu es content de faire n'importe quoi, pour la peine tu ne joueras pas!";
         exit(0);
-        #endif//USINGALLEGRO
     }
 
     if(int_allegro_present==0)  allegro_present=false;
@@ -54,121 +52,119 @@ bool Menu::getallegro_present()
 {
     return allegro_present;
 }
-
 void Menu::load_bitmaps() // Charger images
 {
-  #ifdef USINGALLEGRO
     buffer = create_bitmap(SCREEN_W, SCREEN_H); // Cr�ation buffer
 
-    menu_principal=load_bitmap("Bitmap/Menu/menu_principal.bmp",NULL);
+    menu_principal=load_bitmap("../Bitmap/Menu/menu_principal.bmp",NULL);
     if (!menu_principal)
     {
         allegro_message("pas pu trouver Bitmap/Menu/menu_principal.bmp");
         exit(EXIT_FAILURE);
     }
-    menu_option=load_bitmap("Bitmap/Menu/menu_option.bmp",NULL);
+    menu_option=load_bitmap("../Bitmap/Menu/menu_option.bmp",NULL);
     if (!menu_option)
     {
         allegro_message("pas pu trouver Bitmap/Menu/menu_option.bmp");
         exit(EXIT_FAILURE);
     }
-    menu_regles=load_bitmap("Bitmap/Menu/menu_regles.bmp",NULL);
+    menu_regles=load_bitmap("../Bitmap/Menu/menu_regles.bmp",NULL);
     if (!menu_regles)
     {
         allegro_message("pas pu trouver Bitmap/Menu/menu_regles.bmp");
         exit(EXIT_FAILURE);
     }
-    menu_charger=load_bitmap("Bitmap/Menu/menu_charger.bmp",NULL);
+    menu_charger=load_bitmap("../Bitmap/Menu/menu_charger.bmp",NULL);
     if (!menu_charger)
     {
         allegro_message("pas pu trouver Bitmap/Menu/menu_charger.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_un_joueur=load_bitmap("Bitmap/Menu/txt_un_joueur.bmp",NULL);
+    txt_un_joueur=load_bitmap("../Bitmap/Menu/txt_un_joueur.bmp",NULL);
     if (!txt_un_joueur)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_un_joueur.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_deux_joueur=load_bitmap("Bitmap/Menu/txt_deux_joueur.bmp",NULL);
+    txt_deux_joueur=load_bitmap("../Bitmap/Menu/txt_deux_joueur.bmp",NULL);
     if (!txt_deux_joueur)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_deux_joueur.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_option=load_bitmap("Bitmap/Menu/txt_option.bmp",NULL);
+    txt_option=load_bitmap("../Bitmap/Menu/txt_option.bmp",NULL);
     if (!txt_option)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_option.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_charger=load_bitmap("Bitmap/Menu/txt_charger.bmp",NULL);
+    txt_charger=load_bitmap("../Bitmap/Menu/txt_charger.bmp",NULL);
     if (!txt_charger)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_charger.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_regles=load_bitmap("Bitmap/Menu/txt_regles.bmp",NULL);
+    txt_regles=load_bitmap("../Bitmap/Menu/txt_regles.bmp",NULL);
     if (!txt_regles)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_regles.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_quitter=load_bitmap("Bitmap/Menu/txt_quitter.bmp",NULL);
+    txt_quitter=load_bitmap("../Bitmap/Menu/txt_quitter.bmp",NULL);
     if (!txt_quitter)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_quitter.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_retour=load_bitmap("Bitmap/Menu/txt_retour.bmp",NULL);
+    txt_retour=load_bitmap("../Bitmap/Menu/txt_retour.bmp",NULL);
     if (!txt_retour)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_retour.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_hover_un_joueur=load_bitmap("Bitmap/Menu/txt_hover_un_joueur.bmp",NULL);
+    txt_hover_un_joueur=load_bitmap("../Bitmap/Menu/txt_hover_un_joueur.bmp",NULL);
     if (!txt_hover_un_joueur)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_hover_un_joueur.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_hover_deux_joueur=load_bitmap("Bitmap/Menu/txt_hover_deux_joueur.bmp",NULL);
+    txt_hover_deux_joueur=load_bitmap("../Bitmap/Menu/txt_hover_deux_joueur.bmp",NULL);
     if (!txt_hover_deux_joueur)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_hover_deux_joueur.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_hover_option=load_bitmap("Bitmap/Menu/txt_hover_option.bmp",NULL);
+    txt_hover_option=load_bitmap("../Bitmap/Menu/txt_hover_option.bmp",NULL);
     if (!txt_hover_option)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_hover_option.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_hover_charger=load_bitmap("Bitmap/Menu/txt_hover_charger.bmp",NULL);
+    txt_hover_charger=load_bitmap("../Bitmap/Menu/txt_hover_charger.bmp",NULL);
     if (!txt_hover_charger)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_hover_charger.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_hover_regles=load_bitmap("Bitmap/Menu/txt_hover_regles.bmp",NULL);
+    txt_hover_regles=load_bitmap("../Bitmap/Menu/txt_hover_regles.bmp",NULL);
     if (!txt_hover_regles)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_hover_regles.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_hover_quitter=load_bitmap("Bitmap/Menu/txt_hover_quitter.bmp",NULL);
+    txt_hover_quitter=load_bitmap("../Bitmap/Menu/txt_hover_quitter.bmp",NULL);
     if (!txt_hover_quitter)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_hover_quitter.bmp");
         exit(EXIT_FAILURE);
     }
-    txt_hover_retour=load_bitmap("Bitmap/Menu/txt_hover_retour.bmp",NULL);
+    txt_hover_retour=load_bitmap("../Bitmap/Menu/txt_hover_retour.bmp",NULL);
     if (!txt_hover_retour)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_hover_retour.bmp");
         exit(EXIT_FAILURE);
     }
-    #endif //USINGALLEGRO
+
 }
 
 // Menu principal
@@ -236,9 +232,14 @@ void Menu::principal()
         }
 
         //Sur Allegro
+<<<<<<< HEAD
         else{
 #ifdef USINGALLEGRO
             // r�initilisation des coordonn�es souris
+=======
+        else{
+            // r�initilisation des coordonn�es souris
+>>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
             x= mouse_x;
             y= mouse_y;
 
@@ -261,10 +262,18 @@ void Menu::principal()
                 // si clique gauche
                 if ( mouse_b & 1 )
                 {
+<<<<<<< HEAD
                     /*
                     clear
                     reset
                     lancer avec parametre 1 joueur
+=======
+                    partie.LancerPartie(true);
+                    /*
+                    clear
+                    reset
+                    lancer avec parametre 1 joueur
+>>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
                     */
                 }
             }
@@ -278,10 +287,18 @@ void Menu::principal()
                 // si clique gauche
                 if ( mouse_b & 1 )
                 {
+<<<<<<< HEAD
                     /*
                     clear
                     reset
                     lancer avec parametre 2 joueur
+=======
+                    partie.LancerPartie(false);
+                    /*
+                    clear
+                    reset
+                    lancer avec parametre 2 joueur
+>>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
                     */
                 }
             }
@@ -339,9 +356,14 @@ void Menu::principal()
                 }
             }
             blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+<<<<<<< HEAD
             rest(100); //pause pour qu'il soit visible
         #endif //USINGALLEGRO
       }
+=======
+            rest(100); //pause pour qu'il soit visible
+        }
+>>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
     }
 
 
@@ -371,16 +393,14 @@ void Menu::option()
 
 
             partie.ConsPrint(20,25);
+
             std::cout << "R : Retour";
 
 
 
-            while (gotten!='r'){
-                std::cin >> gotten;
-            }}
+            while (getch()!='r');
             m_exit=true;
         }
-        #ifdef USINGALLEGRO
         else{
 
             // r�initilisation des coordonn�es souris
@@ -407,13 +427,11 @@ void Menu::option()
             }
             blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
             rest(100); //pause pour qu'il soit visible
-
+        }
 
     }
-#endif //USINGALLEGRO
     m_exit = false;
 }
-
 
 void Menu::charger()
 {
@@ -437,45 +455,7 @@ void Menu::charger()
 
 
             partie.ConsPrint(20,25);
-            std::cout << "R : Retour";
 
-
-
-            while (gotten!='r'){
-                std::cin >> gotten;
-            }
-            m_exit=true;
-        }
-#ifdef USINGALLEGRO
-        else{
-
-            // r�initilisation des coordonn�es souris
-            x= mouse_x;
-            y= mouse_y;
-
-            // Affichage du menu_option
-            clear_bitmap(buffer);
-            blit(menu_charger, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
-            blit(txt_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-
-            /// "RETOUR"
-            //si la souris se trouve sur "RETOUR"
-            if( x>=600 && x<=750 && y>=500 && y<=550 )
-            {
-                blit(txt_hover_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-                // si clique gauche
-                if ( mouse_b & 1 )
-                {
-                    // retour au menu principal
-                    m_exit = true;
-                }
-            }
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-            rest(100); //pause pour qu'il soit visible
-
-        }
-  #endif //USINGALLEGRO
     }
     m_exit = false;
 
@@ -511,19 +491,18 @@ void Menu::regles()
                       <<"Lorem ipsum" << std::endl
                       <<"Lorem ipsum" << std::endl;
             partie.ConsPrint(20,25);
+
             std::cout << "R : Retour";
 
 
 
-            while (gotten!='r'){
-                std::cin >> gotten;
-            }
+            while (getch()!='r');
             m_exit=true;
         }
-#ifdef USINGALLEGRO
         else{
 
             // r�initilisation des coordonn�es souris
+
             x= mouse_x;
             y= mouse_y;
 
@@ -546,9 +525,12 @@ void Menu::regles()
                 }
             }
             blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+
             rest(100); //pause pour qu'il soit visible
-        #endif //USINGALLEGRO}
+
+        }
     }
+
     m_exit = false;
 
 
@@ -556,7 +538,6 @@ void Menu::regles()
 
 void Menu::destroy_bitmaps()
 {
-  #ifdef USINGALLEGRO
     destroy_bitmap(buffer);
     destroy_bitmap(menu_principal);
     destroy_bitmap(menu_option);
@@ -574,5 +555,5 @@ void Menu::destroy_bitmaps()
     destroy_bitmap(txt_hover_regles);
     destroy_bitmap(txt_hover_quitter);
     destroy_bitmap(txt_hover_retour);
-    #endif
+
 }

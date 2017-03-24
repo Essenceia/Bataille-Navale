@@ -129,7 +129,7 @@ src/Allegro.o: src/Allegro.cpp.o
 
 # target to build an object file
 src/Allegro.cpp.o:
-	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/Allegro.cpp.o
+	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/Allegro.cpp.o `allegro-config --libs`
 .PHONY : src/Allegro.cpp.o
 
 src/Allegro.i: src/Allegro.cpp.i

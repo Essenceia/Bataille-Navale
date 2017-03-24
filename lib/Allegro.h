@@ -1,12 +1,12 @@
-#ifdef USINGALLEGRO
 #ifndef ALLEGRO_H_INCLUDED
 #define ALLEGRO_H_INCLUDED
 
 #include <stdio.h>
 #include <iostream>
 #include <allegro.h>
+#ifdef WINDOWS
 #include <winalleg.h>
-
+#endif
 class Allegro
 {
     private :
@@ -18,6 +18,17 @@ class Allegro
         BITMAP *fond;
         BITMAP *victoire;
         BITMAP *defaite;
+        BITMAP *selun;
+        BITMAP *seldeux;
+        BITMAP *seltrois;
+        BITMAP *bout;
+        BITMAP *corps;
+        BITMAP *sousmarin;
+        BITMAP *boum;
+        BITMAP *epave;
+        BITMAP *repere;
+        BITMAP *choixaction;
+        BITMAP *mauvais;
 
     public :
 
@@ -38,4 +49,3 @@ class Allegro
 
 
 #endif // ALLEGRO_H_INCLUDED
-#endif // USINGALLEGRO

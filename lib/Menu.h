@@ -7,9 +7,7 @@
 #ifdef WINDOWS
 #include <conio.h>
 #endif
-#ifdef USINGALLEGRO
 #include "Allegro.h"
-#endif
 #include "Partie.h"
 
 class Menu
@@ -20,7 +18,6 @@ class Menu
         bool allegro_present;
 
         Partie partie;
-#ifdef USINGALLEGRO
         // Bitmaps
         BITMAP* buffer;
         BITMAP* menu_principal;
@@ -41,7 +38,6 @@ class Menu
         BITMAP* txt_hover_charger;
         BITMAP* txt_hover_quitter;
         BITMAP* txt_hover_retour;
-#endif
     public :
         //Constructeur
         Menu();

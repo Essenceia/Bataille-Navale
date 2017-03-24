@@ -1,4 +1,3 @@
-#ifdef USINGALLEGRO
 #include "../lib/Allegro.h"
 
 //Constructeur par d�fault
@@ -22,22 +21,88 @@ void Allegro::ChargerImages()
 
 
     // charger les images
-    fond=load_bitmap("Bitmap/fond.bmp",NULL);
+    fond=load_bitmap("../Bitmap/fond.bmp",NULL);
     if (!fond)
     {
         allegro_message("pas pu trouver Bitmap/fond.bmp");
         exit(EXIT_FAILURE);
     }
-    victoire=load_bitmap("Bitmap/victoire.bmp",NULL);
+    victoire=load_bitmap("../Bitmap/victoire.bmp",NULL);
     if (!victoire)
     {
         allegro_message("pas pu trouver Bitmap/victoire.bmp");
         exit(EXIT_FAILURE);
     }
-    defaite=load_bitmap("Bitmap/defaite.bmp",NULL);
+    defaite=load_bitmap("../Bitmap/defaite.bmp",NULL);
     if (!defaite)
     {
         allegro_message("pas pu trouver Bitmap/defaite.bmp");
+        exit(EXIT_FAILURE);
+    }
+    selun=load_bitmap("../Bitmap/select1x1.bmp",NULL);
+    if (!selun)
+    {
+        allegro_message("pas pu trouver Bitmap/select1x1.bmp");
+        exit(EXIT_FAILURE);
+    }
+    seldeux=load_bitmap("../Bitmap/select2x2.bmp",NULL);
+    if (!seldeux)
+    {
+        allegro_message("pas pu trouver Bitmap/select2x2.bmp");
+        exit(EXIT_FAILURE);
+    }
+    seltrois=load_bitmap("../Bitmap/select3x3.bmp",NULL);
+    if (!seltrois)
+    {
+        allegro_message("pas pu trouver Bitmap/select3x3.bmp");
+        exit(EXIT_FAILURE);
+    }
+    bout=load_bitmap("../Bitmap/bout.bmp",NULL);
+    if (!bout)
+    {
+        allegro_message("pas pu trouver Bitmap/bout.bmp");
+        exit(EXIT_FAILURE);
+    }
+    corps=load_bitmap("../Bitmap/corps.bmp",NULL);
+    if (!corps)
+    {
+        allegro_message("pas pu trouver Bitmap/corps.bmp");
+        exit(EXIT_FAILURE);
+    }
+    sousmarin=load_bitmap("../Bitmap/sousmarin.bmp",NULL);
+    if (!sousmarin)
+    {
+        allegro_message("pas pu trouver Bitmap/sousmarin.bmp");
+        exit(EXIT_FAILURE);
+    }
+    boum=load_bitmap("../Bitmap/boum.bmp",NULL);
+    if (!boum)
+    {
+        allegro_message("pas pu trouver Bitmap/boum.bmp");
+        exit(EXIT_FAILURE);
+    }
+    epave=load_bitmap("../Bitmap/epave.bmp",NULL);
+    if (!epave)
+    {
+        allegro_message("pas pu trouver Bitmap/epave.bmp");
+        exit(EXIT_FAILURE);
+    }
+    repere=load_bitmap("../Bitmap/repere.bmp",NULL);
+    if (!repere)
+    {
+        allegro_message("pas pu trouver Bitmap/repere.bmp");
+        exit(EXIT_FAILURE);
+    }
+    choixaction=load_bitmap("../Bitmap/choixaction.bmp",NULL);
+    if (!choixaction)
+    {
+        allegro_message("pas pu trouver Bitmap/choixaction.bmp");
+        exit(EXIT_FAILURE);
+    }
+    mauvais=load_bitmap("../Bitmap/mauvais.bmp",NULL);
+    if (!mauvais)
+    {
+        allegro_message("pas pu trouver Bitmap/mauvais.bmp");
         exit(EXIT_FAILURE);
     }
 }
@@ -48,6 +113,17 @@ void Allegro::DestroyImages()
     destroy_bitmap(fond);
     destroy_bitmap(victoire);
     destroy_bitmap(defaite);
+    destroy_bitmap(selun);
+    destroy_bitmap(seldeux);
+    destroy_bitmap(seltrois);
+    destroy_bitmap(bout);
+    destroy_bitmap(corps);
+    destroy_bitmap(sousmarin);
+    destroy_bitmap(boum);
+    destroy_bitmap(epave);
+    destroy_bitmap(repere);
+    destroy_bitmap(choixaction);
+    destroy_bitmap(mauvais);
 }
 
 
@@ -59,12 +135,28 @@ BITMAP* Allegro::getImage(int i)
     {
         case 0 :    return page;
         case 1 :    return fond;
+
+        case 10 :    return choixaction;
+        case 11 :    return mauvais;
+
+        case 51 :    return selun;
+        case 52 :    return seldeux;
+        case 53 :    return seltrois;
+
+        case 60 :   return bout;
+        case 61 :   return corps;
+        case 62 :   return sousmarin;
+        case 63 :   return epave;
+
+        case 70 :   return boum;
+        case 71 :   return repere;
+
         case 98 :    return victoire;
         case 99 :    return defaite;
+
         default :   allegro_exit();
                     exit(EXIT_FAILURE);
 
     }
 
 }
-#endif //USINGALLEGRO
