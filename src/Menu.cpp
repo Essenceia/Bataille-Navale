@@ -257,6 +257,7 @@ void Menu::principal()
                 // si clique gauche
                 if ( mouse_b & 1 )
                 {
+                    partie.LancerPartie(true);
                     /*
                     clear
                     reset
@@ -274,6 +275,7 @@ void Menu::principal()
                 // si clique gauche
                 if ( mouse_b & 1 )
                 {
+                    partie.LancerPartie(false);
                     /*
                     clear
                     reset

@@ -96,36 +96,189 @@ void Partie::sauvegarder_partie(std::string num)
 
 void Partie::affichageAlleg(){
 
+    blit(alleg.getImage(0),screen,0,0,0,0,SCREEN_W,SCREEN_H);
+
 }
 
 void Partie::affichageCons(){
 
 }
 
-void Partie::LancerPartie()
+void Partie::LancerPartie(bool ia)
 {
 
+    if (alleg_present==1) ChargerImages();
     initPartie();
 
+    int x= 0;
+    int y= 0;
+
+    unsigned int choixx=0;
+    unsigned int choixy=0;
+    unsigned int currentplayer = 1;
+    unsigned int otherplayer = 0;
+    unsigned int numbatselected = 50;
+    bool choixaction = false;
     std::string num;
     bool exitboucle = false;
     ///BOUCLE DE JEU
     while (!exitboucle)
     {
+
         //Reset affichage
         if (alleg_present==1)  blit(alleg.getImage(1),alleg.getImage(0),0,0,0,0,SCREEN_W,SCREEN_H);
         else system("cls");
 
-        //Premier affichage
-        if (alleg_present==1)  affichageAlleg();
-        else affichageCons();
+        //Premier affichage avec les elements dans les tableaux
+        if (alleg_present==1){
+            for(unsigned int i=0; i<battab[currentplayer].size();i++){
+                //Si c'est plus grand q'un sous marin
+                if(battab[currentplayer][i]->get_taille()>2){
+                    //On affiche déjà le corps du bateau
+                    for(unsigned int taille=0;taille<battab[currentplayer][i]->get_taille()-2;taille++){
+                        if(battab[currentplayer][i]->get_etattouche(taille)==0){
+                            if(battab[currentplayer][i]->get_orientation()=='h') draw_sprite(alleg.getImage(0), alleg.getImage(61), battab[currentplayer][i]->get_etatx(taille)*21+51, battab[currentplayer][i]->get_etaty(taille)*21+51);
+                            else rotate_sprite(alleg.getImage(0), alleg.getImage(61), battab[currentplayer][i]->get_etatx(taille)*21+51, battab[currentplayer][i]->get_etaty(taille)*21+51, ftofix(64));
+                        }
+                        else draw_sprite(alleg.getImage(0), alleg.getImage(63), battab[currentplayer][i]->get_etatx(taille)*21+51, battab[currentplayer][i]->get_etaty(taille)*21+51);
+                    }
+                    //On affiche les bouts
+                    if(battab[currentplayer][i]->get_orientation()=='h'){
+                        if(battab[currentplayer][i]->get_etattouche(battab[currentplayer][i]->get_taille()-2)==0) rotate_sprite(alleg.getImage(0), alleg.getImage(60), battab[currentplayer][i]->get_etatx(battab[currentplayer][i]->get_taille()-2)*21+51, battab[currentplayer][i]->get_etaty(battab[currentplayer][i]->get_taille()-2)*21+51, ftofix(0));
+                        else draw_sprite(alleg.getImage(0), alleg.getImage(63), battab[currentplayer][i]->get_etatx(battab[currentplayer][i]->get_taille()-2)*21+51, battab[currentplayer][i]->get_etaty(battab[currentplayer][i]->get_taille()-2)*21+51);
+                        if(battab[currentplayer][i]->get_etattouche(battab[currentplayer][i]->get_taille()-1)==0) rotate_sprite(alleg.getImage(0), alleg.getImage(60), battab[currentplayer][i]->get_etatx(battab[currentplayer][i]->get_taille()-1)*21+51, battab[currentplayer][i]->get_etaty(battab[currentplayer][i]->get_taille()-1)*21+51, ftofix(128));
+                        else draw_sprite(alleg.getImage(0), alleg.getImage(63), battab[currentplayer][i]->get_etatx(battab[currentplayer][i]->get_taille()-1)*21+51, battab[currentplayer][i]->get_etaty(battab[currentplayer][i]->get_taille()-1)*21+51);
+                    }
+                    else{
+                        if(battab[currentplayer][i]->get_etattouche(battab[currentplayer][i]->get_taille()-2)==0) rotate_sprite(alleg.getImage(0), alleg.getImage(60), battab[currentplayer][i]->get_etatx(battab[currentplayer][i]->get_taille()-2)*21+51, battab[currentplayer][i]->get_etaty(battab[currentplayer][i]->get_taille()-2)*21+51, ftofix(64));
+                        else draw_sprite(alleg.getImage(0), alleg.getImage(63), battab[currentplayer][i]->get_etatx(battab[currentplayer][i]->get_taille()-2)*21+51, battab[currentplayer][i]->get_etaty(battab[currentplayer][i]->get_taille()-2)*21+51);
+                        if(battab[currentplayer][i]->get_etattouche(battab[currentplayer][i]->get_taille()-1)==0) rotate_sprite(alleg.getImage(0), alleg.getImage(60), battab[currentplayer][i]->get_etatx(battab[currentplayer][i]->get_taille()-1)*21+51, battab[currentplayer][i]->get_etaty(battab[currentplayer][i]->get_taille()-1)*21+51, ftofix(192));
+                        else draw_sprite(alleg.getImage(0), alleg.getImage(63), battab[currentplayer][i]->get_etatx(battab[currentplayer][i]->get_taille()-1)*21+51, battab[currentplayer][i]->get_etaty(battab[currentplayer][i]->get_taille()-1)*21+51);
+                    }
+                }
+                //Si c'est un sous marin
+                else{
+                    if(battab[currentplayer][i]->get_etattouche(0)==0) draw_sprite(alleg.getImage(0), alleg.getImage(62), battab[currentplayer][i]->get_etatx(0)*21+51, battab[currentplayer][i]->get_etaty(0)*21+51);
+                    else draw_sprite(alleg.getImage(0), alleg.getImage(63), battab[currentplayer][i]->get_etatx(0)*21+51, battab[currentplayer][i]->get_etaty(0)*21+51);
+                }
+
+            }
+
+            ///Affichage des morceaux d'épaves de l'autre joueur
+            for(unsigned int i=0; i<battab[otherplayer].size();i++){
+                //Si c'est plus grand q'un sous marin
+                if(battab[otherplayer][i]->get_taille()>2){
+                    //On affiche déjà le corps du bateau
+                    for(unsigned int taille=0;taille<battab[otherplayer][i]->get_taille()-2;taille++){
+                        if(battab[otherplayer][i]->get_etattouche(taille)==1) draw_sprite(alleg.getImage(0), alleg.getImage(70), battab[otherplayer][i]->get_etatx(taille)*21+401, battab[otherplayer][i]->get_etaty(taille)*21+51);
+                    }
+                    //On affiche les bouts
+                    if(battab[otherplayer][i]->get_orientation()=='h'){
+                        if(battab[otherplayer][i]->get_etattouche(battab[otherplayer][i]->get_taille()-2)==1) draw_sprite(alleg.getImage(0), alleg.getImage(70), battab[otherplayer][i]->get_etatx(battab[otherplayer][i]->get_taille()-2)*21+401, battab[otherplayer][i]->get_etaty(battab[otherplayer][i]->get_taille()-2)*21+51);
+                        if(battab[otherplayer][i]->get_etattouche(battab[otherplayer][i]->get_taille()-1)==1) draw_sprite(alleg.getImage(0), alleg.getImage(70), battab[otherplayer][i]->get_etatx(battab[otherplayer][i]->get_taille()-1)*21+401, battab[otherplayer][i]->get_etaty(battab[otherplayer][i]->get_taille()-1)*21+51);
+                    }
+                    else{
+                        if(battab[otherplayer][i]->get_etattouche(battab[otherplayer][i]->get_taille()-2)==1) draw_sprite(alleg.getImage(0), alleg.getImage(70), battab[otherplayer][i]->get_etatx(battab[otherplayer][i]->get_taille()-2)*21+401, battab[otherplayer][i]->get_etaty(battab[otherplayer][i]->get_taille()-2)*21+51);
+                        if(battab[otherplayer][i]->get_etattouche(battab[otherplayer][i]->get_taille()-1)==1) draw_sprite(alleg.getImage(0), alleg.getImage(70), battab[otherplayer][i]->get_etatx(battab[otherplayer][i]->get_taille()-1)*21+401, battab[otherplayer][i]->get_etaty(battab[otherplayer][i]->get_taille()-1)*21+51);
+                    }
+                }
+                //Si c'est un sous marin
+                else{
+                    if(battab[otherplayer][i]->get_etattouche(0)==1) draw_sprite(alleg.getImage(0), alleg.getImage(70), battab[otherplayer][i]->get_etatx(0)*401+51, battab[otherplayer][i]->get_etaty(0)*21+51);
+                }
+
+            }
+        }
+        else{
+
+        }
 
         //Commandes
         if (alleg_present==1) {
 
-            //Clic sur les endroits
+            ///Selection du bateau
+            //Deplacement du curseur
+            draw_sprite(alleg.getImage(0), alleg.getImage(51),choixx*21+50,choixy*21+50);
+            if(key[KEY_W]){
+                if(choixy!=0) choixy--;
+                while(key[KEY_W]);
+            }
+            if(key[KEY_A]){
+                if(choixx!=0) choixx--;
+                while(key[KEY_A]);
+            }
+            if(key[KEY_S]){
+                if(choixy!=14) choixy++;
+                while(key[KEY_S]);
+            }
+            if(key[KEY_D]){
+                if(choixx!=14) choixx++;
+                while(key[KEY_D]);
+            }
+
+            //Appui sur e = choix du bateau
+            if(key[KEY_E]){
+
+                //Verif si y a un bateau ou affichage de "pas de bateau à cet endroit
+                for(unsigned int i=0; i<battab[currentplayer].size();i++)
+                        for(unsigned int j=0; j<battab[currentplayer][i]->get_taille();j++)
+                            if(battab[currentplayer][i]->get_etatx(j)== choixx && battab[currentplayer][i]->get_etaty(j)==choixy && battab[currentplayer][i]->get_etattouche(j)==0)
+                                numbatselected = i;
+
+                //Bateau selectionné ou pas
+                if(numbatselected!=50){
+                    while(!choixaction){
+
+                        x= mouse_x;
+                        y= mouse_y;
+
+                        if( x>=105 && x<=295 && y>=120 && y<=220 && mouse_b & 1 ){
+
+                                //Choix de la cible
+
+                                choixaction=true;
+                        }
+
+                        if( x>=305 && x<=495 && y>=120 && y<=220 && mouse_b & 1 ){
+
+                                //Choix de la cible
+
+                                choixaction=true;
+                        }
+
+                        if( x>=505 && x<=695 && y>=120 && y<=220 && mouse_b & 1 ){
+
+                                //battab[currentplayer][numbatselected]->Tourner();
+                                choixaction=true;
+                        }
+
+                        //Choix de l'action
+                        draw_sprite(alleg.getImage(0), alleg.getImage(10), 50, 100);
+                        affichageAlleg();
+
+                    }
+
+                    //Choix de la cible de l'action
+                }
+
+                else {
+                    draw_sprite(alleg.getImage(0), alleg.getImage(11), 50, 100);
+                    affichageAlleg();
+                }
+
+                numbatselected=50;
+                choixaction=false;
+                while(key[KEY_E]);
+
+            }
 
 
+            if(key[KEY_Q]){
+                otherplayer=currentplayer;
+                if(otherplayer==0) currentplayer=1;
+                else currentplayer=0;
+                while(key[KEY_Q]);
+            }
 
             //Sauvegarde
             if(key[KEY_S]) {
@@ -154,6 +307,7 @@ void Partie::LancerPartie()
     }
 
     resetpartie();
+    if (alleg_present==1) DestroyImages();
 }
 
 void Partie::setal(bool al)
@@ -181,13 +335,14 @@ void Partie::DestroyImages()
 
 void Partie::resetpartie()//Gros reset pour remettre la partie à 0 à la fin de celle ci ou au retour au menu
 {
+    ///IL FAUT CLEAR LES VECTEURS ET VIRER LES CASES EN FAISANT ATTENTION AU FAIT QUE CE SOIT DES POINTEURS
+
+    battab.clear();
 
 }
 
 void Partie::initPartie()//Initialisation avec le placement des bateaux surtout
 {
-
-    ///IL FAUT CLEAR LES VECTEURS ET VIRER LES CASES EN FAISANT ATTENTION AU FAIT QUE CE SOIT DES POINTEURS
 
     char orirand=0;
     unsigned int xrand=0;
@@ -243,9 +398,23 @@ void Partie::initPartie()//Initialisation avec le placement des bateaux surtout
                     ok=true;
                     xrand = rand()%11 +2;
                     yrand = rand()%11 +2;
-                    for(unsigned int numbat=0;numbat<j;numbat++)
-                        for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++)
+                    for(unsigned int numbat=0;numbat<battab[i].size();numbat++)
+                        for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++){
                             if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                            if( orirand=='h' ){
+                                if( battab[i][numbat]->get_etatx(taille)==xrand-1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                if( battab[i][numbat]->get_etatx(taille)==xrand+1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                if( battab[i][numbat]->get_etatx(taille)==xrand-2 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                if( battab[i][numbat]->get_etatx(taille)==xrand+2 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                            }
+                            else{
+                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand-1 ) ok=false;
+                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand+1 ) ok=false;
+                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand-2 ) ok=false;
+                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand+2 ) ok=false;
+
+                            }
+                        }
                 }
                 ok=false;
 
@@ -259,9 +428,19 @@ void Partie::initPartie()//Initialisation avec le placement des bateaux surtout
                     ok=true;
                     xrand = rand()%13 +1;
                     yrand = rand()%13 +1;
-                    for(unsigned int numbat=0;numbat<j;numbat++)
-                        for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++)
+                    for(unsigned int numbat=0;numbat<battab[i].size();numbat++)
+                        for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++){
                             if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                            if( orirand=='h' ){
+                                if( battab[i][numbat]->get_etatx(taille)==xrand-1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                if( battab[i][numbat]->get_etatx(taille)==xrand+1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                            }
+                            else{
+                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand-1 ) ok=false;
+                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand+1 ) ok=false;
+
+                            }
+                        }
                 }
                 ok=false;
 

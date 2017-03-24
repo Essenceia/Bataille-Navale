@@ -17,6 +17,17 @@ class Allegro
         BITMAP *fond;
         BITMAP *victoire;
         BITMAP *defaite;
+        BITMAP *selun;
+        BITMAP *seldeux;
+        BITMAP *seltrois;
+        BITMAP *bout;
+        BITMAP *corps;
+        BITMAP *sousmarin;
+        BITMAP *boum;
+        BITMAP *epave;
+        BITMAP *repere;
+        BITMAP *choixaction;
+        BITMAP *mauvais;
 
     public :
 

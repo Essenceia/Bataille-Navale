@@ -23,14 +23,10 @@ Bateau::Bateau(unsigned int _x, unsigned int _y, unsigned int _taille, char _ori
         etat.push_back(new Case);
         etat[i+1]->x=_x+plac*h;
         etat[i+1]->y=_y+plac*v;
-        etat[i+1]->touche=false;
+        etat[i+1]->touche=true;
 
         plac++;
     }
-
-    for(unsigned int i=0;i<taille;i++)
-        std::cout << etat[i]->x << " "
-                << etat[i]->y  << std::endl;
 }
 
 //Destructeur

@@ -47,7 +47,7 @@ class Partie
 
         ///Methodes
         //gestion partie
-        void LancerPartie();
+        void LancerPartie(bool ia);
         void initPartie();
         void resetpartie();
 
