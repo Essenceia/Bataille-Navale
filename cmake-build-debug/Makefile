@@ -258,33 +258,6 @@ src/Destroyer.cpp.s:
 	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/Destroyer.cpp.s
 .PHONY : src/Destroyer.cpp.s
 
-src/Fusee.o: src/Fusee.cpp.o
-
-.PHONY : src/Fusee.o
-
-# target to build an object file
-src/Fusee.cpp.o:
-	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/Fusee.cpp.o
-.PHONY : src/Fusee.cpp.o
-
-src/Fusee.i: src/Fusee.cpp.i
-
-.PHONY : src/Fusee.i
-
-# target to preprocess a source file
-src/Fusee.cpp.i:
-	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/Fusee.cpp.i
-.PHONY : src/Fusee.cpp.i
-
-src/Fusee.s: src/Fusee.cpp.s
-
-.PHONY : src/Fusee.s
-
-# target to generate assembly for a file
-src/Fusee.cpp.s:
-	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/Fusee.cpp.s
-.PHONY : src/Fusee.cpp.s
-
 src/Menu.o: src/Menu.cpp.o
 
 .PHONY : src/Menu.o
@@ -447,6 +420,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/myhelper.o: src/myhelper.cpp.o
+
+.PHONY : src/myhelper.o
+
+# target to build an object file
+src/myhelper.cpp.o:
+	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/myhelper.cpp.o
+.PHONY : src/myhelper.cpp.o
+
+src/myhelper.i: src/myhelper.cpp.i
+
+.PHONY : src/myhelper.i
+
+# target to preprocess a source file
+src/myhelper.cpp.i:
+	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/myhelper.cpp.i
+.PHONY : src/myhelper.cpp.i
+
+src/myhelper.s: src/myhelper.cpp.s
+
+.PHONY : src/myhelper.s
+
+# target to generate assembly for a file
+src/myhelper.cpp.s:
+	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/myhelper.cpp.s
+.PHONY : src/myhelper.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -471,9 +471,6 @@ help:
 	@echo "... src/Destroyer.o"
 	@echo "... src/Destroyer.i"
 	@echo "... src/Destroyer.s"
-	@echo "... src/Fusee.o"
-	@echo "... src/Fusee.i"
-	@echo "... src/Fusee.s"
 	@echo "... src/Menu.o"
 	@echo "... src/Menu.i"
 	@echo "... src/Menu.s"
@@ -492,6 +489,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/myhelper.o"
+	@echo "... src/myhelper.i"
+	@echo "... src/myhelper.s"
 .PHONY : help
 
 

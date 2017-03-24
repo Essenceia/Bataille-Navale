@@ -5,29 +5,27 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
-#include "../lib/Tire.h"
 
-struct Case{
+struct case{
     unsigned int x;
     unsigned int y;
     bool touche;
-};
+    *Bateau Bateau;
+    };
+
 
 // classe abstraite Bateau
 class Bateau
 {
     protected :
 
-        unsigned int pos_x;
-        unsigned int pos_y;
+        std::vector<case> corps; //Tableau de l'ensemble des cases occupée par le bateau, et leur état (touché, !touché)
         unsigned int taille; //Définie par le constructeur des différents bateaux
-        char orientation;
-        std::vector<Case*> etat;
         char symbole; //Symbole représentant le type de bateau
-        Tire *arme;
 
     public :
 
+<<<<<<< HEAD
         Bateau(unsigned int x, unsigned int y,unsigned int _taille, char _orientation);// constructeur par surcharge
         virtual ~Bateau(); // destructeur
         //getters
@@ -38,6 +36,21 @@ class Bateau
         char get_orientation(); //'h' pour horizontal droite ou 'v' pour vertical vers le haut 'g' horizontal gauche 'c' vertical bas
         bool get_etat(unsigned int pos); //Vecteur pour voir les parties endommag�es d'un bateau
         void set_etat(unsigned int pos);
+=======
+        Bateau(int x, int y, char _orientation, unsigned int taille);   //Constructeur par surcharge d'un bateau neuf
+        Bateau(int x, int y, char _orientation, std::vector<bool> _etat);// constructeur par surcharge d'un bateau sauvegardé
+        virtual ~Bateau(); // destructeur
+
+
+        //getter
+        unsigned int get_centre_x();// coordonnées du centre x
+        unsigned int get_centre_y();// coordonnées du centre y        unsigned int get_etat(); //Suite binaire de l'état des cases (sauvegarde)
+        char get_orientation(); //'h' pour horizontal ou 'v' pour vertical
+        char get_symbole();
+        bool get_existe();      //1= au moins une case !touche, 0= toutes les cases touche
+
+>>>>>>> b5a3782fd17aa000170348c7efae16497fc2f57e
+
 
         //methodes
         void Deplacement();     //Déplacement du bateau
@@ -46,8 +59,6 @@ class Bateau
 
         unsigned int touche(unsigned int x, unsigned int y);    //Réaction à un tir de missile retour 0=case déjà touchée, 1=case touchée, 2=bateau coulé
                                                                 //touche() transforme le bateau en épave si besoin
-
-        bool is_dead();
 };
 
 #endif // BATEAU_H_INCLUDED

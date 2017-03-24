@@ -1,4 +1,4 @@
-# Install script for directory: ~/Documents/code/c/BatailleNavale
+# Install script for directory: /root/Documents/code/c/BatailleNavale
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

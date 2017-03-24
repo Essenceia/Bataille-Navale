@@ -4,6 +4,7 @@ Croiseur::Croiseur(unsigned int x,unsigned int y,unsigned int _taille, char _ori
         : Bateau(x,y,_taille,_orientation)
 {
     for(unsigned int i=0;i<taille;i++) etat[i]->touche=false;
+    arme = new Tire(SYMBOL_CROISEUR);
 }
 
 Croiseur::~Croiseur()
@@ -13,11 +14,9 @@ Croiseur::~Croiseur()
 
 
 ///Methodes
-char Croiseur::Symbole()
-{
-    return '♥';
+char Croiseur::Symbole() {
+    return (char)SYMBOL_CROISEUR;
 }
-
 void Croiseur::Deplacement()
 {
 

@@ -86,6 +86,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/root/Documents/code/c/BatailleNavale/lib/myhelpers.h">
+			<Option target="BN"/>
+		</Unit>
 		<Unit filename="/root/Documents/code/c/BatailleNavale/src/Allegro.cpp">
 			<Option target="BN"/>
 		</Unit>
@@ -99,9 +102,6 @@
 			<Option target="BN"/>
 		</Unit>
 		<Unit filename="/root/Documents/code/c/BatailleNavale/src/Destroyer.cpp">
-			<Option target="BN"/>
-		</Unit>
-		<Unit filename="/root/Documents/code/c/BatailleNavale/src/Fusee.cpp">
 			<Option target="BN"/>
 		</Unit>
 		<Unit filename="/root/Documents/code/c/BatailleNavale/src/Menu.cpp">
@@ -120,6 +120,9 @@
 			<Option target="BN"/>
 		</Unit>
 		<Unit filename="/root/Documents/code/c/BatailleNavale/src/main.cpp">
+			<Option target="BN"/>
+		</Unit>
+		<Unit filename="/root/Documents/code/c/BatailleNavale/src/myhelper.cpp">
 			<Option target="BN"/>
 		</Unit>
 		<Unit filename="/root/Documents/code/c/BatailleNavale/CMakeLists.txt">

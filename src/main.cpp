@@ -1,5 +1,5 @@
-#define USINGALLEGRO
-#define WINDOWS
+//#define USINGALLEGRO
+//#define WINDOWS
 #define DEBUG //activer le debug
 #ifdef WINDOWS
 #include <conio.h>

@@ -355,6 +355,7 @@ void Menu::option()
     int x= 0;
     int y= 0;
     int choix;
+    char gotten = 'x';
     clear_window();
 
     while( m_exit == false )
@@ -374,7 +375,9 @@ void Menu::option()
 
 
 
-            while (getch()!='r');
+            while (gotten!='r'){
+                std::cin >> gotten;
+            }}
             m_exit=true;
         }
         #ifdef USINGALLEGRO
@@ -410,7 +413,7 @@ void Menu::option()
 #endif //USINGALLEGRO
     m_exit = false;
 }
-}
+
 
 void Menu::charger()
 {
@@ -419,6 +422,7 @@ void Menu::charger()
     int x= 0;
     int y= 0;
     int choix;
+    char gotten = 'x';
     clear_window();
 
     while( m_exit == false )
@@ -437,7 +441,9 @@ void Menu::charger()
 
 
 
-            while (getch()!='r');
+            while (gotten!='r'){
+                std::cin >> gotten;
+            }
             m_exit=true;
         }
 #ifdef USINGALLEGRO
@@ -484,6 +490,7 @@ void Menu::regles()
     int x= 0;
     int y= 0;
     int choix;
+    char gotten ='x';
     //clear_window();
 
     while( m_exit == false )
@@ -508,7 +515,9 @@ void Menu::regles()
 
 
 
-            while (getch()!='r');
+            while (gotten!='r'){
+                std::cin >> gotten;
+            }
             m_exit=true;
         }
 #ifdef USINGALLEGRO

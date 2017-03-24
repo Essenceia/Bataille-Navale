@@ -2,16 +2,21 @@
 // Created by root on 3/24/17.
 //
 
-#ifndef BATAILLENAVALE_MYHELPERS_H_H
-#define BATAILLENAVALE_MYHELPERS_H_H
+#ifndef BATAILLENAVALE_MYHELPERS_H
+#define BATAILLENAVALE_MYHELPERS_H
 
 #include "Bateau.h"
 #include "Tire.h"
-typedef struct {
+//Bateau select
+class B_sel{
+public :
+    Bateau(Bateau *b, unsigned int x, unsigned int y);
+    ~Bateau();
+
+private:
     unsigned  int x,y;
     Bateau * attaquant;
-    Tire * arme;
-}Bateau_select;
+};
 
 
-#endif //BATAILLENAVALE_MYHELPERS_H_H
+#endif //BATAILLENAVALE_MYHELPERS_H

@@ -49,6 +49,11 @@ class Partie
         // les sets
 
         ///Methodes
+
+        //boucle de jeux
+        void Boucle_de_jeux();
+        //saisie du choix de l'utilisateur
+        std::pair<Bateau*,std::pair<unsigned int , unsigned  int >> select_grille();
         //gestion partie
         void LancerPartie();
         void initPartie();

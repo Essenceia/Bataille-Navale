@@ -5,4 +5,4 @@ project (BatailleNavale)
 include_directories(lib)
 
 file(GLOB SOURCES "src/*.cpp")
-add_executable(BN ${SOURCES})
+add_executable(BN ${SOURCES} lib/myhelpers.h src/myhelper.cpp)

@@ -240,3 +240,9 @@ std::cerr<<"Erreur : Partie::Tirer nous somme en dehord de la taille du tableau"
 return 0; //erreur
 
 return 0;}
+
+//recupere la selection du joueur sur la grille adverse
+std::pair<Bateau*,std::pair<unsigned int , unsigned  int >> Partie::select_grille()
+{
+
+}

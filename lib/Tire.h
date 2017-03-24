@@ -27,7 +27,7 @@ class Tire
         std::vector<bitmap*> get_annimation_blowup();
         void init_bitmap();
         #endif
-        void modif_type(char newtype);
+        void modif_type(char newtype, bool first);
 
 
     public :
@@ -39,9 +39,9 @@ class Tire
         //getters
         unsigned int get_taille_x();
         unsigned int get_taille_y();
-        unsigned int get_typetire();
+        char get_typetire();
         bool can_hit(char symbolebateau);
-
+        void new_type(char typevaiseau);
 
 
 };

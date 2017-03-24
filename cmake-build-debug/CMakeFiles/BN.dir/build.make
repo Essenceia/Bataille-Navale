@@ -177,33 +177,9 @@ CMakeFiles/BN.dir/src/Destroyer.cpp.o.provides: CMakeFiles/BN.dir/src/Destroyer.
 CMakeFiles/BN.dir/src/Destroyer.cpp.o.provides.build: CMakeFiles/BN.dir/src/Destroyer.cpp.o
 
 
-CMakeFiles/BN.dir/src/Fusee.cpp.o: CMakeFiles/BN.dir/flags.make
-CMakeFiles/BN.dir/src/Fusee.cpp.o: ../src/Fusee.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/BN.dir/src/Fusee.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BN.dir/src/Fusee.cpp.o -c /root/Documents/code/c/BatailleNavale/src/Fusee.cpp
-
-CMakeFiles/BN.dir/src/Fusee.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BN.dir/src/Fusee.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/Documents/code/c/BatailleNavale/src/Fusee.cpp > CMakeFiles/BN.dir/src/Fusee.cpp.i
-
-CMakeFiles/BN.dir/src/Fusee.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BN.dir/src/Fusee.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/Documents/code/c/BatailleNavale/src/Fusee.cpp -o CMakeFiles/BN.dir/src/Fusee.cpp.s
-
-CMakeFiles/BN.dir/src/Fusee.cpp.o.requires:
-
-.PHONY : CMakeFiles/BN.dir/src/Fusee.cpp.o.requires
-
-CMakeFiles/BN.dir/src/Fusee.cpp.o.provides: CMakeFiles/BN.dir/src/Fusee.cpp.o.requires
-	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/Fusee.cpp.o.provides.build
-.PHONY : CMakeFiles/BN.dir/src/Fusee.cpp.o.provides
-
-CMakeFiles/BN.dir/src/Fusee.cpp.o.provides.build: CMakeFiles/BN.dir/src/Fusee.cpp.o
-
-
 CMakeFiles/BN.dir/src/Menu.cpp.o: CMakeFiles/BN.dir/flags.make
 CMakeFiles/BN.dir/src/Menu.cpp.o: ../src/Menu.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/BN.dir/src/Menu.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/BN.dir/src/Menu.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BN.dir/src/Menu.cpp.o -c /root/Documents/code/c/BatailleNavale/src/Menu.cpp
 
 CMakeFiles/BN.dir/src/Menu.cpp.i: cmake_force
@@ -227,7 +203,7 @@ CMakeFiles/BN.dir/src/Menu.cpp.o.provides.build: CMakeFiles/BN.dir/src/Menu.cpp.
 
 CMakeFiles/BN.dir/src/Partie.cpp.o: CMakeFiles/BN.dir/flags.make
 CMakeFiles/BN.dir/src/Partie.cpp.o: ../src/Partie.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/BN.dir/src/Partie.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/BN.dir/src/Partie.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BN.dir/src/Partie.cpp.o -c /root/Documents/code/c/BatailleNavale/src/Partie.cpp
 
 CMakeFiles/BN.dir/src/Partie.cpp.i: cmake_force
@@ -251,7 +227,7 @@ CMakeFiles/BN.dir/src/Partie.cpp.o.provides.build: CMakeFiles/BN.dir/src/Partie.
 
 CMakeFiles/BN.dir/src/Sousmarin.cpp.o: CMakeFiles/BN.dir/flags.make
 CMakeFiles/BN.dir/src/Sousmarin.cpp.o: ../src/Sousmarin.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/BN.dir/src/Sousmarin.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/BN.dir/src/Sousmarin.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BN.dir/src/Sousmarin.cpp.o -c /root/Documents/code/c/BatailleNavale/src/Sousmarin.cpp
 
 CMakeFiles/BN.dir/src/Sousmarin.cpp.i: cmake_force
@@ -275,7 +251,7 @@ CMakeFiles/BN.dir/src/Sousmarin.cpp.o.provides.build: CMakeFiles/BN.dir/src/Sous
 
 CMakeFiles/BN.dir/src/Tire.cpp.o: CMakeFiles/BN.dir/flags.make
 CMakeFiles/BN.dir/src/Tire.cpp.o: ../src/Tire.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/BN.dir/src/Tire.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/BN.dir/src/Tire.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BN.dir/src/Tire.cpp.o -c /root/Documents/code/c/BatailleNavale/src/Tire.cpp
 
 CMakeFiles/BN.dir/src/Tire.cpp.i: cmake_force
@@ -299,7 +275,7 @@ CMakeFiles/BN.dir/src/Tire.cpp.o.provides.build: CMakeFiles/BN.dir/src/Tire.cpp.
 
 CMakeFiles/BN.dir/src/crossplatform.cpp.o: CMakeFiles/BN.dir/flags.make
 CMakeFiles/BN.dir/src/crossplatform.cpp.o: ../src/crossplatform.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/BN.dir/src/crossplatform.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/BN.dir/src/crossplatform.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BN.dir/src/crossplatform.cpp.o -c /root/Documents/code/c/BatailleNavale/src/crossplatform.cpp
 
 CMakeFiles/BN.dir/src/crossplatform.cpp.i: cmake_force
@@ -323,7 +299,7 @@ CMakeFiles/BN.dir/src/crossplatform.cpp.o.provides.build: CMakeFiles/BN.dir/src/
 
 CMakeFiles/BN.dir/src/main.cpp.o: CMakeFiles/BN.dir/flags.make
 CMakeFiles/BN.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/BN.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/BN.dir/src/main.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BN.dir/src/main.cpp.o -c /root/Documents/code/c/BatailleNavale/src/main.cpp
 
 CMakeFiles/BN.dir/src/main.cpp.i: cmake_force
@@ -345,6 +321,30 @@ CMakeFiles/BN.dir/src/main.cpp.o.provides: CMakeFiles/BN.dir/src/main.cpp.o.requ
 CMakeFiles/BN.dir/src/main.cpp.o.provides.build: CMakeFiles/BN.dir/src/main.cpp.o
 
 
+CMakeFiles/BN.dir/src/myhelper.cpp.o: CMakeFiles/BN.dir/flags.make
+CMakeFiles/BN.dir/src/myhelper.cpp.o: ../src/myhelper.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/BN.dir/src/myhelper.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BN.dir/src/myhelper.cpp.o -c /root/Documents/code/c/BatailleNavale/src/myhelper.cpp
+
+CMakeFiles/BN.dir/src/myhelper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BN.dir/src/myhelper.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/Documents/code/c/BatailleNavale/src/myhelper.cpp > CMakeFiles/BN.dir/src/myhelper.cpp.i
+
+CMakeFiles/BN.dir/src/myhelper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BN.dir/src/myhelper.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/Documents/code/c/BatailleNavale/src/myhelper.cpp -o CMakeFiles/BN.dir/src/myhelper.cpp.s
+
+CMakeFiles/BN.dir/src/myhelper.cpp.o.requires:
+
+.PHONY : CMakeFiles/BN.dir/src/myhelper.cpp.o.requires
+
+CMakeFiles/BN.dir/src/myhelper.cpp.o.provides: CMakeFiles/BN.dir/src/myhelper.cpp.o.requires
+	$(MAKE) -f CMakeFiles/BN.dir/build.make CMakeFiles/BN.dir/src/myhelper.cpp.o.provides.build
+.PHONY : CMakeFiles/BN.dir/src/myhelper.cpp.o.provides
+
+CMakeFiles/BN.dir/src/myhelper.cpp.o.provides.build: CMakeFiles/BN.dir/src/myhelper.cpp.o
+
+
 # Object files for target BN
 BN_OBJECTS = \
 "CMakeFiles/BN.dir/src/Allegro.cpp.o" \
@@ -352,13 +352,13 @@ BN_OBJECTS = \
 "CMakeFiles/BN.dir/src/Croiseur.cpp.o" \
 "CMakeFiles/BN.dir/src/Cuirasse.cpp.o" \
 "CMakeFiles/BN.dir/src/Destroyer.cpp.o" \
-"CMakeFiles/BN.dir/src/Fusee.cpp.o" \
 "CMakeFiles/BN.dir/src/Menu.cpp.o" \
 "CMakeFiles/BN.dir/src/Partie.cpp.o" \
 "CMakeFiles/BN.dir/src/Sousmarin.cpp.o" \
 "CMakeFiles/BN.dir/src/Tire.cpp.o" \
 "CMakeFiles/BN.dir/src/crossplatform.cpp.o" \
-"CMakeFiles/BN.dir/src/main.cpp.o"
+"CMakeFiles/BN.dir/src/main.cpp.o" \
+"CMakeFiles/BN.dir/src/myhelper.cpp.o"
 
 # External object files for target BN
 BN_EXTERNAL_OBJECTS =
@@ -368,13 +368,13 @@ BN: CMakeFiles/BN.dir/src/Bateau.cpp.o
 BN: CMakeFiles/BN.dir/src/Croiseur.cpp.o
 BN: CMakeFiles/BN.dir/src/Cuirasse.cpp.o
 BN: CMakeFiles/BN.dir/src/Destroyer.cpp.o
-BN: CMakeFiles/BN.dir/src/Fusee.cpp.o
 BN: CMakeFiles/BN.dir/src/Menu.cpp.o
 BN: CMakeFiles/BN.dir/src/Partie.cpp.o
 BN: CMakeFiles/BN.dir/src/Sousmarin.cpp.o
 BN: CMakeFiles/BN.dir/src/Tire.cpp.o
 BN: CMakeFiles/BN.dir/src/crossplatform.cpp.o
 BN: CMakeFiles/BN.dir/src/main.cpp.o
+BN: CMakeFiles/BN.dir/src/myhelper.cpp.o
 BN: CMakeFiles/BN.dir/build.make
 BN: CMakeFiles/BN.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/Documents/code/c/BatailleNavale/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable BN"
@@ -390,13 +390,13 @@ CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/Bateau.cpp.o.requires
 CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/Croiseur.cpp.o.requires
 CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/Cuirasse.cpp.o.requires
 CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/Destroyer.cpp.o.requires
-CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/Fusee.cpp.o.requires
 CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/Menu.cpp.o.requires
 CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/Partie.cpp.o.requires
 CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/Sousmarin.cpp.o.requires
 CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/Tire.cpp.o.requires
 CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/crossplatform.cpp.o.requires
 CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/main.cpp.o.requires
+CMakeFiles/BN.dir/requires: CMakeFiles/BN.dir/src/myhelper.cpp.o.requires
 
 .PHONY : CMakeFiles/BN.dir/requires
 

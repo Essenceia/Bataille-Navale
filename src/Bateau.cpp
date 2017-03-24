@@ -41,7 +41,7 @@ bool Bateau::get_etat(unsigned int pos)
 //position par rapport a l'origine
 void Bateau::set_etat(unsigned int pos){
   if(pos < get_taille()){
-     etat[pos]=false;
+     etat[pos]->touche=false;
   }
 }
 bool Bateau::is_dead(){
