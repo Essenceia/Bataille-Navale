@@ -23,6 +23,8 @@ class Partie
 
 
        //nbr bateau restant par type et par joueur
+       unsigned int Tot1;
+       unsigned int Tot2;
 
        unsigned int Cui1;
        unsigned int Cro1;
@@ -71,6 +73,8 @@ class Partie
         void TournerBateau(unsigned int currentplayer, unsigned int numbatselected);
         void Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigned int numbatselected);
         void DeplacerBateau(unsigned int currentplayer, unsigned int numbatselected);
+
+        void VerifRestant();
 
         //Gestion Toucher-Couler
         //char Tirer(unsigned int pn ,unsigned int x, unsigned int y,char typetire,Bateau* tireur);

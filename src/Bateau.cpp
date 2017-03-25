@@ -23,7 +23,7 @@ Bateau::Bateau(unsigned int _x, unsigned int _y, unsigned int _taille, char _ori
         etat.push_back(new Case);
         etat[i+1]->x=_x+plac*h;
         etat[i+1]->y=_y+plac*v;
-        etat[i+1]->touche=true;
+        etat[i+1]->touche=false;
 
         plac++;
     }
@@ -106,11 +106,12 @@ void Bateau::set_orientation(char newori){
 
 bool Bateau::is_dead(){
 
-  bool f=false;
+  bool f=true;
 
   for(unsigned int i =0 ; i < get_taille(); i++){
-    f|=get_etat(i);
-  }
+        std::cout << get_etattouche(i) << " ";
+    if(!get_etattouche(i)) f=false;
+  }std::cout << std::endl;
 
   return f;
 }

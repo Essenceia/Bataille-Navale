@@ -108,6 +108,7 @@ void Partie::LancerPartie(bool ia)
 {
 
     if (alleg_present==1) ChargerImages();
+
     initPartie();
 
     int x= 0;
@@ -267,7 +268,7 @@ void Partie::LancerPartie(bool ia)
                 otherplayer=currentplayer;
                 if(otherplayer==0) currentplayer=1;
                 else currentplayer=0;
-                while(key[KEY_Q]);
+                while(key[KEY_P]);
             }
 
             //Sauvegarde
@@ -291,13 +292,45 @@ void Partie::LancerPartie(bool ia)
 
 
         if(choixaction){
+
+                VerifRestant();
                 otherplayer=currentplayer;
                 if(otherplayer==0) currentplayer=1;
                 else currentplayer=0;
                 choixx=0;
                 choixy=0;
 
-                if (alleg_present==1) {
+                if(Tot1==0){
+                    if (alleg_present==1) {
+                            draw_sprite(alleg.getImage(0), alleg.getImage(92), 0, 0);
+                            affichageAlleg(0);
+                            while(!key[KEY_E]);
+                            while(key[KEY_E]);
+                        }
+
+                        else{
+
+                        }
+                    exitboucle=true;
+
+                }
+
+                else if(Tot2==0){
+                    if (alleg_present==1) {
+                            draw_sprite(alleg.getImage(0), alleg.getImage(91), 0, 0);
+                            affichageAlleg(0);
+                            while(!key[KEY_E]);
+                            while(key[KEY_E]);
+                        }
+
+                        else{
+
+                        }
+                    exitboucle=true;
+
+                }
+
+                else if (alleg_present==1) {
                     draw_sprite(alleg.getImage(0), alleg.getImage(90), 0, 0);
                     affichageAlleg(0);
                     while(!key[KEY_E]);
@@ -320,6 +353,46 @@ void Partie::LancerPartie(bool ia)
 
     resetpartie();
     if (alleg_present==1) DestroyImages();
+}
+
+void Partie::VerifRestant()
+{
+    Cui1=1; Cui2=1; Cro1=2; Cro2=2; Des1=3; Des2=3; Sou1=4; Sou2=4;
+
+    //Verifier l'état des bateaux
+    for(unsigned int i=0; i<battab[0].size();i++)
+    if(battab[0][i]->is_dead())
+        switch(battab[0][i]->get_taille()){
+            case 1 : Sou1--;
+                break;
+            case 3 : Des1--;
+                break;
+            case 5 : Cro1--;
+                break;
+            case 7 : Cui1--;
+                break;
+        }
+    for(unsigned int i=0; i<battab[1].size();i++)
+    if(battab[1][i]->is_dead())
+        switch(battab[1][i]->get_taille()){
+            case 1 : Sou2--;
+                break;
+            case 3 : Des2--;
+                break;
+            case 5 : Cro2--;
+                break;
+            case 7 : Cui2--;
+                break;
+        }
+
+
+    //Faire le total
+    Tot1=Cui1+Cro1+Des1+Sou1;
+    Tot2=Cui2+Cro2+Des2+Sou2;
+
+    std::cout << std::endl;
+    std::cout << Cui1 << " " << Cro1 << " " << Des1 << " " << Sou1 << std::endl;
+    std::cout << Cui2 << " " << Cro2 << " " << Des2 << " " << Sou2 << std::endl;
 }
 
 void Partie::setal(bool al)
@@ -766,68 +839,3 @@ void Partie::initPartie()//Initialisation avec le placement des bateaux surtout
 
 
 }
-
-Bateau* Partie::get_Bateau(unsigned int x, unsigned int y,unsigned int idplayer){
-  /*bool found = false;
-  Bateau* tmpbat;
-  for( int i = 0 ; i < battab[idplayer].size() ; i++){
-    tmpbat = battab[idplayer][i];
-    if(tmpbat.get_existe()){
-      //si le bateau n'est pas encore couler
-      switch(tmpbat.get_orientation()){
-        case ('h' || 'g'): if(tmpbat.get_px()==x){
-          if((tmpbat.get_py()-((tmpbat.get_taille()-1)/2))==y){
-           goto END;
-          }
-        }
-        break;
-        case ('v' || 'b'): if(tmpbat.get_py()==y){
-          if((tmpbat.get_px()-((tmpbat.get_taille()-1)/2))==y){
-           goto END;//c'est plus propre
-          }
-        }break;
-      }
-    }
-  }
-  END:
-  return tmpbat;*/
-}
-/**
-* \fn char Tirer(char player_number, unsigned int x, unsigned int y);
-* \brief Fonction de verification de si ont a toucher un bateau sur la grille adversse
-*
-* \param \enum char player_number : identifiant du joueur
-*\enum unsigned int x , y : corrdonners du tire
-*\return Un char valant:
-*\enum 0 si on a rien toucher
-*\enum 1 si ont a toucher un bateau adverse
-*\enum 2 si on a toucher et couler un bateau adversse
-*/
-
-/*
-char Partie::Tirer(unsigned int pn ,unsigned int x, unsigned int y,char typetire,Bateau* tireur){
-  Bateau *bat;
-  unsigned int s;
-  if((x<15)&&(y<15)){
-    //blindage
-  if(tabj[pn][1][x][y]!=' '){
-    //nous avons un bateau - maintenant il faut le trouver
-  bat=get_Bateau(x,y,pn);
-  s=bat->get_taille();
-  switch(bat->get_orientation()){
-    case 'h': bat->set_etat(y-bat->get_py());
-    break;
-    case 'v': bat->set_etat(x-bat->get_px());
-    break;
-  }
-  return bat->is_dead()? 2:1;
-  }
-  #ifdef DEBUG
-  std::cout << "Partie::Tirer : Rien toucher";
-  #endif //DEBUG
-return 0;
-}
-std::cerr<<"Erreur : Partie::Tirer nous somme en dehord de la taille du tableau";
-return 0; //erreur
-
-return 0;}*/
