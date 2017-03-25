@@ -124,6 +124,7 @@ void Partie::LancerPartie(bool ia)
 
 
 
+
     ///BOUCLE DE JEU
     while (!exitboucle)
     {

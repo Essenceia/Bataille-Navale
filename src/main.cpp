@@ -1,8 +1,6 @@
-#define WINDOWS
-#define DEBUG //activer le debug
-#include <conio.h>
 #include <allegro.h>
 #include <winalleg.h>
+#include <conio.h>
 #include "../lib/Allegro.h"
 #include "../lib/Menu.h"
 

@@ -37,12 +37,9 @@
 		<Unit filename="../lib/Croiseur.h" />
 		<Unit filename="../lib/Cuirasse.h" />
 		<Unit filename="../lib/Destroyer.h" />
-		<Unit filename="../lib/Helper.h" />
 		<Unit filename="../lib/Menu.h" />
 		<Unit filename="../lib/Partie.h" />
 		<Unit filename="../lib/Sousmarin.h" />
-		<Unit filename="../lib/Tire.h" />
-		<Unit filename="../lib/crossplatform.h" />
 		<Unit filename="Allegro.cpp" />
 		<Unit filename="Bateau.cpp" />
 		<Unit filename="Croiseur.cpp" />
@@ -51,8 +48,6 @@
 		<Unit filename="Menu.cpp" />
 		<Unit filename="Partie.cpp" />
 		<Unit filename="Sousmarin.cpp" />
-		<Unit filename="Tire.cpp" />
-		<Unit filename="crossplatform.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

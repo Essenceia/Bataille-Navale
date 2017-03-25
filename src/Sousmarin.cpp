@@ -1,5 +1,4 @@
 #include "../lib/Sousmarin.h"
-#include "../lib/Tire.h"
 Sousmarin::Sousmarin(unsigned int x, unsigned int y,unsigned int _taille, char _orientation)
         : Bateau(x,y,_taille,_orientation)
 

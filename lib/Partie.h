@@ -9,7 +9,6 @@
 #include "Sousmarin.h"
 #include <utility>
 
-//TODO : enlever
 
 class Partie
 {
@@ -21,6 +20,18 @@ class Partie
        bool alleg_present;
 
        std::vector<std::vector<Bateau* > > battab;
+
+
+       //nbr bateau restant par type et par joueur
+
+       unsigned int Cui1;
+       unsigned int Cro1;
+       unsigned int Des1;
+       unsigned int Sou1;
+       unsigned int Cui2;
+       unsigned int Cro2;
+       unsigned int Des2;
+       unsigned int Sou2;
 
 
     public :

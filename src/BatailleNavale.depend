@@ -100,28 +100,28 @@
 	<stdio.h>
 	<vector>
 
-1490449018 source:c:\users\sébastien\desktop\bataille-navale\src\allegro.cpp
+1490450678 source:c:\users\sébastien\desktop\bataille-navale\src\allegro.cpp
 	"../lib/Allegro.h"
 
-1490449018 c:\users\sébastien\desktop\bataille-navale\lib\allegro.h
+1490451368 c:\users\sébastien\desktop\bataille-navale\lib\allegro.h
 	<stdio.h>
 	<iostream>
 	<allegro.h>
 	<winalleg.h>
 
-1490447657 source:c:\users\sébastien\desktop\bataille-navale\src\bateau.cpp
+1490450679 source:c:\users\sébastien\desktop\bataille-navale\src\bateau.cpp
 	"../lib/Bateau.h"
 	<iostream>
 
-1490447670 c:\users\sébastien\desktop\bataille-navale\lib\bateau.h
+1490451444 c:\users\sébastien\desktop\bataille-navale\lib\bateau.h
 	<iostream>
 	<stdio.h>
 	<vector>
 
-1490447226 source:c:\users\sébastien\desktop\bataille-navale\src\croiseur.cpp
+1490450679 source:c:\users\sébastien\desktop\bataille-navale\src\croiseur.cpp
 	"../lib/Croiseur.h"
 
-1490447077 c:\users\sébastien\desktop\bataille-navale\lib\croiseur.h
+1490450678 c:\users\sébastien\desktop\bataille-navale\lib\croiseur.h
 	"Bateau.h"
 
 1490284746 source:c:\users\sébastien\desktop\bataille-navale\src\crossplatform.cpp
@@ -133,26 +133,26 @@
 	<conio.h>
 	<curses.h>
 
-1490447260 source:c:\users\sébastien\desktop\bataille-navale\src\cuirasse.cpp
+1490451582 source:c:\users\sébastien\desktop\bataille-navale\src\cuirasse.cpp
 	"../lib/Cuirasse.h"
 
-1490447077 c:\users\sébastien\desktop\bataille-navale\lib\cuirasse.h
+1490450678 c:\users\sébastien\desktop\bataille-navale\lib\cuirasse.h
 	"Bateau.h"
 
-1490447250 source:c:\users\sébastien\desktop\bataille-navale\src\destroyer.cpp
+1490450679 source:c:\users\sébastien\desktop\bataille-navale\src\destroyer.cpp
 	"../lib/Destroyer.h"
 
-1490447075 c:\users\sébastien\desktop\bataille-navale\lib\destroyer.h
+1490450678 c:\users\sébastien\desktop\bataille-navale\lib\destroyer.h
 	"Bateau.h"
 
-1490430194 source:c:\users\sébastien\desktop\bataille-navale\src\main.cpp
-	<conio.h>
+1490451788 source:c:\users\sébastien\desktop\bataille-navale\src\main.cpp
 	<allegro.h>
 	<winalleg.h>
+	<conio.h>
 	"../lib/Allegro.h"
 	"../lib/Menu.h"
 
-1490430914 c:\users\sébastien\desktop\bataille-navale\lib\menu.h
+1490451473 c:\users\sébastien\desktop\bataille-navale\lib\menu.h
 	<iostream>
 	<stdio.h>
 	<vector>
@@ -160,7 +160,7 @@
 	"Allegro.h"
 	"Partie.h"
 
-1490443698 c:\users\sébastien\desktop\bataille-navale\lib\partie.h
+1490451483 c:\users\sébastien\desktop\bataille-navale\lib\partie.h
 	<iostream>
 	"Allegro.h"
 	"Bateau.h"
@@ -170,7 +170,7 @@
 	"Sousmarin.h"
 	<utility>
 
-1490447078 c:\users\sébastien\desktop\bataille-navale\lib\sousmarin.h
+1490450678 c:\users\sébastien\desktop\bataille-navale\lib\sousmarin.h
 	"Bateau.h"
 
 1490431196 source:c:\users\sébastien\desktop\bataille-navale\src\menu.cpp

@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <string>
 #include <fstream>
-#include "../lib/crossplatform.h"
+#include <conio.h>
+
 // contructeur par default
 Menu::Menu()
     : m_exit(false), allegro_present(false)
@@ -340,7 +341,6 @@ void Menu::principal()
         }
     }
 
-
 }
 
 // Menu option
@@ -351,7 +351,6 @@ void Menu::option()
     int x= 0;
     int y= 0;
     int choix;
-    char gotten = 'x';
     system("cls");
 
     while( m_exit == false )
@@ -407,34 +406,33 @@ void Menu::option()
     m_exit = false;
 }
 
-void Menu::charger()
-{
+void Menu::charger() {
     // R�initialisation du bool�en m_exit
     m_exit = false;
-    int x= 0;
-    int y= 0;
+    int x = 0;
+    int y = 0;
     int choix;
     char gotten = 'x';
     system("cls");
 
-    while( m_exit == false )
-    {
+    while (m_exit == false) {
         //Sur console
-        if(!getallegro_present()){
+        if (!getallegro_present()) {
 
-            partie.ConsPrint(1,13);
+            partie.ConsPrint(1, 13);
             std::cout << "Bataille Navale";
-            partie.ConsPrint(7,3);
+            partie.ConsPrint(7, 3);
             std::cout << "CHARGER";
 
 
             partie.ConsPrint(20,25);
+            std::cout << "R : Retour";
+
         }
+        m_exit = false;
+
 
     }
-    m_exit = false;
-
-
 }
 
 // Menu r�gles

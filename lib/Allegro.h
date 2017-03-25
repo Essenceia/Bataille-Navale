@@ -1,6 +1,5 @@
 #ifndef ALLEGRO_H_INCLUDED
 #define ALLEGRO_H_INCLUDED
-
 #include <stdio.h>
 #include <iostream>
 #include <allegro.h>
