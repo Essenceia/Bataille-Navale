@@ -12,10 +12,11 @@ class Croiseur:public Bateau
     ~Croiseur();
 
     //methodes
-    void Deplacement();
-    void Tourner();
-    void Tirer();
     char Symbole();
+    bool get_fusee();
+    bool get_cd();
+    void set_fusee();
+    void set_cd();
 
 };
 

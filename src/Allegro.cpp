@@ -19,6 +19,12 @@ void Allegro::ChargerImages()
     page=create_bitmap(SCREEN_W,SCREEN_H);
     clear_bitmap(page);
 
+    tampon=create_bitmap(SCREEN_W,SCREEN_H);
+    clear_bitmap(tampon);
+
+    tampon2=create_bitmap(SCREEN_W,SCREEN_H);
+    clear_bitmap(tampon2);
+
 
     // charger les images
     fond=load_bitmap("../Bitmap/fond.bmp",NULL);
@@ -55,6 +61,12 @@ void Allegro::ChargerImages()
     if (!seltrois)
     {
         allegro_message("pas pu trouver Bitmap/select3x3.bmp");
+        exit(EXIT_FAILURE);
+    }
+    selquatre=load_bitmap("../Bitmap/select4x4.bmp",NULL);
+    if (!selquatre)
+    {
+        allegro_message("pas pu trouver Bitmap/select4x4.bmp");
         exit(EXIT_FAILURE);
     }
     bout=load_bitmap("../Bitmap/bout.bmp",NULL);
@@ -105,17 +117,32 @@ void Allegro::ChargerImages()
         allegro_message("pas pu trouver Bitmap/mauvais.bmp");
         exit(EXIT_FAILURE);
     }
+    nopivot=load_bitmap("../Bitmap/nopivot.bmp",NULL);
+    if (!nopivot)
+    {
+        allegro_message("pas pu trouver Bitmap/nopivot.bmp");
+        exit(EXIT_FAILURE);
+    }
+    chgmnt=load_bitmap("../Bitmap/chgmnt.bmp",NULL);
+    if (!chgmnt)
+    {
+        allegro_message("pas pu trouver Bitmap/chgmnt.bmp");
+        exit(EXIT_FAILURE);
+    }
 }
 
 void Allegro::DestroyImages()
 {
     destroy_bitmap(page);
     destroy_bitmap(fond);
+    destroy_bitmap(tampon);
+    destroy_bitmap(tampon2);
     destroy_bitmap(victoire);
     destroy_bitmap(defaite);
     destroy_bitmap(selun);
     destroy_bitmap(seldeux);
     destroy_bitmap(seltrois);
+    destroy_bitmap(selquatre);
     destroy_bitmap(bout);
     destroy_bitmap(corps);
     destroy_bitmap(sousmarin);
@@ -124,6 +151,8 @@ void Allegro::DestroyImages()
     destroy_bitmap(repere);
     destroy_bitmap(choixaction);
     destroy_bitmap(mauvais);
+    destroy_bitmap(nopivot);
+    destroy_bitmap(chgmnt);
 }
 
 
@@ -135,13 +164,17 @@ BITMAP* Allegro::getImage(int i)
     {
         case 0 :    return page;
         case 1 :    return fond;
+        case 2 :    return tampon;
+        case 3 :    return tampon2;
 
         case 10 :    return choixaction;
         case 11 :    return mauvais;
+        case 12 :    return nopivot;
 
         case 51 :    return selun;
         case 52 :    return seldeux;
         case 53 :    return seltrois;
+        case 54 :    return selquatre;
 
         case 60 :   return bout;
         case 61 :   return corps;
@@ -151,8 +184,9 @@ BITMAP* Allegro::getImage(int i)
         case 70 :   return boum;
         case 71 :   return repere;
 
-        case 98 :    return victoire;
-        case 99 :    return defaite;
+        case 90 :    return chgmnt;
+        case 91 :    return victoire;
+        case 92 :    return defaite;
 
         default :   allegro_exit();
                     exit(EXIT_FAILURE);

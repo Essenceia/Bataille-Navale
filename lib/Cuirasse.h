@@ -15,10 +15,11 @@ class Cuirasse:public Bateau
     ~Cuirasse();
 
     //methodes
-    void Deplacement();
-    void Tourner();
-    void Tirer();
+    bool get_cd();
     char Symbole();
+    bool get_fusee();
+    void set_fusee();
+    void set_cd();
 
 };
 

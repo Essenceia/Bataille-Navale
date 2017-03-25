@@ -4,7 +4,6 @@ Destroyer::Destroyer(unsigned int _x,unsigned  int _y, unsigned int _taille, cha
         : Bateau(_x,_y,_taille,_orientation), munition_fusee(true)
 {
     for(unsigned int i=0;i<taille;i++) etat[i]->touche=false;
-    arme = new Tire(SYMBOL_DESTROYER);
 
 }
 
@@ -17,19 +16,27 @@ Destroyer::~Destroyer()
 ///Methodes
 char Destroyer::Symbole()
 {
-    return (char)SYMBOL_DESTROYER;
+    return 'd';
 
 }
 
-void Destroyer::Deplacement()
+bool Destroyer::get_fusee()
 {
-
+    return munition_fusee;
 }
-void Destroyer::Tourner()
+
+bool Destroyer::get_cd()
 {
-
+    return false;
 }
-void Destroyer::Tirer()
+
+
+void Destroyer::set_fusee()
+{
+    munition_fusee=false;
+}
+
+void Destroyer::set_cd()
 {
 
 }

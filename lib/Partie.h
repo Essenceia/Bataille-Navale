@@ -20,19 +20,7 @@ class Partie
 
        bool alleg_present;
 
-       /*Les deux tableaux
-       Chaque tableau est un 15*15 sur deux couches, une visible par son propri�taire et l'autre par l'adversaire.
-       Deux plans de 15*15 se superposent, sur celui en dessous on a le placement des bateaux
-       mais sur celui au dessus on a les impacts et l� o� la fus�e a fait un "trou" lorsque son tir est effectu�.
-       */
-       std::vector< std::vector< std::vector< std::vector<char > > > > tabj;
-
-
        std::vector<std::vector<Bateau* > > battab;
-
-       //std::vector<std::vector<Objet* > > objtab;
-
-       //std::vector<std::vector<std::vector<case* > > > corps;
 
 
     public :
@@ -46,11 +34,6 @@ class Partie
         // les sets
 
         ///Methodes
-
-        //boucle de jeux
-        void Boucle_de_jeux();
-        //saisie du choix de l'utilisateur
-        std::pair<Bateau*,std::pair<unsigned int , unsigned  int >> select_grille();
         //gestion partie
         void LancerPartie(bool ia);
         void initPartie();
@@ -69,11 +52,17 @@ class Partie
         void ConsPrint(unsigned int x,unsigned int y);
         void ChargerImages();
         void DestroyImages();
-        void affichageAlleg();
+        void affichageAlleg(int i);
         void affichageCons();
 
+
+        //gestion bateaux
+        void TournerBateau(unsigned int currentplayer, unsigned int numbatselected);
+        void Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigned int numbatselected);
+        void DeplacerBateau(unsigned int currentplayer, unsigned int numbatselected);
+
         //Gestion Toucher-Couler
-        char Tirer(unsigned int pn ,unsigned int x, unsigned int y,char typetire,Bateau* tireur);
+        //char Tirer(unsigned int pn ,unsigned int x, unsigned int y,char typetire,Bateau* tireur);
         //char Tirer(char player_number, unsigned int x, unsigned int y,char typetire,Bateau* tireur)__attribute__((depricated));
 
 };

@@ -1,6 +1,4 @@
-
-//#define USINGALLEGRO
-//#define WINDOWS
+#define WINDOWS
 #define DEBUG //activer le debug
 #include <conio.h>
 #include <allegro.h>

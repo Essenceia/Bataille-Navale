@@ -85,15 +85,32 @@ bool Bateau::get_etattouche(unsigned int pos)
   return false;
 }
 //position par rapport a l'origine
-void Bateau::set_etat(unsigned int pos){
+void Bateau::set_etat(unsigned int pos, bool newetat){
   if(pos < get_taille()){
-     etat[pos]->touche=false;
+     etat[pos]->touche=newetat;
   }
 }
+void Bateau::set_etatx(unsigned int pos, unsigned int newpos){
+  if(pos < get_taille()){
+     etat[pos]->x=newpos;
+  }
+}
+void Bateau::set_etaty(unsigned int pos, unsigned int newpos){
+  if(pos < get_taille()){
+     etat[pos]->y=newpos;
+  }
+}
+void Bateau::set_orientation(char newori){
+    orientation=newori;
+}
+
 bool Bateau::is_dead(){
-  /*bool f=false;
+
+  bool f=false;
+
   for(unsigned int i =0 ; i < get_taille(); i++){
     f|=get_etat(i);
   }
-  return f;*/
+
+  return f;
 }

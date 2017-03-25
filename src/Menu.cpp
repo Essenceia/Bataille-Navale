@@ -22,7 +22,7 @@ Menu::~Menu()
 void Menu::Allegro_present()
 {
     //Sur console
-    clear_window(); // nettoie la console
+    system("cls"); // nettoie la console
     int int_allegro_present = 0;
     partie.ConsPrint(1,13);
     std::cout << "Bataille Navale";
@@ -175,7 +175,7 @@ void Menu::principal()
     int x= 0;
     int y= 0;
     int choix;
-    clear_window();
+    system("cls");
 
     while( m_exit == false )
     {
@@ -184,7 +184,7 @@ void Menu::principal()
         if(!getallegro_present())
         {
 
-            clear_window(); // nettoie la console
+            system("cls");
             partie.ConsPrint(1,13);
             std::cout << "Bataille Navale";
             partie.ConsPrint(3,0);
@@ -199,7 +199,7 @@ void Menu::principal()
 
             std::cin >> choix;
 
-            clear_window();
+            system("cls");
 
             switch(choix){
 
@@ -232,14 +232,8 @@ void Menu::principal()
         }
 
         //Sur Allegro
-<<<<<<< HEAD
         else{
-#ifdef USINGALLEGRO
-            // r�initilisation des coordonn�es souris
-=======
-        else{
-            // r�initilisation des coordonn�es souris
->>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
+
             x= mouse_x;
             y= mouse_y;
 
@@ -262,18 +256,11 @@ void Menu::principal()
                 // si clique gauche
                 if ( mouse_b & 1 )
                 {
-<<<<<<< HEAD
-                    /*
-                    clear
-                    reset
-                    lancer avec parametre 1 joueur
-=======
                     partie.LancerPartie(true);
                     /*
                     clear
                     reset
                     lancer avec parametre 1 joueur
->>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
                     */
                 }
             }
@@ -287,18 +274,11 @@ void Menu::principal()
                 // si clique gauche
                 if ( mouse_b & 1 )
                 {
-<<<<<<< HEAD
-                    /*
-                    clear
-                    reset
-                    lancer avec parametre 2 joueur
-=======
                     partie.LancerPartie(false);
                     /*
                     clear
                     reset
                     lancer avec parametre 2 joueur
->>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
                     */
                 }
             }
@@ -356,14 +336,8 @@ void Menu::principal()
                 }
             }
             blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-<<<<<<< HEAD
-            rest(100); //pause pour qu'il soit visible
-        #endif //USINGALLEGRO
-      }
-=======
             rest(100); //pause pour qu'il soit visible
         }
->>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
     }
 
 
@@ -378,7 +352,7 @@ void Menu::option()
     int y= 0;
     int choix;
     char gotten = 'x';
-    clear_window();
+    system("cls");
 
     while( m_exit == false )
     {
@@ -387,7 +361,7 @@ void Menu::option()
         if(!getallegro_present()){
 
             partie.ConsPrint(1,13);
-            std::cout << "SNOOPY";
+            std::cout << "Bataille Navale";
             partie.ConsPrint(7,3);
             std::cout << "OPTION";
 
@@ -441,7 +415,7 @@ void Menu::charger()
     int y= 0;
     int choix;
     char gotten = 'x';
-    clear_window();
+    system("cls");
 
     while( m_exit == false )
     {
@@ -455,6 +429,7 @@ void Menu::charger()
 
 
             partie.ConsPrint(20,25);
+        }
 
     }
     m_exit = false;
@@ -470,8 +445,7 @@ void Menu::regles()
     int x= 0;
     int y= 0;
     int choix;
-    char gotten ='x';
-    //clear_window();
+    system("cls");
 
     while( m_exit == false )
     {

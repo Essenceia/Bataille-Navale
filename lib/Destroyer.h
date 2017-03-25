@@ -16,11 +16,12 @@ class Destroyer:public Bateau
     ~Destroyer();
 
     //methodes
-    void Deplacement();
-    void Tourner();
-    void Tirer();
+    bool get_fusee();
+    bool get_cd();
     char Symbole();
 
+    void set_fusee();
+    void set_cd();
 };
 
 #endif // DESTROYER_H_INCLUDED

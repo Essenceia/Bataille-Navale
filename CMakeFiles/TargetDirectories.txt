@@ -1,3 +1,0 @@
-/root/Documents/code/c/BatailleNavale/CMakeFiles/edit_cache.dir
-/root/Documents/code/c/BatailleNavale/CMakeFiles/rebuild_cache.dir
-/root/Documents/code/c/BatailleNavale/CMakeFiles/BN.dir

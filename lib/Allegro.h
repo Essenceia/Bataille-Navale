@@ -4,15 +4,16 @@
 #include <stdio.h>
 #include <iostream>
 #include <allegro.h>
-#ifdef WINDOWS
 #include <winalleg.h>
-#endif
+
 class Allegro
 {
     private :
 
         // BITMAP buffer d'affichage
         BITMAP *page;
+        BITMAP *tampon;
+        BITMAP *tampon2;
 
         // Images
         BITMAP *fond;
@@ -21,6 +22,7 @@ class Allegro
         BITMAP *selun;
         BITMAP *seldeux;
         BITMAP *seltrois;
+        BITMAP *selquatre;
         BITMAP *bout;
         BITMAP *corps;
         BITMAP *sousmarin;
@@ -29,6 +31,8 @@ class Allegro
         BITMAP *repere;
         BITMAP *choixaction;
         BITMAP *mauvais;
+        BITMAP *nopivot;
+        BITMAP *chgmnt;
 
     public :
 
