@@ -2,9 +2,10 @@
 //#define USINGALLEGRO
 //#define WINDOWS
 #define DEBUG //activer le debug
-#include <conio.h>
-#include <allegro.h>
+#ifdef WINDOWS
 #include <winalleg.h>
+#include <conio.h>
+#endif
 #include "../lib/Allegro.h"
 #include "../lib/Menu.h"
 

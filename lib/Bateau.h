@@ -5,8 +5,8 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
-#include "../lib/Tire.h"
-
+#include "Tire.h"
+//TODO : a virer potenciellement pas utile
 struct Case{
     unsigned int x;
     unsigned int y;

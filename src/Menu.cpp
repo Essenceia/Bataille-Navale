@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string>
 #include <fstream>
-#include "../lib/crossplatform.h"
 // contructeur par default
 Menu::Menu()
     : m_exit(false), allegro_present(false)
@@ -232,142 +231,11 @@ void Menu::principal()
         }
 
         //Sur Allegro
-<<<<<<< HEAD
-        else{
-#ifdef USINGALLEGRO
-            // r�initilisation des coordonn�es souris
-=======
-        else{
-            // r�initilisation des coordonn�es souris
->>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
-            x= mouse_x;
-            y= mouse_y;
 
-            // Affichage du menu_principal
-            clear_bitmap(buffer);
-            blit(menu_principal, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
-            blit(txt_un_joueur,buffer,0,0,50,50,SCREEN_W,SCREEN_H);
-            blit(txt_deux_joueur,buffer,0,0,50,120,SCREEN_W,SCREEN_H);
-            blit(txt_charger,buffer,0,0,50,190,SCREEN_W,SCREEN_H);
-            blit(txt_option,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
-            blit(txt_regles,buffer,0,0,50,330,SCREEN_W,SCREEN_H);
-            blit(txt_quitter,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-
-            /// "1J"
-            //si la souris se trouve sur "1J"
-            if( x>=50 && x<=200 && y>=50 && y<=100 )
-            {
-                blit(txt_hover_un_joueur,buffer,0,0,50,50,SCREEN_W,SCREEN_H);
-                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-                // si clique gauche
-                if ( mouse_b & 1 )
-                {
-<<<<<<< HEAD
-                    /*
-                    clear
-                    reset
-                    lancer avec parametre 1 joueur
-=======
-                    partie.LancerPartie(true);
-                    /*
-                    clear
-                    reset
-                    lancer avec parametre 1 joueur
->>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
-                    */
-                }
-            }
-
-            /// "2J"
-            //si la souris se trouve sur "2J"
-            if( x>=50 && x<=200 && y>=120 && y<=170 )
-            {
-                blit(txt_hover_deux_joueur,buffer,0,0,50,120,SCREEN_W,SCREEN_H);
-                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-                // si clique gauche
-                if ( mouse_b & 1 )
-                {
-<<<<<<< HEAD
-                    /*
-                    clear
-                    reset
-                    lancer avec parametre 2 joueur
-=======
-                    partie.LancerPartie(false);
-                    /*
-                    clear
-                    reset
-                    lancer avec parametre 2 joueur
->>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
-                    */
-                }
-            }
-
-            /// "CHARGER"
-            //si la souris se trouve sur "CHARGER"
-            if( x>=50 && x<=200 && y>=190 && y<=240 )
-            {
-                blit(txt_hover_charger,buffer,0,0,50,190,SCREEN_W,SCREEN_H);
-                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-                // si clique gauche
-                if ( mouse_b & 1 )
-                {
-                    charger();
-                }
-            }
-
-            /// "OPTION"
-            //si la souris se trouve sur "OPTION"
-            if( x>=50 && x<=200 && y>=260 && y<=310 )
-            {
-                blit(txt_hover_option,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
-                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-                // si clique gauche
-                if ( mouse_b & 1 )
-                {
-                    option();
-                }
-            }
-
-            /// "REGLE"
-            //si la souris se trouve sur "REGLE"
-            if( x>=50 && x<=200 && y>=330 && y<=380 )
-            {
-                blit(txt_hover_regles,buffer,0,0,50,330,SCREEN_W,SCREEN_H);
-                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-                // si clique gauche
-                if ( mouse_b & 1 )
-                {
-                    regles();
-                }
-            }
-
-            /// "QUITTER"
-            //si la souris se trouve sur "QUITTER"
-            if( x>=600 && x<=750 && y>=500 && y<=550 )
-            {
-                blit(txt_hover_quitter,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-                // si clique gauche
-                if ( mouse_b & 1 )
-                {
-                    // retour au menu principal
-                    m_exit = true;
-                }
-            }
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-<<<<<<< HEAD
-            rest(100); //pause pour qu'il soit visible
-        #endif //USINGALLEGRO
-      }
-=======
             rest(100); //pause pour qu'il soit visible
         }
->>>>>>> 44eaace9ba02de23fe44c7625cb322a7d9ab2f45
     }
 
-
-}
 
 // Menu option
 void Menu::option()
@@ -398,7 +266,7 @@ void Menu::option()
 
 
 
-            while (getch()!='r');
+            while (getcharacter()!='r');
             m_exit=true;
         }
         else{
@@ -433,33 +301,32 @@ void Menu::option()
     m_exit = false;
 }
 
-void Menu::charger()
-{
+void Menu::charger() {
     // R�initialisation du bool�en m_exit
     m_exit = false;
-    int x= 0;
-    int y= 0;
+    int x = 0;
+    int y = 0;
     int choix;
     char gotten = 'x';
     clear_window();
 
-    while( m_exit == false )
-    {
+    while (m_exit == false) {
         //Sur console
-        if(!getallegro_present()){
+        if (!getallegro_present()) {
 
-            partie.ConsPrint(1,13);
+            partie.ConsPrint(1, 13);
             std::cout << "Bataille Navale";
-            partie.ConsPrint(7,3);
+            partie.ConsPrint(7, 3);
             std::cout << "CHARGER";
 
 
-            partie.ConsPrint(20,25);
+            partie.ConsPrint(20, 25);
+
+        }
+        m_exit = false;
+
 
     }
-    m_exit = false;
-
-
 }
 
 // Menu r�gles
@@ -496,7 +363,7 @@ void Menu::regles()
 
 
 
-            while (getch()!='r');
+            while (getcharacter()!='r');
             m_exit=true;
         }
         else{

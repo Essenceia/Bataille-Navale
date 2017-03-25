@@ -1,5 +1,6 @@
+#ifndef TIRE_H_INCLUDED
 #define TIRE_H_INCLUDED
-#ifdef TIRE_H_INCLUDED
+
 #define SYMBOL_DESTROYER ((char)'d')
 #define SYMBOL_SOUSMARIN ((char)'s')
 #define SYMBOL_CUIRASSER ((char)'p')
@@ -12,7 +13,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
-
+#include "Allegro.h"
 // classe abstraite Objet
 class Tire
 {
@@ -21,10 +22,10 @@ class Tire
         unsigned int taille_x;
         char typetire;
 
-        std::vector<bitmap*> annimation_blowup;
-        bitmap* geule_tire;
-        bitmap* get_geule_tire();
-        std::vector<bitmap*> get_annimation_blowup();
+        std::vector<BITMAP*> annimation_blowup;
+        BITMAP* geule_tire;
+        BITMAP* get_geule_tire();
+        std::vector<BITMAP*> get_annimation_blowup();
         void init_bitmap();
 
 
@@ -33,7 +34,7 @@ class Tire
     public :
 
         Tire(char typevaiseau);
-        virtual ~Tire(); // destructeur
+        ~Tire(); // destructeur
 
 
         //getters

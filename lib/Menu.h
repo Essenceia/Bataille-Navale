@@ -4,9 +4,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
-#ifdef WINDOWS
-#include <conio.h>
-#endif
+#include "crossplatform.h"
 #include "Allegro.h"
 #include "Partie.h"
 

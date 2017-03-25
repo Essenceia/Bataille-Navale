@@ -5,6 +5,7 @@
 #include <fstream>
 #include <time.h>
 #include "../lib/Helper.h"
+#include "Allegro.h"
 // contructeur par default
 Partie::Partie():alleg_present(false)
 {
@@ -317,10 +318,15 @@ void Partie::setal(bool al)
 
 void Partie::ConsPrint(unsigned int y,unsigned int x)
 {
+#ifdef WINDOWS
     COORD xy;
     xy.X = x;
     xy.Y = y;
     SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), xy );
+#else
+
+        printf("\033[%d;%dH", y+1, x+1);
+#endif
 }
 
 void Partie::ChargerImages()

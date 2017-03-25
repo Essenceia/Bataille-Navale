@@ -1,8 +1,8 @@
 #ifndef ALLEGRO_H_INCLUDED
 #define ALLEGRO_H_INCLUDED
-
 #include <stdio.h>
 #include <iostream>
+#define ALLEGRO_NO_VHLINE_ALIAS
 #include <allegro.h>
 #ifdef WINDOWS
 #include <winalleg.h>

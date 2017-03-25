@@ -1,10 +1,10 @@
 #include "../lib/Tire.h"
-#include "allegro.h"
-bitmap* Tire::get_geule_tire()
+
+BITMAP* Tire::get_geule_tire()
 {
 
 }
-std::vector<bitmap*> Tire::get_annimation_blowup()
+std::vector<BITMAP*> Tire::get_annimation_blowup()
 {
 }
 
@@ -80,12 +80,12 @@ void Tire::modif_type(char newtype, bool first) {
 
 Tire::Tire(char typevaiseau) {
 #ifdef USINGALLEGRO
-    //TODO : creation des bitmap
+    //TODO : creation des BITMAP
 
 #endif
     modif_type(typevaiseau,true);
 #ifdef USINGALLEGRO
-    init_bitmap();
+    init_BITMAP();
 #endif
 }
 
@@ -112,5 +112,5 @@ bool Tire::can_hit(char symbolebateau){
 }
 //setter
 void Tire::new_type(char typevaiseau){
-    new_type(typevaiseau,false);
+    modif_type(typevaiseau,false);
 }

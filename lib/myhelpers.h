@@ -10,8 +10,8 @@
 //Bateau select
 class B_sel{
 public :
-    Bateau(Bateau *b, unsigned int x, unsigned int y);
-    ~Bateau();
+    B_sel(Bateau *b, unsigned int x, unsigned int y);
+    ~B_sel();
 
 private:
     unsigned  int x,y;
