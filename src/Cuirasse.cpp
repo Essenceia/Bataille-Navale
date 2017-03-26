@@ -13,11 +13,6 @@ Cuirasse::~Cuirasse()
 
 
 ///Methodes
-char Cuirasse::Symbole()
-{
-    return 'C';
-
-}
 
 bool Cuirasse::get_cd()
 {

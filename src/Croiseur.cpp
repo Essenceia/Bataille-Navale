@@ -15,10 +15,6 @@ Croiseur::~Croiseur()
 
 ///Methodes
 
-char Croiseur::Symbole() {
-    return 'c';
-}
-
 bool Croiseur::get_fusee()
 {
     return false;

@@ -109,9 +109,8 @@ bool Bateau::is_dead(){
   bool f=true;
 
   for(unsigned int i =0 ; i < get_taille(); i++){
-        std::cout << get_etattouche(i) << " ";
     if(!get_etattouche(i)) f=false;
-  }std::cout << std::endl;
+  }
 
   return f;
 }

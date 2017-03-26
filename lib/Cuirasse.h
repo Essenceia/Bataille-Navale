@@ -16,7 +16,6 @@ class Cuirasse:public Bateau
 
     //methodes
     bool get_cd();
-    char Symbole();
     bool get_fusee();
     void set_fusee();
     void set_cd();

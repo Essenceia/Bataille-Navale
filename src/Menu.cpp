@@ -25,6 +25,7 @@ void Menu::Allegro_present()
     //Sur console
     system("cls"); // nettoie la console
     int int_allegro_present = 0;
+
     partie.ConsPrint(1,13);
     std::cout << "Bataille Navale";
     partie.ConsPrint(3,0);
@@ -204,19 +205,9 @@ void Menu::principal()
 
             switch(choix){
 
-                case 1 :
-                        /*
-                        clear
-                        reset
-                        lancer avec parametre 1 joueur
-                        */
+                case 1 : partie.LancerPartie(true);
                     break;
-                case 2 :
-                        /*
-                        clear
-                        reset
-                        lancer avec parametre 2 joueurs
-                        */
+                case 2 : partie.LancerPartie(false);
                     break;
                 case 3 : charger();
                     break;
@@ -258,11 +249,6 @@ void Menu::principal()
                 if ( mouse_b & 1 )
                 {
                     partie.LancerPartie(true);
-                    /*
-                    clear
-                    reset
-                    lancer avec parametre 1 joueur
-                    */
                 }
             }
 
@@ -276,11 +262,6 @@ void Menu::principal()
                 if ( mouse_b & 1 )
                 {
                     partie.LancerPartie(false);
-                    /*
-                    clear
-                    reset
-                    lancer avec parametre 2 joueur
-                    */
                 }
             }
 
@@ -350,7 +331,7 @@ void Menu::option()
     m_exit = false;
     int x= 0;
     int y= 0;
-    int choix;
+
     system("cls");
 
     while( m_exit == false )
@@ -411,8 +392,6 @@ void Menu::charger() {
     m_exit = false;
     int x = 0;
     int y = 0;
-    int choix;
-    char gotten = 'x';
     system("cls");
 
     while (m_exit == false) {
@@ -429,6 +408,36 @@ void Menu::charger() {
             std::cout << "R : Retour";
 
         }
+        else{
+
+            // r�initilisation des coordonn�es souris
+
+            x= mouse_x;
+            y= mouse_y;
+
+            // Affichage du menu_charger
+            clear_bitmap(buffer);
+            blit(menu_charger, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
+            blit(txt_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+
+            /// "RETOUR"
+            //si la souris se trouve sur "RETOUR"
+            if( x>=600 && x<=750 && y>=500 && y<=550 )
+            {
+                blit(txt_hover_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
+                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+                // si clique gauche
+                if ( mouse_b & 1 )
+                {
+                    // retour au menu principal
+                    m_exit = true;
+                }
+            }
+            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+
+            rest(100); //pause pour qu'il soit visible
+
+        }
         m_exit = false;
 
 
@@ -442,7 +451,6 @@ void Menu::regles()
     m_exit = false;
     int x= 0;
     int y= 0;
-    int choix;
     system("cls");
 
     while( m_exit == false )

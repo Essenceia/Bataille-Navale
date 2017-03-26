@@ -12,7 +12,6 @@ class Sousmarin:public Bateau
     ~Sousmarin();
 
     //methodes
-    char Symbole();
     bool get_fusee();
     bool get_cd();
     void set_fusee();

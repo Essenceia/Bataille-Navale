@@ -13,11 +13,6 @@ Sousmarin::~Sousmarin()
 
 
 ///Methodes
-char Sousmarin::Symbole()
-{
-    return 's';
-
-}
 
 bool Sousmarin::get_fusee()
 {

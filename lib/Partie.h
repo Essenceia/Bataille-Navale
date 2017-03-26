@@ -66,13 +66,13 @@ class Partie
         void ChargerImages();
         void DestroyImages();
         void affichageAlleg(int i);
-        void affichageCons();
+        void affichageCons(unsigned int currentplayer, unsigned int otherplayer);
 
 
         //gestion bateaux
-        void TournerBateau(unsigned int currentplayer, unsigned int numbatselected);
-        void Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigned int numbatselected);
-        void DeplacerBateau(unsigned int currentplayer, unsigned int numbatselected);
+        bool TournerBateau(unsigned int currentplayer, unsigned int numbatselected);
+        void Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigned int numbatselected, bool tourIA);
+        bool DeplacerBateau(unsigned int currentplayer, unsigned int numbatselected);
 
         void VerifRestant();
 

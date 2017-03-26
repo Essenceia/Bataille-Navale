@@ -18,7 +18,6 @@ class Destroyer:public Bateau
     //methodes
     bool get_fusee();
     bool get_cd();
-    char Symbole();
 
     void set_fusee();
     void set_cd();

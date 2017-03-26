@@ -14,11 +14,6 @@ Destroyer::~Destroyer()
 
 
 ///Methodes
-char Destroyer::Symbole()
-{
-    return 'd';
-
-}
 
 bool Destroyer::get_fusee()
 {
