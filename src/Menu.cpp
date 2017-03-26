@@ -64,12 +64,6 @@ void Menu::load_bitmaps() // Charger images
         allegro_message("pas pu trouver Bitmap/Menu/menu_principal.bmp");
         exit(EXIT_FAILURE);
     }
-    menu_option=load_bitmap("../Bitmap/Menu/menu_option.bmp",NULL);
-    if (!menu_option)
-    {
-        allegro_message("pas pu trouver Bitmap/Menu/menu_option.bmp");
-        exit(EXIT_FAILURE);
-    }
     menu_regles=load_bitmap("../Bitmap/Menu/menu_regles.bmp",NULL);
     if (!menu_regles)
     {
@@ -92,12 +86,6 @@ void Menu::load_bitmaps() // Charger images
     if (!txt_deux_joueur)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_deux_joueur.bmp");
-        exit(EXIT_FAILURE);
-    }
-    txt_option=load_bitmap("../Bitmap/Menu/txt_option.bmp",NULL);
-    if (!txt_option)
-    {
-        allegro_message("pas pu trouver Bitmap/Menu/txt_option.bmp");
         exit(EXIT_FAILURE);
     }
     txt_charger=load_bitmap("../Bitmap/Menu/txt_charger.bmp",NULL);
@@ -134,12 +122,6 @@ void Menu::load_bitmaps() // Charger images
     if (!txt_hover_deux_joueur)
     {
         allegro_message("pas pu trouver Bitmap/Menu/txt_hover_deux_joueur.bmp");
-        exit(EXIT_FAILURE);
-    }
-    txt_hover_option=load_bitmap("../Bitmap/Menu/txt_hover_option.bmp",NULL);
-    if (!txt_hover_option)
-    {
-        allegro_message("pas pu trouver Bitmap/Menu/txt_hover_option.bmp");
         exit(EXIT_FAILURE);
     }
     txt_hover_charger=load_bitmap("../Bitmap/Menu/txt_hover_charger.bmp",NULL);
@@ -193,9 +175,8 @@ void Menu::principal()
             std::cout << "1. 1 JOUEUR" <<std::endl
                       << "2. 2 JOUEURS" <<std::endl
                       << "3. CHARGER" <<std::endl
-                      << "4. OPTION" <<std::endl
-                      << "5. REGLES" <<std::endl
-                      << "6. QUITTER" <<std::endl;
+                      << "4. REGLES" <<std::endl
+                      << "5. QUITTER" <<std::endl;
             partie.ConsPrint(10,5);
             std::cout << "Choix : ";
 
@@ -211,11 +192,9 @@ void Menu::principal()
                     break;
                 case 3 : charger();
                     break;
-                case 4 : option();
+                case 4 : regles();
                     break;
-                case 5 : regles();
-                    break;
-                case 6 : m_exit = true;
+                case 5 : m_exit = true;
                     break;
                 default :
                     break;
@@ -235,8 +214,7 @@ void Menu::principal()
             blit(txt_un_joueur,buffer,0,0,50,50,SCREEN_W,SCREEN_H);
             blit(txt_deux_joueur,buffer,0,0,50,120,SCREEN_W,SCREEN_H);
             blit(txt_charger,buffer,0,0,50,190,SCREEN_W,SCREEN_H);
-            blit(txt_option,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
-            blit(txt_regles,buffer,0,0,50,330,SCREEN_W,SCREEN_H);
+            blit(txt_regles,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
             blit(txt_quitter,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
 
             /// "1J"
@@ -278,24 +256,11 @@ void Menu::principal()
                 }
             }
 
-            /// "OPTION"
-            //si la souris se trouve sur "OPTION"
-            if( x>=50 && x<=200 && y>=260 && y<=310 )
-            {
-                blit(txt_hover_option,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
-                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-                // si clique gauche
-                if ( mouse_b & 1 )
-                {
-                    option();
-                }
-            }
-
             /// "REGLE"
             //si la souris se trouve sur "REGLE"
-            if( x>=50 && x<=200 && y>=330 && y<=380 )
+            if( x>=50 && x<=200 && y>=260 && y<=310 )
             {
-                blit(txt_hover_regles,buffer,0,0,50,330,SCREEN_W,SCREEN_H);
+                blit(txt_hover_regles,buffer,0,0,50,260,SCREEN_W,SCREEN_H);
                 blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
                 // si clique gauche
                 if ( mouse_b & 1 )
@@ -322,69 +287,6 @@ void Menu::principal()
         }
     }
 
-}
-
-// Menu option
-void Menu::option()
-{
-    // R�initialisation du bool�en m_exit
-    m_exit = false;
-    int x= 0;
-    int y= 0;
-
-    system("cls");
-
-    while( m_exit == false )
-    {
-
-        //Sur console
-        if(!getallegro_present()){
-
-            partie.ConsPrint(1,13);
-            std::cout << "Bataille Navale";
-            partie.ConsPrint(7,3);
-            std::cout << "OPTION";
-
-
-            partie.ConsPrint(20,25);
-
-            std::cout << "R : Retour";
-
-
-
-            while (getch()!='r');
-            m_exit=true;
-        }
-        else{
-
-            // r�initilisation des coordonn�es souris
-            x= mouse_x;
-            y= mouse_y;
-
-            // Affichage du menu_option
-            clear_bitmap(buffer);
-            blit(menu_option, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
-            blit(txt_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-
-            /// "RETOUR"
-            //si la souris se trouve sur "RETOUR"
-            if( x>=600 && x<=750 && y>=500 && y<=550 )
-            {
-                blit(txt_hover_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-                // si clique gauche
-                if ( mouse_b & 1 )
-                {
-                    // retour au menu principal
-                    m_exit = true;
-                }
-            }
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-            rest(100); //pause pour qu'il soit visible
-        }
-
-    }
-    m_exit = false;
 }
 
 void Menu::charger() {
@@ -460,17 +362,32 @@ void Menu::regles()
 
             partie.ConsPrint(1,13);
             std::cout << "Bataille Navale";
-            partie.ConsPrint(7,3);
+            partie.ConsPrint(3,3);
             std::cout << "REGLES";
-            partie.ConsPrint(10,0);
-            std::cout << "Lorem ipsum" << std::endl
-                      <<"Lorem ipsum " <<std::endl
-                      <<"Lorem ipsum" << std::endl
-                      <<"Lorem ipsum" << std::endl
-                      <<"Lorem ipsum" << std::endl
-                      <<"Lorem ipsum" << std::endl
-                      <<"Lorem ipsum" << std::endl;
-            partie.ConsPrint(20,25);
+            partie.ConsPrint(5,0);
+            std::cout << "Chaque joueur dispose de 10 bateaux : ";
+            partie.ConsPrint(6,2);
+            std::cout << "1 Cuirasse : 7 cases, Puissance de tir 3x3 mais saut de tour si on le pivote";
+            partie.ConsPrint(7,2);
+            std::cout << "2 Croiseurs : 5 cases, Puissance de tir 2x2";
+            partie.ConsPrint(8,2);
+            std::cout << "3 Destroyer : 3 cases, Puissance de tir 1x1 sauf 1ere munition qui est une    fusee 4x4 montrant les ennemis un court instant";
+            partie.ConsPrint(10,2);
+            std::cout << "4 Sous-marins : 1 case, Puissance de tir 1x1 et ne pouvant couler que des sous-marins";
+            partie.ConsPrint(12,3);
+            std::cout << "VOTRE MISSION EST DE COULER LA FLOTTE ADVERSE !";
+            partie.ConsPrint(14,0);
+            std::cout << "Touches";
+            partie.ConsPrint(16,0);
+            std::cout << "Pour selectionner un bateau ou une cible de tir : entrer les coordonnees";
+            partie.ConsPrint(17,0);
+            std::cout << "Pour deplacer un bateau selectionne : "<<std::endl<<" 'h' pour aller vers le haut, 'b' pour bas, 'g' pour gauche et 'd' pour droite";
+            partie.ConsPrint(19,0);
+            std::cout << "Pour sauvegarder : 's' lors de la selection de bateau";
+
+
+
+            partie.ConsPrint(24,25);
 
             std::cout << "R : Retour";
 
@@ -520,18 +437,15 @@ void Menu::destroy_bitmaps()
 {
     destroy_bitmap(buffer);
     destroy_bitmap(menu_principal);
-    destroy_bitmap(menu_option);
     destroy_bitmap(menu_regles);
     destroy_bitmap(menu_charger);
     destroy_bitmap(txt_un_joueur);
     destroy_bitmap(txt_deux_joueur);
-    destroy_bitmap(txt_option);
     destroy_bitmap(txt_regles);
     destroy_bitmap(txt_quitter);
     destroy_bitmap(txt_retour);
     destroy_bitmap(txt_hover_un_joueur);
     destroy_bitmap(txt_hover_deux_joueur);
-    destroy_bitmap(txt_hover_option);
     destroy_bitmap(txt_hover_regles);
     destroy_bitmap(txt_hover_quitter);
     destroy_bitmap(txt_hover_retour);

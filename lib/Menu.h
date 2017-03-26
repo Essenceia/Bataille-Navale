@@ -24,14 +24,12 @@ class Menu
         BITMAP* menu_charger;
         BITMAP* txt_un_joueur;
         BITMAP* txt_deux_joueur;
-        BITMAP* txt_option;
         BITMAP* txt_charger;
         BITMAP* txt_regles;
         BITMAP* txt_quitter;
         BITMAP* txt_retour;
         BITMAP* txt_hover_un_joueur;
         BITMAP* txt_hover_deux_joueur;
-        BITMAP* txt_hover_option;
         BITMAP* txt_hover_regles;
         BITMAP* txt_hover_charger;
         BITMAP* txt_hover_quitter;
@@ -50,7 +48,6 @@ class Menu
         void load_bitmaps();
         void principal();
         void regles();
-        void option();
         void charger();
         void destroy_bitmaps();
 };
