@@ -38,27 +38,79 @@ void Partie::changer_val_tableau(int numtab, unsigned int coordonees_x,unsigned 
 /*\fn chargement_partie
 * \brief charger une partie
 */
-void Partie::chargement_partie(std::string num)
+bool Partie::chargement_partie()
 {
     std::string path;
+    bool returnvaleur;
+    char ori;
+    bool data;
+    unsigned int x0, y0;
 
-    path = "../Sauvegardes/";
-    path += num;
-    path += ".txt";
+    unsigned int otherplayer;
+
+    path = "../Sauvegardes/Save1.txt";
     std::ifstream ifs(path.c_str()); // c_str() retourne le contenu d'une String sous forme de char*
     if (ifs) // si le fichier est bien ouvert
     {
-        /*
-            ifs >> data recupere la prochaine valeur de ifs et la stocke dans data
-            il faut ensuite allouer data à une variable
 
-            exemple :
+        ifs >> returnvaleur ;
+        ifs >> currentplayer ;
 
-                ifs >> data ;
-                m_snoopy.setPosx(data);
+        if(currentplayer==0) otherplayer=1;
+        else otherplayer=0;
 
-        */
-        int data;
+        ///POUR CURRENTPLAYER
+        for(unsigned int i=0;i<10;i++){
+            ifs >> x0;
+            ifs >> y0;
+            ifs >> ori;
+            switch(i){
+                case 0 :  battab[currentplayer].push_back(new Cuirasse(x0,y0,7,ori));
+                    break;
+                case 1 :
+                case 2 :  battab[currentplayer].push_back(new Croiseur(x0,y0,5,ori));
+                    break;
+                case 3 :
+                case 4 :
+                case 5 :  battab[currentplayer].push_back(new Destroyer(x0,y0,3,ori));
+                    break;
+                case 6 :
+                case 7 :
+                case 8 :
+                case 9 :  battab[currentplayer].push_back(new Sousmarin(x0,y0,1,ori));
+                    break;
+            }
+            for(unsigned int j=0;j<battab[currentplayer][i]->get_taille();j++){
+                    ifs >> data;
+                    battab[currentplayer][0]->set_etat(j,data);
+            }
+        }
+        ///POUR OTHERPLAYER
+        for(unsigned int i=0;i<10;i++){
+            ifs >> x0;
+            ifs >> y0;
+            ifs >> ori;
+            switch(i){
+                case 0 :  battab[otherplayer].push_back(new Cuirasse(x0,y0,7,ori));
+                    break;
+                case 1 :
+                case 2 :  battab[otherplayer].push_back(new Croiseur(x0,y0,5,ori));
+                    break;
+                case 3 :
+                case 4 :
+                case 5 :  battab[otherplayer].push_back(new Destroyer(x0,y0,3,ori));
+                    break;
+                case 6 :
+                case 7 :
+                case 8 :
+                case 9 :  battab[otherplayer].push_back(new Sousmarin(x0,y0,1,ori));
+                    break;
+            }
+            for(unsigned int j=0;j<battab[otherplayer][i]->get_taille();j++){
+                    ifs >> data;
+                    battab[otherplayer][0]->set_etat(j,data);
+            }
+        }
 
     }
     else // en cas d'erreur
@@ -67,17 +119,22 @@ void Partie::chargement_partie(std::string num)
     }
 
     ifs.close(); // fermeture du flux
+
+    return returnvaleur;
 }
 
 
 /// Sauvegarde dans le fichier
-void Partie::sauvegarder_partie(std::string num)
+void Partie::sauvegarder_partie()
 {
+
+    unsigned int otherplayer=0;
+
+    if(currentplayer==0) otherplayer =1;
+
     // std::ios::app (append) : écrire à la suite
     // Pour ces modes d'ouverture, si le fichier n'existe pas ou s'il n'est pas trouvé, il sera créé.
-    std::string path = "../Sauvegardes/";
-    path += num;
-    path += ".txt";
+    std::string path = "../Sauvegardes/Save1.txt";
 
     std::ofstream ofs(path.c_str(), std::ios::out | std::ios::trunc); // Ouverture fichier en mode "w" et le créé s'il n'existe pas
     //et (truncate) : lorsqu'on ouvre le fichier en écriture, efface tout s'il existe déjà, pour laisser un fichier vide
@@ -87,6 +144,26 @@ void Partie::sauvegarder_partie(std::string num)
         ///exemple
         // ofs << m_level.get_attr_balle(1) << std::endl;
 
+        ofs << ia << std::endl;
+        ofs << currentplayer << std::endl;
+        ///POUR CURRENTPLAYER
+        for(unsigned int i=0;i<10;i++){
+            ofs << battab[currentplayer][i]->get_etatx(0) << std::endl;
+            ofs << battab[currentplayer][i]->get_etaty(0) << std::endl;
+            ofs << battab[currentplayer][i]->get_orientation() << std::endl;
+            for(unsigned int j=0;j<battab[currentplayer][i]->get_taille();j++)
+                ofs << battab[currentplayer][i]->get_etattouche(j) << std::endl;
+        }
+        ///POUR OTHERPLAYER
+        for(unsigned int i=0;i<10;i++){
+            ofs << battab[otherplayer][i]->get_etatx(0) << std::endl;
+            ofs << battab[otherplayer][i]->get_etaty(0) << std::endl;
+            ofs << battab[otherplayer][i]->get_orientation() << std::endl;
+            for(unsigned int j=0;j<battab[otherplayer][i]->get_taille();j++)
+                ofs << battab[otherplayer][i]->get_etattouche(j) << std::endl;
+        }
+
+
 
         ofs.close(); // fermeture du flux
     }
@@ -94,7 +171,7 @@ void Partie::sauvegarder_partie(std::string num)
 
 }
 
-void Partie::affichageAlleg(int i, unsigned int currentplayer){
+void Partie::affichageAlleg(int i){
 
     blit(alleg.getImage(i),screen,0,0,0,0,SCREEN_W,SCREEN_H-200);
 
@@ -104,7 +181,7 @@ void Partie::affichageCons(unsigned int currentplayer, unsigned int otherplayer)
 
     unsigned int Cui, Cro, Des, Sou;
 
-    if(currentplayer=0){
+    if(currentplayer==0){
         Cui=Cui2; Cro=Cro2; Des=Des2; Sou=Sou2;
     }
     else{
@@ -170,8 +247,10 @@ void Partie::affichageCons(unsigned int currentplayer, unsigned int otherplayer)
 
 }
 
-void Partie::LancerPartie(bool ia)
+void Partie::LancerPartie(bool iapresent, bool chargement)
 {
+
+    ia=iapresent;
 
     if (alleg_present==1) {
 
@@ -181,7 +260,7 @@ void Partie::LancerPartie(bool ia)
 
     }
 
-    initPartie();
+    initPartie(chargement);
 
     int x= 0;
     int y= 0;
@@ -190,8 +269,7 @@ void Partie::LancerPartie(bool ia)
 
     unsigned int choixx=0;
     unsigned int choixy=0;
-    unsigned int currentplayer = 0;
-    unsigned int otherplayer = 1;
+    unsigned int otherplayer;
     unsigned int numbatselected = 50;
     unsigned int IAcount = 0;
     bool choixaction = false;
@@ -203,38 +281,40 @@ void Partie::LancerPartie(bool ia)
     std::string choix;
     bool exitboucle = false;
 
+
+    if(currentplayer==0) otherplayer=1;
+    else otherplayer=0;
+
     srand(time(NULL));
 
     VerifRestant();
 
-    Cui=Cui2; Cro=Cro2; Des=Des2; Sou=Sou2;
+    if(currentplayer==0){
+        Cui=Cui2; Cro=Cro2; Des=Des2; Sou=Sou2;
+    }
+    else{
+        Cui=Cui1; Cro=Cro1; Des=Des1; Sou=Sou1;
+    }
 
     if(alleg_present==0) affichageCons(currentplayer,otherplayer);
     else{
 
 
-    textprintf_ex(screen, font, 50, 430, makecol(255, 255, 255), -1, "Se deplacer sur la grille : Z,Q,S,D");
-    textprintf_ex(screen, font, 50, 450, makecol(255, 255, 255), -1, "Selectionner un bateau    : E");
+        textprintf_ex(screen, font, 50, 430, makecol(255, 255, 255), -1, "Se deplacer sur la grille : Z,Q,S,D");
+        textprintf_ex(screen, font, 50, 450, makecol(255, 255, 255), -1, "Selectionner un bateau    : E");
+        textprintf_ex(screen, font, 50, 470, makecol(255, 255, 255), -1, "Sauvegarder               : P");
 
-    textprintf_ex(screen, font, 450, 430, makecol(255, 255, 255), -1, "Ennemis restants :");
-    textprintf_ex(screen, font, 500, 450, makecol(255, 255, 255), -1, "Cuirasse    : %d", Cui);
-    textprintf_ex(screen, font, 500, 470, makecol(255, 255, 255), -1, "Croiseur    : %d", Cro);
-    textprintf_ex(screen, font, 500, 490, makecol(255, 255, 255), -1, "Destroyer   : %d", Des);
-    textprintf_ex(screen, font, 500, 510, makecol(255, 255, 255), -1, "Sous-marins : %d", Sou);
+        textprintf_ex(screen, font, 450, 430, makecol(255, 255, 255), -1, "Ennemis restants :");
+        textprintf_ex(screen, font, 500, 450, makecol(255, 255, 255), -1, "Cuirasse    : %d", Cui);
+        textprintf_ex(screen, font, 500, 470, makecol(255, 255, 255), -1, "Croiseur    : %d", Cro);
+        textprintf_ex(screen, font, 500, 490, makecol(255, 255, 255), -1, "Destroyer   : %d", Des);
+        textprintf_ex(screen, font, 500, 510, makecol(255, 255, 255), -1, "Sous-marins : %d", Sou);
     }
 
 
     ///BOUCLE DE JEU
     while (!exitboucle)
     {
-
-
-        if(currentplayer=0){
-            Cui=Cui2; Cro=Cro2; Des=Des2; Sou=Sou2;
-        }
-        else{
-            Cui=Cui1; Cro=Cro1; Des=Des1; Sou=Sou1;
-        }
 
         if(ia&&currentplayer==1) tourIA=true;
         else tourIA=false;
@@ -293,25 +373,19 @@ void Partie::LancerPartie(bool ia)
 
         if(choixaction){
 
-
+                VerifRestant();
             if(!tourIA){
-                if (alleg_present==1) {
 
-                    alleg.clearbmp();
-                    textprintf_ex(screen, font, 500, 450, makecol(255, 255, 255), -1, "Cuirasse    : %d", Cui);
-                    textprintf_ex(screen, font, 500, 470, makecol(255, 255, 255), -1, "Croiseur    : %d", Cro);
-                    textprintf_ex(screen, font, 500, 490, makecol(255, 255, 255), -1, "Destroyer   : %d", Des);
-                    textprintf_ex(screen, font, 500, 510, makecol(255, 255, 255), -1, "Sous-marins : %d", Sou);
-                    affichageAlleg(0,currentplayer);
-                    rest(1000);
-                }
-
-                else{
+                if(alleg_present==0){
                     affichageCons(currentplayer,otherplayer);
                     ConsPrint(23,0);
                     system("pause");
                     ConsPrint(23,0);
                     std::cout << "                                                            ";
+                }
+                else{
+                    affichageAlleg(0);
+                     rest(2000);
                 }
             }
                 otherplayer=currentplayer;
@@ -324,8 +398,8 @@ void Partie::LancerPartie(bool ia)
 
                 if(Tot1==0){
                     if (alleg_present==1) {
-                            draw_sprite(alleg.getImage(0), alleg.getImage(92), 0, 0);
-                            affichageAlleg(0,currentplayer);
+                        draw_sprite(alleg.getImage(0), alleg.getImage(92), 0, 0);
+                        blit(alleg.getImage(0),screen,0,0,0,0,SCREEN_W,SCREEN_H);
                             while(!key[KEY_E]);
                             while(key[KEY_E]);
                         }
@@ -344,8 +418,8 @@ void Partie::LancerPartie(bool ia)
 
                 else if(Tot2==0){
                     if (alleg_present==1) {
-                            draw_sprite(alleg.getImage(0), alleg.getImage(91), 0, 0);
-                            affichageAlleg(0,currentplayer);
+                        draw_sprite(alleg.getImage(0), alleg.getImage(91), 0, 0);
+                        blit(alleg.getImage(0),screen,0,0,0,0,SCREEN_W,SCREEN_H);
                             while(!key[KEY_E]);
                             while(key[KEY_E]);
                         }
@@ -364,9 +438,32 @@ void Partie::LancerPartie(bool ia)
 
                 else if (alleg_present==1 && !ia) {
                     draw_sprite(alleg.getImage(0), alleg.getImage(90), 0, 0);
-                    affichageAlleg(0,currentplayer);
+                    blit(alleg.getImage(0),screen,0,0,0,0,SCREEN_W,SCREEN_H);
                     while(!key[KEY_E]);
                     while(key[KEY_E]);
+
+                    if(currentplayer==0){
+                        Cui=Cui2; Cro=Cro2; Des=Des2; Sou=Sou2;
+                    }
+                    else{
+                        Cui=Cui1; Cro=Cro1; Des=Des1; Sou=Sou1;
+                    }
+
+                    alleg.clearbmp();
+                    blit(alleg.getImage(0),screen,0,0,0,0,SCREEN_W,SCREEN_H);
+
+                    blit(alleg.getImage(4),screen,0,0,605,450,SCREEN_W,SCREEN_H);
+
+                    textprintf_ex(screen, font, 50, 430, makecol(255, 255, 255), -1, "Se deplacer sur la grille : Z,Q,S,D");
+                    textprintf_ex(screen, font, 50, 450, makecol(255, 255, 255), -1, "Selectionner un bateau    : E");
+                    textprintf_ex(screen, font, 50, 470, makecol(255, 255, 255), -1, "Sauvegarder               : P");
+
+                    textprintf_ex(screen, font, 450, 430, makecol(255, 255, 255), -1, "Ennemis restants :");
+                    textprintf_ex(screen, font, 500, 450, makecol(255, 255, 255), -1, "Cuirasse    : %d", Cui);
+                    textprintf_ex(screen, font, 500, 470, makecol(255, 255, 255), -1, "Croiseur    : %d", Cro);
+                    textprintf_ex(screen, font, 500, 490, makecol(255, 255, 255), -1, "Destroyer   : %d", Des);
+                    textprintf_ex(screen, font, 500, 510, makecol(255, 255, 255), -1, "Sous-marins : %d", Sou);
+
                 }
 
                 else if(alleg_present==0 && !ia){
@@ -401,18 +498,22 @@ void Partie::LancerPartie(bool ia)
                     draw_sprite(alleg.getImage(0), alleg.getImage(51),choixx*21+50,choixy*21+50);
                     if(key[KEY_W]){
                         if(choixy!=0) choixy--;
+                        else choixy=14;
                         while(key[KEY_W]);
                     }
                     if(key[KEY_A]){
                         if(choixx!=0) choixx--;
+                        else choixx=14;
                         while(key[KEY_A]);
                     }
                     if(key[KEY_S]){
                         if(choixy!=14) choixy++;
+                        else choixy=0;
                         while(key[KEY_S]);
                     }
                     if(key[KEY_D]){
                         if(choixx!=14) choixx++;
+                        else choixx=0;
                         while(key[KEY_D]);
                     }
 
@@ -463,8 +564,8 @@ void Partie::LancerPartie(bool ia)
 
                                 if(!action){
                                     //Choix de l'action
-                                    draw_sprite(alleg.getImage(0), alleg.getImage(10), 50, 100);
-                                    affichageAlleg(0,currentplayer);
+                                    draw_sprite(alleg.getImage(0), alleg.getImage(10), 100, 120);
+                                    affichageAlleg(0);
                                 }
 
                             }
@@ -474,8 +575,8 @@ void Partie::LancerPartie(bool ia)
                         }
 
                         else {
-                            draw_sprite(alleg.getImage(0), alleg.getImage(11), 50, 100);
-                            affichageAlleg(0,currentplayer);
+                            draw_sprite(alleg.getImage(0), alleg.getImage(11), 100, 120);
+                            affichageAlleg(0);
                             rest(1000);
                         }
 
@@ -484,10 +585,9 @@ void Partie::LancerPartie(bool ia)
                     }
 
                     //Sauvegarde
-                    if(key[KEY_S]) {
+                    if(key[KEY_P]) {
 
-                            //Recuperer via clic quel num de sauvegarde
-                            sauvegarder_partie(num);
+                            sauvegarder_partie();
                     }
 
                     //Quitter
@@ -535,7 +635,7 @@ void Partie::LancerPartie(bool ia)
                         case 'm' : choixx=12; break;
                         case 'n' : choixx=13; break;
                         case 'o' : choixx=14; break;
-                        case 's' : sauvegarder_partie(num);
+                        case 's' : sauvegarder_partie();
                     }
                     if(choix.length()>=2){
                         switch(choix[1]){
@@ -630,8 +730,8 @@ void Partie::LancerPartie(bool ia)
         if(!tourIA) {
             if (alleg_present==1)
             {
-                if(choixaction) affichageAlleg(2,currentplayer);
-                else affichageAlleg(0,currentplayer);
+                if(choixaction) affichageAlleg(2);
+                else affichageAlleg(0);
 
             }
         }
@@ -674,8 +774,8 @@ void Partie::VerifRestant()
 
 
     //Faire le total
-    Tot1=Cui1+Cro1+Des1+Sou1;
-    Tot2=Cui2+Cro2+Des2+Sou2;
+    Tot1=Cui1+Cro1+Des1;
+    Tot2=Cui2+Cro2+Des2;
 }
 
 void Partie::setal(bool al)
@@ -750,18 +850,22 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
 
             if(key[KEY_W]){
                 if(dest_y!=0) dest_y--;
+                else dest_y=15-rayon;
                 while(key[KEY_W]);
             }
             if(key[KEY_A]){
                 if(dest_x!=0) dest_x--;
+                else dest_x=15-rayon;
                 while(key[KEY_A]);
             }
             if(key[KEY_S]){
                 if(dest_y!=15-rayon) dest_y++;
+                else dest_y=0;
                 while(key[KEY_S]);
             }
             if(key[KEY_D]){
                 if(dest_x!=15-rayon) dest_x++;
+                else dest_x=0;
                 while(key[KEY_D]);
             }
 
@@ -772,7 +876,7 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
             }
 
             //Affichage des options
-            affichageAlleg(3,currentplayer);
+            affichageAlleg(3);
         }
 
         else{
@@ -875,7 +979,7 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
 
     if(!tourIA){
         if(alleg_present==1) {
-            affichageAlleg(3,currentplayer);
+            affichageAlleg(3);
             rest(2000);
         }
         else {
@@ -898,7 +1002,6 @@ bool Partie::DeplacerBateau(unsigned int currentplayer, unsigned int numbatselec
     unsigned int t = battab[currentplayer][numbatselected]->get_taille();
     bool choixaction=false;
     std::string choixplace;
-    unsigned int choix=5; //0=h, 1=b, 2=d, 3=g
 
     //On vérifie si le bateau est endommagé
     for(unsigned int j=0; j<battab[currentplayer][numbatselected]->get_taille();j++)
@@ -922,7 +1025,7 @@ bool Partie::DeplacerBateau(unsigned int currentplayer, unsigned int numbatselec
         okd=false; okg=false;
     }
 
-    if(okh||okb||okd||okg){
+    if((okh||okb||okd||okg)&&ok){
         while(!choixaction){
 
             if(alleg_present==1){
@@ -960,7 +1063,7 @@ bool Partie::DeplacerBateau(unsigned int currentplayer, unsigned int numbatselec
                 }
 
                 //Affichage des options
-                affichageAlleg(2,currentplayer);
+                affichageAlleg(2);
             }
 
             else{
@@ -1017,8 +1120,8 @@ bool Partie::DeplacerBateau(unsigned int currentplayer, unsigned int numbatselec
     if(!ok) {
 
         if(alleg_present){
-            draw_sprite(alleg.getImage(0), alleg.getImage(12), 50, 100);
-            affichageAlleg(0,currentplayer);
+            draw_sprite(alleg.getImage(0), alleg.getImage(12), 100, 120);
+            affichageAlleg(0);
             rest(1000);
         }
     }
@@ -1049,48 +1152,48 @@ bool Partie::TournerBateau(unsigned int currentplayer, unsigned int numbatselect
         case 3 :    for(unsigned int i=0; i<battab[currentplayer].size();i++)
                 for(unsigned int j=0; j<battab[currentplayer][i]->get_taille();j++){
                     if(battab[currentplayer][numbatselected]->get_orientation()=='h')
-                        if((x0==battab[currentplayer][i]->get_etatx(j)&&y0-1==battab[currentplayer][i]->get_etaty(j))||
-                            (x0==battab[currentplayer][i]->get_etatx(j)&&y0+1==battab[currentplayer][i]->get_etaty(j)))
+                        if((y0-1>=14||y0+1>=14)||((x0==battab[currentplayer][i]->get_etatx(j)&&y0-1==battab[currentplayer][i]->get_etaty(j))||
+                            (x0==battab[currentplayer][i]->get_etatx(j)&&y0+1==battab[currentplayer][i]->get_etaty(j))))
                                 ok=false;
                     if(battab[currentplayer][numbatselected]->get_orientation()=='v')
-                        if((x0-1==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
-                            (x0+1==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j)))
+                        if((x0-1>=14||x0+1>=14)||((x0-1==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
+                            (x0+1==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))))
                                 ok=false;
                 }
             break;
         case 5 :    for(unsigned int i=0; i<battab[currentplayer].size();i++)
                         for(unsigned int j=0; j<battab[currentplayer][i]->get_taille();j++){
                             if(battab[currentplayer][numbatselected]->get_orientation()=='h')
-                                if((x0==battab[currentplayer][i]->get_etatx(j)&&y0-1==battab[currentplayer][i]->get_etaty(j))||
+                                if((y0-2>=14||y0+2>=14)||((x0==battab[currentplayer][i]->get_etatx(j)&&y0-1==battab[currentplayer][i]->get_etaty(j))||
                                     (x0==battab[currentplayer][i]->get_etatx(j)&&y0+1==battab[currentplayer][i]->get_etaty(j))||
                                     (x0==battab[currentplayer][i]->get_etatx(j)&&y0-2==battab[currentplayer][i]->get_etaty(j))||
-                                    (x0==battab[currentplayer][i]->get_etatx(j)&&y0+2==battab[currentplayer][i]->get_etaty(j)))
+                                    (x0==battab[currentplayer][i]->get_etatx(j)&&y0+2==battab[currentplayer][i]->get_etaty(j))))
                                         ok=false;
                             if(battab[currentplayer][numbatselected]->get_orientation()=='v')
-                                if((x0-1==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
+                                if((x0-2>=14||x0+2>=14)||((x0-1==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
                                     (x0+1==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
                                     (x0-2==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
-                                    (x0+2==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j)))
+                                    (x0+2==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))))
                                         ok=false;
                         }
             break;
-        case 7 :       for(unsigned int i=0; i<battab[currentplayer].size();i++)
+        case 7 :    for(unsigned int i=0; i<battab[currentplayer].size();i++)
                         for(unsigned int j=0; j<battab[currentplayer][i]->get_taille();j++){
                             if(battab[currentplayer][numbatselected]->get_orientation()=='h')
-                                if((x0==battab[currentplayer][i]->get_etatx(j)&&y0-1==battab[currentplayer][i]->get_etaty(j))||
+                                if((y0-3>=14||y0+3>=14)||((x0==battab[currentplayer][i]->get_etatx(j)&&y0-1==battab[currentplayer][i]->get_etaty(j))||
                                     (x0==battab[currentplayer][i]->get_etatx(j)&&y0+1==battab[currentplayer][i]->get_etaty(j))||
                                     (x0==battab[currentplayer][i]->get_etatx(j)&&y0-2==battab[currentplayer][i]->get_etaty(j))||
                                     (x0==battab[currentplayer][i]->get_etatx(j)&&y0+2==battab[currentplayer][i]->get_etaty(j))||
                                     (x0==battab[currentplayer][i]->get_etatx(j)&&y0-3==battab[currentplayer][i]->get_etaty(j))||
-                                    (x0==battab[currentplayer][i]->get_etatx(j)&&y0+3==battab[currentplayer][i]->get_etaty(j)))
+                                    (x0==battab[currentplayer][i]->get_etatx(j)&&y0+3==battab[currentplayer][i]->get_etaty(j))))
                                         ok=false;
                             if(battab[currentplayer][numbatselected]->get_orientation()=='v')
-                                if((x0-1==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
+                                if((x0-3>=14||x0+3>=14)||((x0-1==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
                                     (x0+1==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
                                     (x0-2==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
                                     (x0+2==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
                                     (x0-3==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))||
-                                    (x0+3==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j)))
+                                    (x0+3==battab[currentplayer][i]->get_etatx(j)&&y0==battab[currentplayer][i]->get_etaty(j))))
                                         ok=false;
                         }
             break;
@@ -1127,8 +1230,8 @@ bool Partie::TournerBateau(unsigned int currentplayer, unsigned int numbatselect
     else {
 
         if(alleg_present){
-            draw_sprite(alleg.getImage(0), alleg.getImage(12), 50, 100);
-            affichageAlleg(0,currentplayer);
+            draw_sprite(alleg.getImage(0), alleg.getImage(12), 100, 120);
+            affichageAlleg(0);
             rest(1000);
         }
     }
@@ -1139,122 +1242,134 @@ bool Partie::TournerBateau(unsigned int currentplayer, unsigned int numbatselect
 
 void Partie::resetpartie()//Gros reset pour remettre la partie à 0 à la fin de celle ci ou au retour au menu
 {
-    ///IL FAUT CLEAR LES VECTEURS ET VIRER LES CASES EN FAISANT ATTENTION AU FAIT QUE CE SOIT DES POINTEURS
 
     battab.clear();
 
 }
 
-void Partie::initPartie()//Initialisation avec le placement des bateaux surtout
+void Partie::initPartie(bool chargement)//Initialisation avec le placement des bateaux surtout
 {
 
-    char orirand=0;
-    unsigned int xrand=0;
-    unsigned int yrand=0;
-    bool ok=false;
-    ///INITIALISER LES VECTEURS ICI
-    srand (time(NULL));
-
-    //Initialiser les bateaux !
+    //Initialiser
     battab.resize(2);
 
-    //POUR CHAQUE JOUEUR
-    for(unsigned int i=0;i<2;i++){
-        //POUR CHAQUE BATEAU
-        for(unsigned int j=0;j<10;j++)
-        {
-            //orientation
-            if(rand()%2==0) orirand='h';
-            else orirand='v';
+    currentplayer = 0;
 
-            switch(j){
-            //x, y
-            //Verifier tout x et y libres
-            //placer bateau
+    if(!chargement){
+        char orirand=0;
+        unsigned int xrand=0;
+        unsigned int yrand=0;
+        bool ok=false;
+        ///INITIALISER LES VECTEURS ICI
+        srand (time(NULL));
 
-            case 0:
-                xrand = rand()%9 +3;
-                yrand = rand()%9 +3;
 
-                battab[i].push_back(new Cuirasse(xrand,yrand,7,orirand));
-                break;
+        //POUR CHAQUE JOUEUR
+        for(unsigned int i=0;i<2;i++){
+            //POUR CHAQUE BATEAU
+            for(unsigned int j=0;j<10;j++)
+            {
+                //orientation
+                if(rand()%2==0) orirand='h';
+                else orirand='v';
 
-            case 1:
-            case 2:
-                while(!ok){
-                    ok=true;
-                    xrand = rand()%11 +2;
-                    yrand = rand()%11 +2;
-                    for(unsigned int numbat=0;numbat<battab[i].size();numbat++)
-                        for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++){
-                            if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
-                            if( orirand=='h' ){
-                                if( battab[i][numbat]->get_etatx(taille)==xrand-1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
-                                if( battab[i][numbat]->get_etatx(taille)==xrand+1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
-                                if( battab[i][numbat]->get_etatx(taille)==xrand-2 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
-                                if( battab[i][numbat]->get_etatx(taille)==xrand+2 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                switch(j){
+                //x, y
+                //Verifier tout x et y libres
+                //placer bateau
+
+                case 0:
+                    if(orirand=='h') xrand = rand()%9 +3;
+                    else xrand = rand()%15;
+                    if(orirand=='v') yrand = rand()%9 +3;
+                    else yrand = rand()%15;
+
+                    battab[i].push_back(new Cuirasse(xrand,yrand,7,orirand));
+                    break;
+
+                case 1:
+                case 2:
+                    while(!ok){
+                        ok=true;
+                        if(orirand=='h') xrand = rand()%11 +2;
+                        else xrand = rand()%15;
+                        if(orirand=='v') yrand = rand()%11 +2;
+                        else yrand = rand()%15;
+                        for(unsigned int numbat=0;numbat<battab[i].size();numbat++)
+                            for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++){
+                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                if( orirand=='h' ){
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand-1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand+1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand-2 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand+2 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                }
+                                else{
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand-1 ) ok=false;
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand+1 ) ok=false;
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand-2 ) ok=false;
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand+2 ) ok=false;
+
+                                }
                             }
-                            else{
-                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand-1 ) ok=false;
-                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand+1 ) ok=false;
-                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand-2 ) ok=false;
-                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand+2 ) ok=false;
+                    }
+                    ok=false;
 
+                    battab[i].push_back(new Croiseur(xrand,yrand,5,orirand));
+                    break;
+
+                case 3:
+                case 4:
+                case 5:
+                    while(!ok){
+                        ok=true;
+                        if(orirand=='h') xrand = rand()%13 +1;
+                        else xrand = rand()%15;
+                        if(orirand=='v') yrand = rand()%13 +1;
+                        else yrand = rand()%15;
+                        for(unsigned int numbat=0;numbat<battab[i].size();numbat++)
+                            for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++){
+                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                if( orirand=='h' ){
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand-1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand+1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                                }
+                                else{
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand-1 ) ok=false;
+                                    if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand+1 ) ok=false;
+
+                                }
                             }
-                        }
+                    }
+                    ok=false;
+
+                    battab[i].push_back(new Destroyer(xrand,yrand,3,orirand));
+                    break;
+
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    while(!ok){
+                        ok=true;
+                        xrand = rand()%15;
+                        yrand = rand()%15;
+                        for(unsigned int numbat=0;numbat<j;numbat++)
+                            for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++)
+                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
+                    }
+                    ok=false;
+
+                    battab[i].push_back(new Sousmarin(xrand,yrand,1,orirand));
+                    break;
                 }
-                ok=false;
-
-                battab[i].push_back(new Croiseur(xrand,yrand,5,orirand));
-                break;
-
-            case 3:
-            case 4:
-            case 5:
-                while(!ok){
-                    ok=true;
-                    xrand = rand()%13 +1;
-                    yrand = rand()%13 +1;
-                    for(unsigned int numbat=0;numbat<battab[i].size();numbat++)
-                        for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++){
-                            if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
-                            if( orirand=='h' ){
-                                if( battab[i][numbat]->get_etatx(taille)==xrand-1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
-                                if( battab[i][numbat]->get_etatx(taille)==xrand+1 && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
-                            }
-                            else{
-                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand-1 ) ok=false;
-                                if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand+1 ) ok=false;
-
-                            }
-                        }
-                }
-                ok=false;
-
-                battab[i].push_back(new Destroyer(xrand,yrand,3,orirand));
-                break;
-
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-                while(!ok){
-                    ok=true;
-                    xrand = rand()%15;
-                    yrand = rand()%15;
-                    for(unsigned int numbat=0;numbat<j;numbat++)
-                        for(unsigned int taille=0;taille<battab[i][numbat]->get_taille();taille++)
-                            if( battab[i][numbat]->get_etatx(taille)==xrand && battab[i][numbat]->get_etaty(taille)==yrand ) ok=false;
-                }
-                ok=false;
-
-                battab[i].push_back(new Sousmarin(xrand,yrand,1,orirand));
-                break;
             }
         }
     }
 
-
+    else{
+        ia=chargement_partie();
+    }
 
 
 }
