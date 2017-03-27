@@ -13,15 +13,13 @@ class Menu
     private :
         //Attributs
         bool m_exit;
-        bool allegro_present;
+        unsigned int allegro_present;
 
         Partie partie;
         // Bitmaps
         BITMAP* buffer;
         BITMAP* menu_principal;
-        BITMAP* menu_option;
         BITMAP* menu_regles;
-        BITMAP* menu_charger;
         BITMAP* txt_un_joueur;
         BITMAP* txt_deux_joueur;
         BITMAP* txt_charger;
@@ -34,6 +32,11 @@ class Menu
         BITMAP* txt_hover_charger;
         BITMAP* txt_hover_quitter;
         BITMAP* txt_hover_retour;
+        BITMAP* Al1;
+        BITMAP* Al2;
+
+        SAMPLE * Al;
+
     public :
         //Constructeur
         Menu();
@@ -42,14 +45,15 @@ class Menu
         ~Menu();
 
         //Methodes
+        void halaygreau();
         void Allegro_present();
-        bool getallegro_present();
+        unsigned int getallegro_present();
 
         void load_bitmaps();
         void principal();
         void regles();
-        void charger();
         void destroy_bitmaps();
+        void destroy_wav();
 };
 
 

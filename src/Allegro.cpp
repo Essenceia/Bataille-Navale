@@ -134,6 +134,12 @@ void Allegro::ChargerImages()
         allegro_message("pas pu trouver Bitmap/chgmnt.bmp");
         exit(EXIT_FAILURE);
     }
+    cache=load_bitmap("../Bitmap/cache.bmp",NULL);
+    if (!cache)
+    {
+        allegro_message("pas pu trouver Bitmap/cache.bmp");
+        exit(EXIT_FAILURE);
+    }
 }
 
 void Allegro::DestroyImages()
@@ -158,6 +164,7 @@ void Allegro::DestroyImages()
     destroy_bitmap(mauvais);
     destroy_bitmap(nopivot);
     destroy_bitmap(chgmnt);
+    destroy_bitmap(cache);
 }
 
 
@@ -171,6 +178,7 @@ BITMAP* Allegro::getImage(int i)
         case 1 :    return fond;
         case 2 :    return tampon;
         case 3 :    return tampon2;
+        case 4 :    return cache;
 
         case 10 :    return choixaction;
         case 11 :    return mauvais;

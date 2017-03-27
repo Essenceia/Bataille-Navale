@@ -6,7 +6,7 @@
 
 // contructeur par default
 Menu::Menu()
-    : m_exit(false), allegro_present(false)
+    : m_exit(false), allegro_present(0)
 {
 
 }
@@ -31,29 +31,59 @@ void Menu::Allegro_present()
     partie.ConsPrint(3,0);
     std::cout << "Voulez vous jouer avec ou sans Allegro?" <<std::endl
               << "0. sans" <<std::endl
-              << "1. avec" <<std::endl;
+              << "1. avec" <<std::endl
+              << "2. MAIS C QUOA HALAYGREAU?" <<std::endl;
     partie.ConsPrint(10,5);
     std::cout << "Choix : ";
 
     std::cin>> int_allegro_present;
 
-    if(int_allegro_present!=0&&int_allegro_present!=1)
+    if(int_allegro_present!=0&&int_allegro_present!=1&&int_allegro_present!=2)
     {
         std::cout << std::endl << "Bravo nous esperons que tu es content de faire n'importe quoi, pour la peine tu ne joueras pas!";
         exit(0);
     }
 
-    if(int_allegro_present==0)  allegro_present=false;
-    else  allegro_present=true;
+    if(int_allegro_present==0)  allegro_present=0;
+    else  allegro_present=1;
 
     partie.setal(allegro_present);
 
+    allegro_present=int_allegro_present;
+
 }
 
-bool Menu::getallegro_present()
+void Menu::halaygreau()
+{
+
+    Al = load_sample("../Bitmap/Menu/Al.wav");
+
+    rest(200);
+
+    play_sample(Al, 127, 127, 1000, 1);
+
+    unsigned int compteur_surprise=0;
+
+    while(!key[KEY_ESC])
+    {
+        clear_bitmap(buffer);
+
+        if(compteur_surprise==0) draw_sprite(buffer, Al1, 0, 0);
+        if(compteur_surprise==1) draw_sprite(buffer, Al2, 0, 0);
+
+        blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H); // Affichage général
+
+        if(compteur_surprise==1) compteur_surprise=0;
+        else compteur_surprise=1;
+        rest(100);
+    }
+}
+
+unsigned int Menu::getallegro_present()
 {
     return allegro_present;
 }
+
 void Menu::load_bitmaps() // Charger images
 {
     buffer = create_bitmap(SCREEN_W, SCREEN_H); // Cr�ation buffer
@@ -68,12 +98,6 @@ void Menu::load_bitmaps() // Charger images
     if (!menu_regles)
     {
         allegro_message("pas pu trouver Bitmap/Menu/menu_regles.bmp");
-        exit(EXIT_FAILURE);
-    }
-    menu_charger=load_bitmap("../Bitmap/Menu/menu_charger.bmp",NULL);
-    if (!menu_charger)
-    {
-        allegro_message("pas pu trouver Bitmap/Menu/menu_charger.bmp");
         exit(EXIT_FAILURE);
     }
     txt_un_joueur=load_bitmap("../Bitmap/Menu/txt_un_joueur.bmp",NULL);
@@ -148,6 +172,18 @@ void Menu::load_bitmaps() // Charger images
         allegro_message("pas pu trouver Bitmap/Menu/txt_hover_retour.bmp");
         exit(EXIT_FAILURE);
     }
+    Al1=load_bitmap("../Bitmap/Menu/Al1.bmp",NULL);
+    if (!Al1)
+    {
+        allegro_message("pas pu trouver Bitmap/Menu/Al1.bmp");
+        exit(EXIT_FAILURE);
+    }
+    Al2=load_bitmap("../Bitmap/Menu/Al2.bmp",NULL);
+    if (!Al2)
+    {
+        allegro_message("pas pu trouver Bitmap/Menu/Al2.bmp");
+        exit(EXIT_FAILURE);
+    }
 
 }
 
@@ -186,11 +222,11 @@ void Menu::principal()
 
             switch(choix){
 
-                case 1 : partie.LancerPartie(true);
+                case 1 : partie.LancerPartie(true,false);
                     break;
-                case 2 : partie.LancerPartie(false);
+                case 2 : partie.LancerPartie(false,false);
                     break;
-                case 3 : charger();
+                case 3 : partie.LancerPartie(false,true);
                     break;
                 case 4 : regles();
                     break;
@@ -226,7 +262,7 @@ void Menu::principal()
                 // si clique gauche
                 if ( mouse_b & 1 )
                 {
-                    partie.LancerPartie(true);
+                    partie.LancerPartie(true,false);
                 }
             }
 
@@ -239,7 +275,7 @@ void Menu::principal()
                 // si clique gauche
                 if ( mouse_b & 1 )
                 {
-                    partie.LancerPartie(false);
+                    partie.LancerPartie(false,false);
                 }
             }
 
@@ -252,7 +288,7 @@ void Menu::principal()
                 // si clique gauche
                 if ( mouse_b & 1 )
                 {
-                    charger();
+                    partie.LancerPartie(false,true);
                 }
             }
 
@@ -287,63 +323,6 @@ void Menu::principal()
         }
     }
 
-}
-
-void Menu::charger() {
-    // R�initialisation du bool�en m_exit
-    m_exit = false;
-    int x = 0;
-    int y = 0;
-    system("cls");
-
-    while (m_exit == false) {
-        //Sur console
-        if (!getallegro_present()) {
-
-            partie.ConsPrint(1, 13);
-            std::cout << "Bataille Navale";
-            partie.ConsPrint(7, 3);
-            std::cout << "CHARGER";
-
-
-            partie.ConsPrint(20,25);
-            std::cout << "R : Retour";
-
-        }
-        else{
-
-            // r�initilisation des coordonn�es souris
-
-            x= mouse_x;
-            y= mouse_y;
-
-            // Affichage du menu_charger
-            clear_bitmap(buffer);
-            blit(menu_charger, buffer, 0,0,0,0,SCREEN_W,SCREEN_H);
-            blit(txt_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-
-            /// "RETOUR"
-            //si la souris se trouve sur "RETOUR"
-            if( x>=600 && x<=750 && y>=500 && y<=550 )
-            {
-                blit(txt_hover_retour,buffer,0,0,600,500,SCREEN_W,SCREEN_H);
-                blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-                // si clique gauche
-                if ( mouse_b & 1 )
-                {
-                    // retour au menu principal
-                    m_exit = true;
-                }
-            }
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-
-            rest(100); //pause pour qu'il soit visible
-
-        }
-        m_exit = false;
-
-
-    }
 }
 
 // Menu r�gles
@@ -390,11 +369,6 @@ void Menu::regles()
             partie.ConsPrint(24,25);
 
             std::cout << "R : Retour";
-
-
-
-            while (getch()!='r');
-            m_exit=true;
         }
         else{
 
@@ -438,7 +412,6 @@ void Menu::destroy_bitmaps()
     destroy_bitmap(buffer);
     destroy_bitmap(menu_principal);
     destroy_bitmap(menu_regles);
-    destroy_bitmap(menu_charger);
     destroy_bitmap(txt_un_joueur);
     destroy_bitmap(txt_deux_joueur);
     destroy_bitmap(txt_regles);
@@ -449,5 +422,12 @@ void Menu::destroy_bitmaps()
     destroy_bitmap(txt_hover_regles);
     destroy_bitmap(txt_hover_quitter);
     destroy_bitmap(txt_hover_retour);
+    destroy_bitmap(Al1);
+    destroy_bitmap(Al2);
 
+}
+
+void Menu::destroy_wav()
+{
+    destroy_sample(Al);
 }

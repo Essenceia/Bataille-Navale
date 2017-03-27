@@ -11,7 +11,7 @@ int main()
     Menu menu;
     menu.Allegro_present();
 
-    if(menu.getallegro_present())
+    if(menu.getallegro_present()!=0)
     {
 
         allegro_init();
@@ -36,10 +36,18 @@ int main()
 
 
 
-    menu.principal();
+    if(menu.getallegro_present()!=2) menu.principal();
 
 
-    if(menu.getallegro_present())   menu.destroy_bitmaps();
+    if(menu.getallegro_present()==2)///MAIS C QUOA HALAYGREAU?
+        {
+
+            menu.halaygreau();
+            menu.destroy_wav();
+
+        }
+
+    if(menu.getallegro_present()!=0)   menu.destroy_bitmaps();
 
     return 0;
 }

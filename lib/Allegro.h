@@ -32,6 +32,7 @@ class Allegro
         BITMAP *mauvais;
         BITMAP *nopivot;
         BITMAP *chgmnt;
+        BITMAP *cache;
 
     public :
 

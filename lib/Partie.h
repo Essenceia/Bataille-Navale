@@ -23,6 +23,7 @@ class Partie
 
 
        //nbr bateau restant par type et par joueur
+       unsigned int currentplayer;
        unsigned int Tot1;
        unsigned int Tot2;
 
@@ -34,6 +35,8 @@ class Partie
        unsigned int Cro2;
        unsigned int Des2;
        unsigned int Sou2;
+
+       bool ia;
 
 
     public :
@@ -48,13 +51,13 @@ class Partie
 
         ///Methodes
         //gestion partie
-        void LancerPartie(bool ia);
-        void initPartie();
+        void LancerPartie(bool iapresent, bool chargement);
+        void initPartie(bool chargement);
         void resetpartie();
 
         // gestion sauvergarde
-        void sauvegarder_partie(std::string num);
-        void chargement_partie(std::string num);
+        void sauvegarder_partie();
+        bool chargement_partie(); //RETOURNE SI IL Y A UN IA OU PAS
 
         // gestion tableau
         void AfficherTab(int numtab, bool visible); // affichage du tableau
@@ -65,7 +68,7 @@ class Partie
         void ConsPrint(unsigned int x,unsigned int y);
         void ChargerImages();
         void DestroyImages();
-        void affichageAlleg(int i, unsigned int currentplayer);
+        void affichageAlleg(int i);
         void affichageCons(unsigned int currentplayer, unsigned int otherplayer);
 
 
