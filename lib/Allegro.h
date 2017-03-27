@@ -43,6 +43,8 @@ class Allegro
         void ChargerImages();
         void DestroyImages();
 
+        void clearbmp();
+
 
         //Getters et Setters
         BITMAP* getImage(int i);

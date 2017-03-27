@@ -94,13 +94,22 @@ void Partie::sauvegarder_partie(std::string num)
 
 }
 
-void Partie::affichageAlleg(int i){
+void Partie::affichageAlleg(int i, unsigned int currentplayer){
 
-    blit(alleg.getImage(i),screen,0,0,0,0,SCREEN_W,SCREEN_H);
+    blit(alleg.getImage(i),screen,0,0,0,0,SCREEN_W,SCREEN_H-200);
 
 }
 
 void Partie::affichageCons(unsigned int currentplayer, unsigned int otherplayer){
+
+    unsigned int Cui, Cro, Des, Sou;
+
+    if(currentplayer=0){
+        Cui=Cui2; Cro=Cro2; Des=Des2; Sou=Sou2;
+    }
+    else{
+        Cui=Cui1; Cro=Cro1; Des=Des1; Sou=Sou1;
+    }
 
 
     for(unsigned int h=0;h<2;h++){
@@ -151,25 +160,33 @@ void Partie::affichageCons(unsigned int currentplayer, unsigned int otherplayer)
     ConsPrint(19,45);
     std::cout << "Ennemis restants";
     ConsPrint(19,63);
-    std::cout << "Cuirasse K :  "<< Cui2;
+    std::cout << "Cuirasse K :  "<< Cui;
     ConsPrint(20,63);
-    std::cout << "Croiseur c :  "<< Cro2;
+    std::cout << "Croiseur c :  "<< Cro;
     ConsPrint(21,63);
-    std::cout << "Destroyer d : "<< Des2;
+    std::cout << "Destroyer d : "<< Des;
     ConsPrint(22,63);
-    std::cout << "Sousmarin s : "<< Sou2;
+    std::cout << "Sousmarin s : "<< Sou;
 
 }
 
 void Partie::LancerPartie(bool ia)
 {
 
-    if (alleg_present==1) ChargerImages();
+    if (alleg_present==1) {
+
+        ChargerImages();
+        alleg.clearbmp();
+        blit(alleg.getImage(0),screen,0,0,0,0,SCREEN_W,SCREEN_H);
+
+    }
 
     initPartie();
 
     int x= 0;
     int y= 0;
+
+    unsigned int Cui, Cro, Des, Sou;
 
     unsigned int choixx=0;
     unsigned int choixy=0;
@@ -188,14 +205,37 @@ void Partie::LancerPartie(bool ia)
 
     srand(time(NULL));
 
-
     VerifRestant();
-    affichageCons(currentplayer,otherplayer);
+
+    Cui=Cui2; Cro=Cro2; Des=Des2; Sou=Sou2;
+
+    if(alleg_present==0) affichageCons(currentplayer,otherplayer);
+    else{
+
+
+    textprintf_ex(screen, font, 50, 430, makecol(255, 255, 255), -1, "Se deplacer sur la grille : Z,Q,S,D");
+    textprintf_ex(screen, font, 50, 450, makecol(255, 255, 255), -1, "Selectionner un bateau    : E");
+
+    textprintf_ex(screen, font, 450, 430, makecol(255, 255, 255), -1, "Ennemis restants :");
+    textprintf_ex(screen, font, 500, 450, makecol(255, 255, 255), -1, "Cuirasse    : %d", Cui);
+    textprintf_ex(screen, font, 500, 470, makecol(255, 255, 255), -1, "Croiseur    : %d", Cro);
+    textprintf_ex(screen, font, 500, 490, makecol(255, 255, 255), -1, "Destroyer   : %d", Des);
+    textprintf_ex(screen, font, 500, 510, makecol(255, 255, 255), -1, "Sous-marins : %d", Sou);
+    }
 
 
     ///BOUCLE DE JEU
     while (!exitboucle)
     {
+
+
+        if(currentplayer=0){
+            Cui=Cui2; Cro=Cro2; Des=Des2; Sou=Sou2;
+        }
+        else{
+            Cui=Cui1; Cro=Cro1; Des=Des1; Sou=Sou1;
+        }
+
         if(ia&&currentplayer==1) tourIA=true;
         else tourIA=false;
 
@@ -256,8 +296,13 @@ void Partie::LancerPartie(bool ia)
 
             if(!tourIA){
                 if (alleg_present==1) {
-                    affichageCons(currentplayer,otherplayer);
-                    affichageAlleg(0);
+
+                    alleg.clearbmp();
+                    textprintf_ex(screen, font, 500, 450, makecol(255, 255, 255), -1, "Cuirasse    : %d", Cui);
+                    textprintf_ex(screen, font, 500, 470, makecol(255, 255, 255), -1, "Croiseur    : %d", Cro);
+                    textprintf_ex(screen, font, 500, 490, makecol(255, 255, 255), -1, "Destroyer   : %d", Des);
+                    textprintf_ex(screen, font, 500, 510, makecol(255, 255, 255), -1, "Sous-marins : %d", Sou);
+                    affichageAlleg(0,currentplayer);
                     rest(1000);
                 }
 
@@ -274,12 +319,13 @@ void Partie::LancerPartie(bool ia)
                 else currentplayer=0;
                 choixx=0;
                 choixy=0;
+                numbatselected=50;
                 choixaction=false;
 
                 if(Tot1==0){
                     if (alleg_present==1) {
                             draw_sprite(alleg.getImage(0), alleg.getImage(92), 0, 0);
-                            affichageAlleg(0);
+                            affichageAlleg(0,currentplayer);
                             while(!key[KEY_E]);
                             while(key[KEY_E]);
                         }
@@ -299,7 +345,7 @@ void Partie::LancerPartie(bool ia)
                 else if(Tot2==0){
                     if (alleg_present==1) {
                             draw_sprite(alleg.getImage(0), alleg.getImage(91), 0, 0);
-                            affichageAlleg(0);
+                            affichageAlleg(0,currentplayer);
                             while(!key[KEY_E]);
                             while(key[KEY_E]);
                         }
@@ -318,7 +364,7 @@ void Partie::LancerPartie(bool ia)
 
                 else if (alleg_present==1 && !ia) {
                     draw_sprite(alleg.getImage(0), alleg.getImage(90), 0, 0);
-                    affichageAlleg(0);
+                    affichageAlleg(0,currentplayer);
                     while(!key[KEY_E]);
                     while(key[KEY_E]);
                 }
@@ -410,10 +456,15 @@ void Partie::LancerPartie(bool ia)
                                     action=true;
                                 }
 
+                                if( !(x>=105 && x<=695 && y>=120 && y<=220) && mouse_b & 1 ){
+
+                                    action=true;
+                                }
+
                                 if(!action){
                                     //Choix de l'action
                                     draw_sprite(alleg.getImage(0), alleg.getImage(10), 50, 100);
-                                    affichageAlleg(0);
+                                    affichageAlleg(0,currentplayer);
                                 }
 
                             }
@@ -424,7 +475,7 @@ void Partie::LancerPartie(bool ia)
 
                         else {
                             draw_sprite(alleg.getImage(0), alleg.getImage(11), 50, 100);
-                            affichageAlleg(0);
+                            affichageAlleg(0,currentplayer);
                             rest(1000);
                         }
 
@@ -577,7 +628,12 @@ void Partie::LancerPartie(bool ia)
 
         //Dernier affichage
         if(!tourIA) {
-            if (alleg_present==1)  affichageAlleg(0);
+            if (alleg_present==1)
+            {
+                if(choixaction) affichageAlleg(2,currentplayer);
+                else affichageAlleg(0,currentplayer);
+
+            }
         }
 
     }
@@ -716,7 +772,7 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
             }
 
             //Affichage des options
-            affichageAlleg(3);
+            affichageAlleg(3,currentplayer);
         }
 
         else{
@@ -819,7 +875,7 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
 
     if(!tourIA){
         if(alleg_present==1) {
-            affichageAlleg(3);
+            affichageAlleg(3,currentplayer);
             rest(2000);
         }
         else {
@@ -904,7 +960,7 @@ bool Partie::DeplacerBateau(unsigned int currentplayer, unsigned int numbatselec
                 }
 
                 //Affichage des options
-                affichageAlleg(2);
+                affichageAlleg(2,currentplayer);
             }
 
             else{
@@ -962,7 +1018,7 @@ bool Partie::DeplacerBateau(unsigned int currentplayer, unsigned int numbatselec
 
         if(alleg_present){
             draw_sprite(alleg.getImage(0), alleg.getImage(12), 50, 100);
-            affichageAlleg(0);
+            affichageAlleg(0,currentplayer);
             rest(1000);
         }
     }
@@ -1072,7 +1128,7 @@ bool Partie::TournerBateau(unsigned int currentplayer, unsigned int numbatselect
 
         if(alleg_present){
             draw_sprite(alleg.getImage(0), alleg.getImage(12), 50, 100);
-            affichageAlleg(0);
+            affichageAlleg(0,currentplayer);
             rest(1000);
         }
     }

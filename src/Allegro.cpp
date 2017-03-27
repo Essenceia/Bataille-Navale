@@ -12,6 +12,11 @@ Allegro::~Allegro()
 
 }
 
+void Allegro::clearbmp()
+{
+    clear_bitmap(page);
+}
+
 void Allegro::ChargerImages()
 {
 

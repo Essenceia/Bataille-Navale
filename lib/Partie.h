@@ -65,7 +65,7 @@ class Partie
         void ConsPrint(unsigned int x,unsigned int y);
         void ChargerImages();
         void DestroyImages();
-        void affichageAlleg(int i);
+        void affichageAlleg(int i, unsigned int currentplayer);
         void affichageCons(unsigned int currentplayer, unsigned int otherplayer);
 
 
