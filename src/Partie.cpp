@@ -839,12 +839,12 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
         choix=true;
     }
 
+    if (alleg_present==1) {dest_x=0; dest_y=0;}
+
     //Laisse le joueur choisir où tirer
     while(!choix){
         //Commandes
         if (alleg_present==1) {
-
-            dest_x=0; dest_y=0;
             ///Selection du bateau
             //Deplacement du curseur
             draw_sprite(alleg.getImage(3), alleg.getImage(2),0,0);
