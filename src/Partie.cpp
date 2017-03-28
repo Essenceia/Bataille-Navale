@@ -635,7 +635,8 @@ void Partie::LancerPartie(bool iapresent, bool chargement)
                         case 'm' : choixx=12; break;
                         case 'n' : choixx=13; break;
                         case 'o' : choixx=14; break;
-                        case 's' : sauvegarder_partie();
+                        case 's' : sauvegarder_partie(); break;
+                        default : choixx=50; break;
                     }
                     if(choix.length()>=2){
                         switch(choix[1]){
@@ -647,6 +648,7 @@ void Partie::LancerPartie(bool iapresent, bool chargement)
                                             case '3' : choixy=12; break;
                                             case '4' : choixy=13; break;
                                             case '5' : choixy=14; break;
+                                            default : choixy=50; break;
 
                                         }
                                         else choixy=0; break;
@@ -658,6 +660,7 @@ void Partie::LancerPartie(bool iapresent, bool chargement)
                             case '7' : choixy=6; break;
                             case '8' : choixy=7; break;
                             case '9' : choixy=8; break;
+                            default : choixy=50; break;
                         }
                     for(unsigned int i=0; i<battab[currentplayer].size();i++)
                         for(unsigned int j=0; j<battab[currentplayer][i]->get_taille();j++)
@@ -805,8 +808,8 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
 {
 
     //Recup type de tir avec rayon d'action
-    unsigned int dest_x=0;
-    unsigned int dest_y=0;
+    unsigned int dest_x;
+    unsigned int dest_y;
     unsigned int rayon=0;
     unsigned int maxvalue=0;
     bool oklength=false;
@@ -841,6 +844,7 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
         //Commandes
         if (alleg_present==1) {
 
+            dest_x=0; dest_y=0;
             ///Selection du bateau
             //Deplacement du curseur
             draw_sprite(alleg.getImage(3), alleg.getImage(2),0,0);
@@ -916,6 +920,7 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
                     case 'm' : dest_x=12; break;
                     case 'n' : dest_x=13; break;
                     case 'o' : dest_x=14; break;
+                    default : dest_x=50; break;
                 }
                 switch(choixplace[1]){
                         case '1' : if(choixplace.length()==3)
@@ -926,6 +931,7 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
                                         case '3' : dest_y=12; break;
                                         case '4' : dest_y=13; break;
                                         case '5' : dest_y=14; break;
+                                        default : dest_y=50; break;
 
                                     }
                                     else dest_y=0; break;
@@ -937,6 +943,7 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
                         case '7' : dest_y=6; break;
                         case '8' : dest_y=7; break;
                         case '9' : dest_y=8; break;
+                        default : dest_y=50; break;
                 }
             choix=true;
         }
@@ -1080,7 +1087,7 @@ bool Partie::DeplacerBateau(unsigned int currentplayer, unsigned int numbatselec
                         ConsPrint(22,10);
                         std::cin >> choixplace;
 
-                        if(choixplace.length()==1) oklength=true;
+                        if(choixplace=="h"||choixplace=="g"||choixplace=="b"||choixplace=="d") oklength=true;
 
                     }
 
@@ -1091,21 +1098,25 @@ bool Partie::DeplacerBateau(unsigned int currentplayer, unsigned int numbatselec
                         case 'h' : if(okh)
                                     for(unsigned int j=0;j<battab[currentplayer][numbatselected]->get_taille();j++)
                                         battab[currentplayer][numbatselected]->set_etaty(j, battab[currentplayer][numbatselected]->get_etaty(j)-1);
+                                    else ok=false;
                                     choixaction=true;
                             break;
                         case 'b' : if(okb)
                                     for(unsigned int j=0;j<battab[currentplayer][numbatselected]->get_taille();j++)
                                         battab[currentplayer][numbatselected]->set_etaty(j, battab[currentplayer][numbatselected]->get_etaty(j)+1);
+                                    else ok=false;
                                     choixaction=true;
                             break;
                         case 'g' : if(okg)
                                     for(unsigned int j=0;j<battab[currentplayer][numbatselected]->get_taille();j++)
                                         battab[currentplayer][numbatselected]->set_etatx(j, battab[currentplayer][numbatselected]->get_etatx(j)-1);
+                                    else ok=false;
                                     choixaction=true;
                             break;
                         case 'd' : if(okd)
                                     for(unsigned int j=0;j<battab[currentplayer][numbatselected]->get_taille();j++)
                                         battab[currentplayer][numbatselected]->set_etatx(j, battab[currentplayer][numbatselected]->get_etatx(j)+1);
+                                    else ok=false;
                                     choixaction=true;
                             break;
                     }

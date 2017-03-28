@@ -22,6 +22,8 @@ Menu::~Menu()
 /// M�thodes
 void Menu::Allegro_present()
 {
+    bool ok=false;
+
     //Sur console
     system("cls"); // nettoie la console
     int int_allegro_present = 0;
@@ -33,15 +35,22 @@ void Menu::Allegro_present()
               << "0. sans" <<std::endl
               << "1. avec" <<std::endl
               << "2. MAIS C QUOA HALAYGREAU?" <<std::endl;
-    partie.ConsPrint(10,5);
-    std::cout << "Choix : ";
 
-    std::cin>> int_allegro_present;
+    while(!ok){
+            partie.ConsPrint(10,5);
+            std::cout << "Choix :     ";
+            partie.ConsPrint(10,13);
+            std::cin >> int_allegro_present;
+            if (std::cin.fail()){
+                partie.ConsPrint(13,5);
+                std::cout << "Ah ben bravo t'as fais plante le programme !";
+                partie.ConsPrint(24,0);
+                system("pause");
+                exit(0);
+            }
 
-    if(int_allegro_present!=0&&int_allegro_present!=1&&int_allegro_present!=2)
-    {
-        std::cout << std::endl << "Bravo nous esperons que tu es content de faire n'importe quoi, pour la peine tu ne joueras pas!";
-        exit(0);
+
+            if(int_allegro_present==1||int_allegro_present==2||int_allegro_present==0) ok=true;
     }
 
     if(int_allegro_present==0)  allegro_present=0;
