@@ -203,7 +203,7 @@ void Menu::principal()
     m_exit = false;
     int x= 0;
     int y= 0;
-    int choix;
+    int choix = 1;
     system("cls");
 
     while( m_exit == false )
@@ -217,18 +217,145 @@ void Menu::principal()
             partie.ConsPrint(1,13);
             std::cout << "Bataille Navale";
             partie.ConsPrint(3,0);
-            std::cout << "1. 1 JOUEUR" <<std::endl
-                      << "2. 2 JOUEURS" <<std::endl
-                      << "3. CHARGER" <<std::endl
-                      << "4. REGLES" <<std::endl
-                      << "5. QUITTER" <<std::endl;
-            partie.ConsPrint(10,5);
-            std::cout << "Choix : ";
-
-            std::cin >> choix;
-
+            std::cout << "[1 JOUEUR] " <<std::endl
+                      << " 2 JOUEURS " <<std::endl
+                      << " CHARGER " <<std::endl
+                      << " REGLES " <<std::endl
+                      << " QUITTER " <<std::endl<<std::endl<<std::endl<<std::endl<<std::endl
+                      << "Naviguez dans le menu à l'aide des touches Z et S, faites votre choix en pressant ENTRER";
+            do   //Loop until 'Enter' is pressed
+                {
+                c = getch();
+                switch(c)
+                {
+                    switch(key)
+                    {
+                    case 'z' :
+                        switch (choix)
+                        {
+                        case 1 :
+                            choix = 5;
+                            partie.ConsPrint(3,0);
+                            std::cout << " ";
+                            partie.ConsPrint(3,9);
+                            std::cout << " ";
+                            partie.ConsPrint(7,0);
+                            std::cout << "[";
+                            partie.ConsPrint(7,8);
+                            std::cout << "]";
+                            break;
+                        case 2 :
+                            choix = 1;
+                            partie.ConsPrint(4,0);
+                            std::cout << " ";
+                            partie.ConsPrint(4,10);
+                            std::cout << " ";
+                            partie.ConsPrint(3,0);
+                            std::cout << "[";
+                            partie.ConsPrint(3,9);
+                            std::cout << "]";
+                            break;
+                        case 3 :
+                            choix = 2;
+                            partie.ConsPrint(5,0);
+                            std::cout << " ";
+                            partie.ConsPrint(5,8);
+                            std::cout << " ";
+                            partie.ConsPrint(4,0);
+                            std::cout << "[";
+                            partie.ConsPrint(4,10);
+                            std::cout << "]";
+                            break;
+                        case 4 :
+                            choix = 3;
+                            partie.ConsPrint(6,0);
+                            std::cout << " ";
+                            partie.ConsPrint(6,7);
+                            std::cout << " ";
+                            partie.ConsPrint(5,0);
+                            std::cout << "[";
+                            partie.ConsPrint(5,8);
+                            std::cout << "]";
+                            break;
+                        case 5 :
+                            choix = 5;
+                            partie.ConsPrint(7,0);
+                            std::cout << " ";
+                            partie.ConsPrint(7,8);
+                            std::cout << " ";
+                            partie.ConsPrint(6,0);
+                            std::cout << "[";
+                            partie.ConsPrint(6,7);
+                            std::cout << "]";
+                            break;
+                        }
+                        break;
+                    case 's' :
+                        switch (choix)
+                        {
+                        case 1 :
+                            choix = 2;
+                            partie.ConsPrint(3,0);
+                            std::cout << " ";
+                            partie.ConsPrint(3,9);
+                            std::cout << " ";
+                            partie.ConsPrint(4,0);
+                            std::cout << "[";
+                            partie.ConsPrint(4,10);
+                            std::cout << "]";
+                            break;
+                        case 2 :
+                            choix = 3;
+                            partie.ConsPrint(4,0);
+                            std::cout << " ";
+                            partie.ConsPrint(4,10);
+                            std::cout << " ";
+                            partie.ConsPrint(5,0);
+                            std::cout << "[";
+                            partie.ConsPrint(5,8);
+                            std::cout << "]";
+                            break;
+                        case 3 :
+                            choix = 4;
+                            partie.ConsPrint(5,0);
+                            std::cout << " ";
+                            partie.ConsPrint(5,8);
+                            std::cout << " ";
+                            partie.ConsPrint(6,0);
+                            std::cout << "[";
+                            partie.ConsPrint(6,7);
+                            std::cout << "]";
+                            break;
+                        case 4 :
+                            choix = 5;
+                            partie.ConsPrint(6,0);
+                            std::cout << " ";
+                            partie.ConsPrint(6,7);
+                            std::cout << " ";
+                            partie.ConsPrint(7,0);
+                            std::cout << "[";
+                            partie.ConsPrint(7,8);
+                            std::cout << "]";
+                            break;
+                        case 5 :
+                            choix = 1;
+                            partie.ConsPrint(7,0);
+                            std::cout << " ";
+                            partie.ConsPrint(7,8);
+                            std::cout << " ";
+                            partie.ConsPrint(3,0);
+                            std::cout << "[";
+                            partie.ConsPrint(3,9);
+                            std::cout << "]";
+                            break;
+                        }
+                        break;
+                    default :
+                        break;
+                    }
+                }
+            while(c != '\r');
             system("cls");
-
             switch(choix){
 
                 case 1 : partie.LancerPartie(true,false);
