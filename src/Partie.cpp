@@ -43,7 +43,7 @@ bool Partie::chargement_partie()
     std::string path;
     bool returnvaleur;
     char ori;
-    bool data;
+    int data;
     unsigned int x0, y0;
 
     unsigned int otherplayer;
@@ -82,7 +82,8 @@ bool Partie::chargement_partie()
             }
             for(unsigned int j=0;j<battab[currentplayer][i]->get_taille();j++){
                     ifs >> data;
-                    battab[currentplayer][0]->set_etat(j,data);
+                    if(data==0) battab[currentplayer][i]->set_etat(j,false);
+                    else  battab[currentplayer][i]->set_etat(j,true);
             }
         }
         ///POUR OTHERPLAYER
@@ -108,7 +109,9 @@ bool Partie::chargement_partie()
             }
             for(unsigned int j=0;j<battab[otherplayer][i]->get_taille();j++){
                     ifs >> data;
-                    battab[otherplayer][0]->set_etat(j,data);
+                    if(data==0) battab[otherplayer][i]->set_etat(j,false);
+                    else  battab[otherplayer][i]->set_etat(j,true);
+
             }
         }
 
@@ -808,8 +811,8 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
 {
 
     //Recup type de tir avec rayon d'action
-    unsigned int dest_x;
-    unsigned int dest_y;
+    unsigned int dest_x=0;
+    unsigned int dest_y=0;
     unsigned int rayon=0;
     unsigned int maxvalue=0;
     bool oklength=false;
@@ -832,14 +835,14 @@ void Partie::Tirer(unsigned int currentplayer, unsigned int otherplayer, unsigne
 
     }
 
+    if (alleg_present==1) {dest_x=0; dest_y=0;}
+
     if(tourIA){
         maxvalue=16-rayon;
         dest_x=rand()%maxvalue;
         dest_y=rand()%maxvalue;
         choix=true;
     }
-
-    if (alleg_present==1) {dest_x=0; dest_y=0;}
 
     //Laisse le joueur choisir où tirer
     while(!choix){
